@@ -9,13 +9,13 @@
 /* Begin PBXBuildFile section */
 		0E144BD625F9241500D26E54 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E144BD525F9241500D26E54 /* AppDelegate.swift */; };
 		0E144BD825F9241500D26E54 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E144BD725F9241500D26E54 /* SceneDelegate.swift */; };
-		0E144BDA25F9241500D26E54 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E144BD925F9241500D26E54 /* ViewController.swift */; };
 		0E144BDD25F9241500D26E54 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E144BDB25F9241500D26E54 /* Main.storyboard */; };
 		0E144BE025F9241500D26E54 /* Workout_Capstone.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0E144BDE25F9241500D26E54 /* Workout_Capstone.xcdatamodeld */; };
 		0E144BE225F9241700D26E54 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E144BE125F9241700D26E54 /* Assets.xcassets */; };
 		0E144BE525F9241700D26E54 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E144BE325F9241700D26E54 /* LaunchScreen.storyboard */; };
 		0E144BF025F9241700D26E54 /* Workout_CapstoneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E144BEF25F9241700D26E54 /* Workout_CapstoneTests.swift */; };
 		0E144BFB25F9241700D26E54 /* Workout_CapstoneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E144BFA25F9241700D26E54 /* Workout_CapstoneUITests.swift */; };
+		0E144C1325FA72F600D26E54 /* WorkoutsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E144C1225FA72F600D26E54 /* WorkoutsCollectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +39,6 @@
 		0E144BD225F9241500D26E54 /* Workout-Capstone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Workout-Capstone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E144BD525F9241500D26E54 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0E144BD725F9241500D26E54 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		0E144BD925F9241500D26E54 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0E144BDC25F9241500D26E54 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0E144BDF25F9241500D26E54 /* Workout_Capstone.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Workout_Capstone.xcdatamodel; sourceTree = "<group>"; };
 		0E144BE125F9241700D26E54 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -51,6 +50,7 @@
 		0E144BF625F9241700D26E54 /* Workout-CapstoneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Workout-CapstoneUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E144BFA25F9241700D26E54 /* Workout_CapstoneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout_CapstoneUITests.swift; sourceTree = "<group>"; };
 		0E144BFC25F9241700D26E54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0E144C1225FA72F600D26E54 /* WorkoutsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsCollectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +103,7 @@
 			children = (
 				0E144BD525F9241500D26E54 /* AppDelegate.swift */,
 				0E144BD725F9241500D26E54 /* SceneDelegate.swift */,
-				0E144BD925F9241500D26E54 /* ViewController.swift */,
+				0E144C1225FA72F600D26E54 /* WorkoutsCollectionViewController.swift */,
 				0E144BDB25F9241500D26E54 /* Main.storyboard */,
 				0E144BE125F9241700D26E54 /* Assets.xcassets */,
 				0E144BE325F9241700D26E54 /* LaunchScreen.storyboard */,
@@ -262,8 +262,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E144BE025F9241500D26E54 /* Workout_Capstone.xcdatamodeld in Sources */,
-				0E144BDA25F9241500D26E54 /* ViewController.swift in Sources */,
 				0E144BD625F9241500D26E54 /* AppDelegate.swift in Sources */,
+				0E144C1325FA72F600D26E54 /* WorkoutsCollectionViewController.swift in Sources */,
 				0E144BD825F9241500D26E54 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
