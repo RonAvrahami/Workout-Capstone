@@ -8,8 +8,6 @@
 import Foundation
 import UIKit
 
-
-
 enum MuscleGroup {
     case legs
     case shoulders
@@ -20,12 +18,12 @@ enum MuscleGroup {
     
 }
 
-struct Exercise {
-    var name: String
-    var image: UIImage
-    var timer: Timer
-    var reps: Int
-    var requiresEquipment: Bool
+struct Exercise: Hashable{
+    var name: String?
+    var image: UIImage?
+    var timer: Timer?
+    var reps: Int?
+    var requiresEquipment: Bool?
     var muscle: MuscleGroup?
     
 }

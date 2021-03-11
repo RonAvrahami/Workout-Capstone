@@ -8,12 +8,12 @@
 import Foundation
 import UIKit
 
-struct Workout {
-    var name: String
-    var image: UIImage
-    var timer: Timer
-    var exercises: [Exercise]
-    var requiresEquipment: Bool
+struct Workout: Hashable {
+    var name: String?
+    var image: UIImage?
+    var timer: Timer?
+    var exercises: [Exercise]?
+    var requiresEquipment: Bool?
     
     
 }
