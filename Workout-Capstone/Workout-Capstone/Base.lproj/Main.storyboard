@@ -57,7 +57,7 @@
                                     </constraints>
                                 </collectionViewCellContentView>
                                 <connections>
-                                    <outlet property="cellImageView" destination="dBl-VC-MK7" id="i18-Gh-gFZ"/>
+                                    <outlet property="cellImageView" destination="dBl-VC-MK7" id="8eC-CH-3do"/>
                                     <outlet property="workoutNameLabel" destination="p0X-SW-Dmf" id="B1r-Fj-jCy"/>
                                 </connections>
                             </collectionViewCell>
