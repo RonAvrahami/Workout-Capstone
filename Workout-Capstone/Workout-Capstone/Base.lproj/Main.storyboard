@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Workouts Collection View Controller-->
+        <!--Workouts-->
         <scene sceneID="13Z-hM-zbW">
             <objects>
                 <collectionViewController id="YDp-QZ-NYp" customClass="WorkoutsCollectionViewController" customModule="Workout_Capstone" customModuleProvider="target" sceneMemberID="viewController">
@@ -25,26 +25,40 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="workoutCell" id="swk-3t-wBw" customClass="WorkoutCollectionViewCell" customModule="Workout_Capstone" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                <rect key="frame" x="0.0" y="0.0" width="100" height="120.5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="qYG-aa-evj">
-                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="WMn-vK-sM6">
+                                    <rect key="frame" x="0.0" y="0.0" width="100" height="120.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TO1-Vn-ixx">
-                                            <rect key="frame" x="43" y="53.5" width="42" height="21"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" image="person" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="dBl-VC-MK7">
+                                            <rect key="frame" x="0.0" y="1.5" width="100" height="97.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="100" id="1ZN-ag-OVg"/>
+                                                <constraint firstAttribute="width" constant="100" id="Txe-c1-vim"/>
+                                                <constraint firstAttribute="width" secondItem="dBl-VC-MK7" secondAttribute="height" multiplier="1:1" id="dBZ-uN-mg9"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p0X-SW-Dmf">
+                                            <rect key="frame" x="0.0" y="100" width="100" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="TO1-Vn-ixx" firstAttribute="centerY" secondItem="qYG-aa-evj" secondAttribute="centerY" id="IqX-E0-sLe"/>
-                                        <constraint firstItem="TO1-Vn-ixx" firstAttribute="centerX" secondItem="qYG-aa-evj" secondAttribute="centerX" id="s19-5h-tg6"/>
+                                        <constraint firstAttribute="trailing" secondItem="dBl-VC-MK7" secondAttribute="trailing" id="8S0-DN-JmG"/>
+                                        <constraint firstItem="p0X-SW-Dmf" firstAttribute="leading" secondItem="WMn-vK-sM6" secondAttribute="leading" id="Fbf-Pg-UQx"/>
+                                        <constraint firstAttribute="bottom" secondItem="p0X-SW-Dmf" secondAttribute="bottom" id="J8T-cH-qU0"/>
+                                        <constraint firstAttribute="trailing" secondItem="p0X-SW-Dmf" secondAttribute="trailing" id="XDj-IO-pVb"/>
+                                        <constraint firstItem="p0X-SW-Dmf" firstAttribute="top" secondItem="dBl-VC-MK7" secondAttribute="bottom" id="eWY-wV-6qW"/>
+                                        <constraint firstItem="dBl-VC-MK7" firstAttribute="top" secondItem="WMn-vK-sM6" secondAttribute="top" id="feq-Bq-fYd"/>
+                                        <constraint firstItem="dBl-VC-MK7" firstAttribute="leading" secondItem="WMn-vK-sM6" secondAttribute="leading" id="pRo-fG-R2c"/>
                                     </constraints>
                                 </collectionViewCellContentView>
                                 <connections>
-                                    <outlet property="workoutNameLabel" destination="TO1-Vn-ixx" id="LQp-3M-mxZ"/>
+                                    <outlet property="cellImageView" destination="dBl-VC-MK7" id="i18-Gh-gFZ"/>
+                                    <outlet property="workoutNameLabel" destination="p0X-SW-Dmf" id="B1r-Fj-jCy"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -53,16 +67,16 @@
                             <outlet property="delegate" destination="YDp-QZ-NYp" id="iaD-Mb-LbA"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="wtQ-iq-mA9"/>
+                    <navigationItem key="navigationItem" title="Workouts" largeTitleDisplayMode="always" id="wtQ-iq-mA9"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mmj-Em-ZBM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="22" y="822"/>
+            <point key="canvasLocation" x="21.739130434782609" y="821.65178571428567"/>
         </scene>
-        <!--Workout Table View Controller-->
+        <!--Table View Controller-->
         <scene sceneID="KIz-XS-rSc">
             <objects>
-                <tableViewController id="omD-rW-oGH" customClass="WorkoutTableViewController" customModule="Workout_Capstone" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="omD-rW-oGH" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="bDv-2d-olp">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -134,7 +148,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PDX-F4-K3P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="931.88405797101461" y="821.65178571428567"/>
+            <point key="canvasLocation" x="932" y="822"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="6st-Ca-ifq">
@@ -190,6 +204,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="person" catalog="system" width="128" height="117"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
