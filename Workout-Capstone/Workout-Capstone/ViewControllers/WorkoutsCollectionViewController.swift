@@ -153,7 +153,6 @@ class WorkoutsCollectionViewController: UICollectionViewController {
                 return nil
             }
         }
-        
         updateDataSource()
     }
     
