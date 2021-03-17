@@ -8,14 +8,14 @@
 import Foundation
 import UIKit
 
-enum MuscleGroup {
-    case legs
-    case shoulders
-    case core
-    case biceps
-    case back
-    case cardio
-    
+enum MuscleGroup: String, CaseIterable, Hashable {
+    case defualt
+    case arms = "Arms"
+    case legs = "Legs"
+    case shoulders = "Shoulder"
+    case core = "Core"
+    case back = "Back"
+    case chest = "Chest"
 }
 
 struct Exercise: Hashable{
@@ -25,7 +25,7 @@ struct Exercise: Hashable{
     var reps: Int?
     var requiresEquipment: Bool?
     var muscle: MuscleGroup?
-    
+    var description: String?
 }
 
 
