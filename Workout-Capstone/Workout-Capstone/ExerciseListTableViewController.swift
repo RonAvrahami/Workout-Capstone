@@ -29,8 +29,8 @@ class ExerciseListTableViewController: UITableViewController, AddExerciseProtoca
         })
         updateDataSource()
     }
-    func updateExercises(excercise: Exercise) {
-        exercises.append(excercise)
+    func updateExercises(exercise: Exercise) {
+        exercises.append(exercise)
         
         updateDataSource()
     }

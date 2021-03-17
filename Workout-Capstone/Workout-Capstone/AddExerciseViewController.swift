@@ -8,7 +8,7 @@
 import UIKit
 
 protocol AddExerciseProtocal: AnyObject {
-    func updateExercises(excercise: Exercise)
+    func updateExercises(exercise: Exercise)
 }
 
 class AddExerciseViewController: UIViewController, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
@@ -92,7 +92,7 @@ class AddExerciseViewController: UIViewController, UITextViewDelegate, UIPickerV
         let equiptmentReq: Bool = (requiresEquiptmentControl.selectedSegmentIndex != 0) ? false : true
         
         let newExercise = Exercise(name: titleLabel.text, image: nil, timer: nil, reps: reps, requiresEquipment: equiptmentReq, muscle: pickedMuscle , description: descriptionTextView.text)
-        delegate?.updateExercises(excercise: newExercise)
+        delegate?.updateExercises(exercise: newExercise)
     }
     
     func enableSubmitCheck() {
