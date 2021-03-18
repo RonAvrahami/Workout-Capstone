@@ -16,6 +16,9 @@ class WorkoutTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let addButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = addButton
+        navigationItem.rightBarButtonItems = [addButton, editButtonItem]
         
         for num in 1...10 {
             var exercise = Exercise()
@@ -63,9 +66,11 @@ class WorkoutTableViewController: UITableViewController {
     
     //MARK: - TableView Func
     
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: true)
+        tableView.setEditing(editing, animated: true)
     }
+    
 
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (_, _, completion) in
@@ -85,6 +90,13 @@ class ExerciseDataSource: UITableViewDiffableDataSource<WorkoutTableViewControll
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
+   
+    
+    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    
 }
 
 extension WorkoutTableViewController {
