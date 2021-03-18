@@ -57,7 +57,7 @@ class WorkoutTableViewController: UITableViewController {
         snapshot.appendSections([section])
         snapshot.appendItems(exercises, toSection: section)
         
-        dataSource.apply(snapshot, animatingDifferences: true)
+        dataSource.apply(snapshot, animatingDifferences: false)
         
     }
     
