@@ -64,6 +64,7 @@ class ExerciseListTableViewController: UITableViewController, AddExerciseProtoca
             return
         }
         destination.delegate = self
+
     }
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (_, _, completion) in
@@ -77,7 +78,7 @@ class ExerciseListTableViewController: UITableViewController, AddExerciseProtoca
         return actions
     }
     override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        
+     performSegue(withIdentifier: "addExercise", sender: nil)
     }
 }
 

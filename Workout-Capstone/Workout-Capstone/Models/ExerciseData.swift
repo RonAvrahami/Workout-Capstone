@@ -21,7 +21,7 @@ enum MuscleGroup: String, CaseIterable, Hashable {
 struct Exercise: Hashable{
     var name: String?
     var image: UIImage?
-    var timer: Timer?
+    var timer: TimeInterval?
     var reps: Int?
     var requiresEquipment: Bool?
     var muscle: MuscleGroup?
