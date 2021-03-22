@@ -15,11 +15,12 @@ class ExerciseListTableViewController: UITableViewController, AddExerciseProtoca
     var exercises = [Exercise]()
     var dataSource: DataSource!
     var editingExercise: Exercise?
+    var senderIndexPath: IndexPath?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = editButtonItem
         tableView.delegate = self
-        
         
         dataSource = DataSource(tableView: tableView, cellProvider: { (tableView, indexPath, exercise) -> UITableViewCell? in
             tableView.allowsSelection = false
@@ -36,23 +37,18 @@ class ExerciseListTableViewController: UITableViewController, AddExerciseProtoca
     }
     
     func updateExercise(exercise: Exercise) {
-      
-        let exerciseIndex = exercises.firstIndex { (index) -> Bool in
-            index == editingExercise
-        }
-        guard exerciseIndex != nil else {
-            return
-        }
-        exercises[exerciseIndex!] = exercise
+        
+        exercises[senderIndexPath!.row] = exercise        
+        updateDataSource()
+        
     }
     
     func updateDataSource() {
-        
         var snapshot = NSDiffableDataSourceSnapshot<Section, Exercise>()
         snapshot.appendSections([.one])
         snapshot.appendItems(exercises)
         
-        dataSource.apply(snapshot, animatingDifferences: true, completion: nil )
+        dataSource.apply(snapshot, animatingDifferences: true, completion: nil)
     }
     
     func deleteExercise(exercise: Exercise) {
@@ -67,6 +63,7 @@ class ExerciseListTableViewController: UITableViewController, AddExerciseProtoca
     @IBAction func addExerciseButtonTapped(_ sender: Any) {
         performSegue(withIdentifier: "addExercise", sender: nil)
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let destination = segue.destination as? AddExerciseViewController else { return }
         destination.delegate = self
@@ -74,6 +71,7 @@ class ExerciseListTableViewController: UITableViewController, AddExerciseProtoca
         if segue.identifier == "editExercise" {
             guard let exerciseData = self.dataSource.itemIdentifier(for: sender as! IndexPath) else { return }
             
+            senderIndexPath = sender as? IndexPath
             editingExercise = exerciseData
             
             destination.exerciseNameTextFieldPlaceHolder = exerciseData.name
@@ -82,7 +80,9 @@ class ExerciseListTableViewController: UITableViewController, AddExerciseProtoca
             destination.requiresEquiptmentPlaceHolder = exerciseData.requiresEquipment == true ? 0 : 1
             destination.descriptionTextViewPlaceHolder = exerciseData.description
             destination.muscleGroupPickerStatePlaceHolder = exerciseData.muscle
+            
             destination.isEdit = true
+            
         }
     }
     
@@ -90,6 +90,7 @@ class ExerciseListTableViewController: UITableViewController, AddExerciseProtoca
         super.setEditing(editing, animated: true)
         tableView.setEditing(editing, animated: true)
     }
+    
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (_, _, completion) in
             guard let exercise = self.dataSource.itemIdentifier(for: indexPath) else {
