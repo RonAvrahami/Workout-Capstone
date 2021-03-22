@@ -39,6 +39,7 @@ class AddExerciseViewController: UIViewController, UITextViewDelegate, UIPickerV
     var descriptionTextViewPlaceHolder: String?
     var muscleGroupPickerStatePlaceHolder: MuscleGroup?
     var isEdit = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -59,8 +60,10 @@ class AddExerciseViewController: UIViewController, UITextViewDelegate, UIPickerV
         
         muscleGroupDropDownButton.setImage(UIImage(systemName: "arrow.forward.circle", withConfiguration: largeConfig), for: .normal)
         muscleGroupDropDownButton.setImage(UIImage(systemName: "arrow.down.circle", withConfiguration: largeConfig), for: .selected)
-        
+                
         if let nameTitle = exerciseNameTextFieldPlaceHolder, let repsCount = repsTextFieldPlaceHolder, let timeGoal = timeGoalTextFieldPlaceHolder, let segmentIndex = requiresEquiptmentPlaceHolder, let descriptionText = descriptionTextViewPlaceHolder, let muscleGroupLabelPlaceHolder = muscleGroupPickerStatePlaceHolder?.rawValue {
+            
+            pickedMuscle = muscleGroupPickerStatePlaceHolder
             
             titleLabel.text = nameTitle
             exerciseNameTextField.text = nameTitle
