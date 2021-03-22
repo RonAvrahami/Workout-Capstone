@@ -14,7 +14,7 @@ class ExerciseListTableViewController: UITableViewController, AddExerciseProtoca
     
     var exercises = [Exercise]()
     var dataSource: DataSource!
-    
+    var editingExercise: Exercise?
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = editButtonItem
@@ -30,10 +30,20 @@ class ExerciseListTableViewController: UITableViewController, AddExerciseProtoca
         })
         updateDataSource()
     }
-    func updateExercises(exercise: Exercise) {
+    func addExercise(exercise: Exercise) {
         exercises.append(exercise)
-        
         updateDataSource()
+    }
+    
+    func updateExercise(exercise: Exercise) {
+      
+        let exerciseIndex = exercises.firstIndex { (index) -> Bool in
+            index == editingExercise
+        }
+        guard exerciseIndex != nil else {
+            return
+        }
+        exercises[exerciseIndex!] = exercise
     }
     
     func updateDataSource() {
@@ -58,14 +68,22 @@ class ExerciseListTableViewController: UITableViewController, AddExerciseProtoca
         performSegue(withIdentifier: "addExercise", sender: nil)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "addExercise" else {
-            return
-        }
-        guard let destination = segue.destination as? AddExerciseViewController else {
-            return
-        }
+        guard let destination = segue.destination as? AddExerciseViewController else { return }
         destination.delegate = self
-
+            
+        if segue.identifier == "editExercise" {
+            guard let exerciseData = self.dataSource.itemIdentifier(for: sender as! IndexPath) else { return }
+            
+            editingExercise = exerciseData
+            
+            destination.exerciseNameTextFieldPlaceHolder = exerciseData.name
+            destination.repsTextFieldPlaceHolder = exerciseData.reps
+            destination.timeGoalTextFieldPlaceHolder = exerciseData.reps
+            destination.requiresEquiptmentPlaceHolder = exerciseData.requiresEquipment == true ? 0 : 1
+            destination.descriptionTextViewPlaceHolder = exerciseData.description
+            destination.muscleGroupPickerStatePlaceHolder = exerciseData.muscle
+            destination.isEdit = true
+        }
     }
     
     override func setEditing(_ editing: Bool, animated: Bool) {
@@ -84,7 +102,7 @@ class ExerciseListTableViewController: UITableViewController, AddExerciseProtoca
         return actions
     }
     override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-     performSegue(withIdentifier: "addExercise", sender: nil)
+        performSegue(withIdentifier: "editExercise", sender: indexPath)
     }
 }
 
