@@ -15,8 +15,6 @@ enum Section {
     case five
     case six
     case seven
-    case eight
-    case nine
 }
 
 enum SupplementaryViewKind {
@@ -28,6 +26,9 @@ enum SupplementaryViewKind {
 class WorkoutsCollectionViewController: UICollectionViewController {
     
     var dataSource: UICollectionViewDiffableDataSource<Section,Workout>!
+    var builtInWorkouts = BuiltInWorkouts()
+    
+    
     
     var workoutsOne = [Workout]()
     var workoutsTwo = [Workout]()
@@ -36,34 +37,16 @@ class WorkoutsCollectionViewController: UICollectionViewController {
     var workoutsFive = [Workout]()
     var workoutsSix = [Workout]()
     var workoutsSeven = [Workout]()
-    var workoutsEight = [Workout]()
-    var workoutsNine = [Workout]()
-    
+ 
     var sections = [Section]()
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        for num in 1...45 {
-            if num < 6 {
-                workoutsOne.append(Workout(name: "Workout \(num)", image: nil, timer: nil, exercises: nil, requiresEquipment: nil))
-            } else if num < 11 {
-                workoutsTwo.append(Workout(name: "Workout \(num)", image: nil, timer: nil, exercises: nil, requiresEquipment: nil))
-            } else if num < 16 {
-                workoutsThree.append(Workout(name: "Workout \(num)", image: nil, timer: nil, exercises: nil, requiresEquipment: nil))
-            } else if num < 21 {
-                workoutsFour.append(Workout(name: "Workout \(num)", image: nil, timer: nil, exercises: nil, requiresEquipment: nil))
-            } else if num < 26 {
-                workoutsFive.append(Workout(name: "Workout \(num)", image: nil, timer: nil, exercises: nil, requiresEquipment: nil))
-            } else if num < 31 {
-                workoutsSix.append(Workout(name: "Workout \(num)", image: nil, timer: nil, exercises: nil, requiresEquipment: nil))
-            } else if num < 36 {
-                workoutsSeven.append(Workout(name: "Workout \(num)", image: nil, timer: nil, exercises: nil, requiresEquipment: nil))
-            } else if num < 41 {
-                workoutsEight.append(Workout(name: "Workout \(num)", image: nil, timer: nil, exercises: nil, requiresEquipment: nil))
-            } else {
-                workoutsNine.append(Workout(name: "Workout \(num)", image: nil, timer: nil, exercises: nil, requiresEquipment: nil))
-            }
-        }
+        workoutsThree.append(builtInWorkouts.workout1)
+        workoutsFour.append(builtInWorkouts.workout2)
+        workoutsTwo.append(builtInWorkouts.workout3)
+        workoutsSix.append(builtInWorkouts.workout4)
+
         collectionView.collectionViewLayout = configureCollectionViewLayout()
         collectionView.register(SectionHeaderView.self, forSupplementaryViewOfKind: SupplementaryViewKind.header, withReuseIdentifier: SectionHeaderView.reuseIdentifier)
         collectionView.register(LineView.self, forSupplementaryViewOfKind: SupplementaryViewKind.topLine, withReuseIdentifier: LineView.reuseIdentifier)
@@ -123,23 +106,19 @@ class WorkoutsCollectionViewController: UICollectionViewController {
                 
                 switch section {
                 case .one:
-                    sectionName = "One"
+                    sectionName = "My Workouts"
                 case .two:
-                    sectionName = "Two"
+                    sectionName = "Arms"
                 case .three:
-                    sectionName = "Three"
+                    sectionName = "Back"
                 case .four:
-                    sectionName = "Four"
+                    sectionName = "Legs"
                 case .five:
-                    sectionName = "Five"
+                    sectionName = "Shoulders"
                 case .six:
-                    sectionName = "Six"
+                    sectionName = "Chest"
                 case .seven:
-                    sectionName = "Seven"
-                case .eight:
-                    sectionName = "Eight"
-                case .nine:
-                    sectionName = "Nine"
+                    sectionName = "Core"
                 }
                 
                 headerView.setTitle(sectionName)
@@ -179,13 +158,7 @@ class WorkoutsCollectionViewController: UICollectionViewController {
         
         snapshot.appendSections([.seven])
         snapshot.appendItems(workoutsSeven)
-        
-        snapshot.appendSections([.eight])
-        snapshot.appendItems(workoutsEight)
-        
-        snapshot.appendSections([.nine])
-        snapshot.appendItems(workoutsNine)
-        
+    
         sections = snapshot.sectionIdentifiers
 
         dataSource.apply(snapshot, animatingDifferences: true, completion: nil )
