@@ -25,6 +25,8 @@ class WorkoutTableViewController: UITableViewController {
             exercises.append(exercise)
         }
                 
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Quit", style: .plain, target: nil, action: nil)
+        
         configureDataSource()
     }
     
