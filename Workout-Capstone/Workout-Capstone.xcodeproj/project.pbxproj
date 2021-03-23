@@ -167,9 +167,9 @@
 			children = (
 				0EEF5C2D25FFBD45008C7CE9 /* AddExerciseViewController.swift */,
 				0EEF5C2825FFABDF008C7CE9 /* ExerciseListTableViewController.swift */,
-				0E144C2025FA7CEF00D26E54 /* WorkoutsCollectionViewController.swift */,
-				BB4D1E3F25FBB99500C3A6D0 /* WorkoutTableViewController.swift */,
 				1F68B38F2604E75B00F9DA79 /* WorkoutsDisplayViewController.swift */,
+				BB4D1E3F25FBB99500C3A6D0 /* WorkoutTableViewController.swift */,
+				0E144C2025FA7CEF00D26E54 /* WorkoutsCollectionViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";

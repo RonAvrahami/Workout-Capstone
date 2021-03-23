@@ -8,16 +8,17 @@
 import UIKit
 
 enum Section {
-    case one
-    case two
-    case three
-    case four
-    case five
-    case six
-    case seven
+    case custom
+    case arms
+    case back
+    case legs
+    case shoulders
+    case chest
+    case core
 }
 
 enum SupplementaryViewKind {
+    
     static let header = "header"
     static let topLine = "topLine"
     static let buttomLine = "buttomLine"
@@ -30,22 +31,22 @@ class WorkoutsCollectionViewController: UICollectionViewController {
     
     
     
-    var workoutsOne = [Workout]()
-    var workoutsTwo = [Workout]()
-    var workoutsThree = [Workout]()
-    var workoutsFour = [Workout]()
-    var workoutsFive = [Workout]()
-    var workoutsSix = [Workout]()
-    var workoutsSeven = [Workout]()
+    var customWorkouts = [Workout]()
+    var armWorkouts = [Workout]()
+    var backWorkouts = [Workout]()
+    var legWorkouts = [Workout]()
+    var shoulderWorkouts = [Workout]()
+    var chestWorkouts = [Workout]()
+    var coreWorkouts = [Workout]()
  
     var sections = [Section]()
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        workoutsThree.append(builtInWorkouts.workout1)
-        workoutsFour.append(builtInWorkouts.workout2)
-        workoutsTwo.append(builtInWorkouts.workout3)
-        workoutsSix.append(builtInWorkouts.workout4)
+//        armWorkouts.append(builtInWorkouts.armWorkout1)
+//        backWorkouts.append(builtInWorkouts.backWorkout1)
+//        legWorkouts.append(builtInWorkouts.legWorkout1)
+//        chestWorkouts.append(builtInWorkouts.chestWorkout1)
 
         collectionView.collectionViewLayout = configureCollectionViewLayout()
         collectionView.register(SectionHeaderView.self, forSupplementaryViewOfKind: SupplementaryViewKind.header, withReuseIdentifier: SectionHeaderView.reuseIdentifier)
@@ -105,19 +106,19 @@ class WorkoutsCollectionViewController: UICollectionViewController {
                 let sectionName: String
                 
                 switch section {
-                case .one:
+                case .custom:
                     sectionName = "My Workouts"
-                case .two:
+                case .arms:
                     sectionName = "Arms"
-                case .three:
+                case .back:
                     sectionName = "Back"
-                case .four:
+                case .legs:
                     sectionName = "Legs"
-                case .five:
+                case .shoulders:
                     sectionName = "Shoulders"
-                case .six:
+                case .chest:
                     sectionName = "Chest"
-                case .seven:
+                case .core:
                     sectionName = "Core"
                 }
                 
@@ -138,29 +139,41 @@ class WorkoutsCollectionViewController: UICollectionViewController {
     func updateDataSource() {
         
         var snapshot = NSDiffableDataSourceSnapshot<Section, Workout>()
-        snapshot.appendSections([.one])
-        snapshot.appendItems(workoutsOne)
+        snapshot.appendSections([.custom])
+        snapshot.appendItems(customWorkouts)
         
-        snapshot.appendSections([.two])
-        snapshot.appendItems(workoutsTwo)
+        snapshot.appendSections([.arms])
+        snapshot.appendItems(armWorkouts)
         
-        snapshot.appendSections([.three])
-        snapshot.appendItems(workoutsThree)
+        snapshot.appendSections([.back])
+        snapshot.appendItems(backWorkouts)
         
-        snapshot.appendSections([.four])
-        snapshot.appendItems(workoutsFour)
+        snapshot.appendSections([.legs])
+        snapshot.appendItems(legWorkouts)
         
-        snapshot.appendSections([.five])
-        snapshot.appendItems(workoutsFive)
+        snapshot.appendSections([.shoulders])
+        snapshot.appendItems(shoulderWorkouts)
         
-        snapshot.appendSections([.six])
-        snapshot.appendItems(workoutsSix)
+        snapshot.appendSections([.chest])
+        snapshot.appendItems(chestWorkouts)
         
-        snapshot.appendSections([.seven])
-        snapshot.appendItems(workoutsSeven)
+        snapshot.appendSections([.core])
+        snapshot.appendItems(coreWorkouts)
     
         sections = snapshot.sectionIdentifiers
 
         dataSource.apply(snapshot, animatingDifferences: true, completion: nil )
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "workoutSegue", sender: indexPath)
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let destination = segue.destination as? WorkoutTableViewController else {
+            return
+        }
+        destination.workout = dataSource.itemIdentifier(for: sender as! IndexPath)
     }
 }
