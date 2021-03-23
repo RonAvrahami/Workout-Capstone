@@ -11,23 +11,18 @@ import UIKit
 
 class WorkoutTableViewController: UITableViewController {
     
+    var workout: Workout!
     var exercises = [Exercise]()
     var dataSource: ExerciseDataSource!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let addButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = addButton
         navigationItem.rightBarButtonItems = [addButton, editButtonItem]
         
-        for num in 1...10 {
-            var exercise = Exercise()
-            exercise.image = UIImage(systemName: "person.fill")
-            exercise.name = "Exercise \(num)"
-            exercise.reps = 420
-            exercises.append(exercise)
-        }
-                
+        exercises.append(contentsOf: workout.exercises!)
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "Quit", style: .plain, target: nil, action: nil)
         
         configureDataSource()
@@ -40,9 +35,13 @@ class WorkoutTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath) as! WorkoutExercisesTableViewCell
             
             cell.exerciseNameLabel.text = exercise.name
-            cell.exerciseTimeLabel.text = "\(exercise.timer)"
-            cell.exerciseImageView.image = exercise.image
-            cell.repCountLabel.text = "\(exercise.reps)"
+            cell.exerciseTimeLabel.text = "Timer: \(exercise.timeGoal!) seconds"
+            
+            if exercise.reps == nil {
+                cell.repCountLabel.text = "Reps: 1"
+            } else {
+                cell.repCountLabel.text = "Reps: \(exercise.reps!)"
+            }
             
             return cell
             
