@@ -16,9 +16,13 @@ class ExerciseListTableViewController: UITableViewController, AddExerciseProtoca
     var dataSource: DataSource!
     var editingExercise: Exercise?
     var senderIndexPath: IndexPath?
+    var isModal = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        exercises = builtInExercises
+        
         navigationItem.leftBarButtonItem = editButtonItem
         tableView.delegate = self
         
@@ -45,7 +49,7 @@ class ExerciseListTableViewController: UITableViewController, AddExerciseProtoca
     
     func updateDataSource() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Exercise>()
-        snapshot.appendSections([.one])
+        snapshot.appendSections([.custom])
         snapshot.appendItems(exercises)
         
         dataSource.apply(snapshot, animatingDifferences: true, completion: nil)

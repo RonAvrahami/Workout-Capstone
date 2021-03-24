@@ -7,15 +7,18 @@
 
 import Foundation
 import UIKit
-
 class BuiltInWorkouts {
     
 
-var workout1 = Workout(name: "Workout1", image: nil, timer: nil, exercises: [inclineDumbbellPress, latPullDown, skullCrushers, frontRaise, boxJump], requiresEquipment: true)
-var workout2 = Workout(name: "Workout2", image: nil, timer: nil, exercises: [barbellBenchPress, wideGripPullUps, barbellBicepCurl, dumbbellSquatWalk, dumbbellJumpSquat], requiresEquipment: true)
-var wokrout3 = Workout(name: "Workout3", image: nil, timer: nil, exercises: [inclineBenchPress, singleArmDumbbellRow, cableTricepPushDown, bentOverDumbbellLatRaise, deadlift], requiresEquipment: true)
-var workout4 = Workout(name: "Chest Day", image: nil, timer: nil, exercises: [barbellBenchPress, skullCrushers, inclineBenchPress, jumpRope, pullUps, dips, latPullDown, boxJump], requiresEquipment: true)
+
+var chestArray = [chestWorkout1, chestWorkout2, chestWorkout3, chestWorkout4]
+var armArray = [armWorkout1, armWorkout2, armWorkout3, armWorkout4]
+var legArray = [legWorkout1, legWorkout2, legWorkout3, legWorkout4]
+var coreArray = [coreWorkout1, coreWorkout2, coreWorkout3, coreWorkout4]
+var shoulderArray = [shoulderWorkout1, shoulderWorkout2, shoulderWorkout3, shoulderWorkout4]
+var backArray = [backWorkout1, backWorkout2, backWorkout3, backWorkout4]
 }
+
 var backWorkout1 = Workout(name: "Back Crusher", image: UIImage(named: "25"), timer: nil, exercises: [inclineDumbbellPress, latPullDown, skullCrushers, frontRaise, boxJump], requiresEquipment: true)
 var backWorkout2 = Workout(name: "No looking Back", image: UIImage(named: "27"), timer: nil, exercises: [latPullDown, bentOverDumbbellLatRaise, pullUps, wideGripSeatedCableRow, wideGripPullUps, jumpRope, dumbbellDeadliftShrug], requiresEquipment: true)
 var backWorkout3 = Workout(name: "Dont Back Down", image: UIImage(named: "28"), timer: nil, exercises: [superMan, jumpRope, wideGripPullUps, russianTwist, dips, pullUps, latPullDown, dumbbellSquatWalk, bentOverDumbbellLatRaise, deadlift, lungeTwist], requiresEquipment: true)
@@ -41,4 +44,3 @@ var shoulderWorkout4 = Workout(name: "A Shoulder to Cry On", image: UIImage(name
 var coreWorkout2 = Workout(name: "6 Pack Snack", image: UIImage(named: "31"), timer: nil, exercises: [situp, jumpRope, russianTwist, boxJump, plank, pullUps, shoulderTapPlanks, lungeTwist], requiresEquipment: false)
 var coreWorkout3 = Workout(name: "Abs of Steel", image: UIImage(named: "5"), timer: nil, exercises: [situp, plank, shoulderTapPlanks, jumpingJack, superMan], requiresEquipment: false)
 var coreWorkout4 = Workout(name: "Abs no flab", image: UIImage(named: "8"), timer: nil, exercises: [russianTwist, jumpRope, superMan, jumpingJack, plank, dumbbellJumpSquat, situp, squats], requiresEquipment: true)
-

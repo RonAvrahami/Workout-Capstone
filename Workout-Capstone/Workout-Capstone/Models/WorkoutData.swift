@@ -14,4 +14,6 @@ struct Workout: Hashable {
     var timer: Timer?
     var exercises: [Exercise]?
     var requiresEquipment: Bool?
+    
 }
+
