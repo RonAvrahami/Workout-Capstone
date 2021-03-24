@@ -13,5 +13,6 @@ class WorkoutCollectionViewCell: UICollectionViewCell {
     
     func update(workout: Workout) {
         workoutNameLabel.text = workout.name
+        cellImageView.image = workout.image
     }
 }
