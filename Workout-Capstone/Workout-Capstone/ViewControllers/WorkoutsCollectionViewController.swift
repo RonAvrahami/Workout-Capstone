@@ -38,15 +38,19 @@ class WorkoutsCollectionViewController: UICollectionViewController {
     var shoulderWorkouts = [Workout]()
     var chestWorkouts = [Workout]()
     var coreWorkouts = [Workout]()
+    
  
     var sections = [Section]()
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        armWorkouts.append(builtInWorkouts.armWorkout1)
-//        backWorkouts.append(builtInWorkouts.backWorkout1)
-//        legWorkouts.append(builtInWorkouts.legWorkout1)
-//        chestWorkouts.append(builtInWorkouts.chestWorkout1)
+        armWorkouts.append(contentsOf: builtInWorkouts.armArray)
+        backWorkouts.append(contentsOf: builtInWorkouts.backArray)
+        legWorkouts.append(contentsOf: builtInWorkouts.legArray)
+        chestWorkouts.append(contentsOf: builtInWorkouts.chestArray)
+        coreWorkouts.append(contentsOf: builtInWorkouts.coreArray)
+        shoulderWorkouts.append(contentsOf: builtInWorkouts.shoulderArray)
+        
 
         collectionView.collectionViewLayout = configureCollectionViewLayout()
         collectionView.register(SectionHeaderView.self, forSupplementaryViewOfKind: SupplementaryViewKind.header, withReuseIdentifier: SectionHeaderView.reuseIdentifier)
