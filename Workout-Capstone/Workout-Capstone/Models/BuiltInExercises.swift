@@ -7,6 +7,8 @@
 
 import Foundation
 
+
+    
 var pushUps = Exercise(name: "Push-Ups", image: nil, timeGoal: 60, reps: 20, requiresEquipment: false, muscle: .chest, description: "Keeping your body in one long line and your core engaged, inhale as you bend your arms to lower your chest to the floor. If you can't maintain a flat back or bend your arms fully so that your chest almost reaches the floor, lower your knees to the floor to do a modified push-up from that position.")
 var shoulderTapPlanks = Exercise(name: "Shoulder Tap Planks", image: nil, timeGoal: 60, reps: 20, requiresEquipment: false, muscle: .core, description: "While planking, you rapidly lift one hand to tap the opposite shoulder and put it back down.  Alternate hands rapidly – but make sure the movement stays controlled. No butt wiggles!")
 var mountainClimbers = Exercise(name: "Mountain Climbers", image: nil, timeGoal: 60, reps: nil, requiresEquipment: false, muscle: .core, description: "Start in a push-up position.  Then start alternating legs as you bring a knee to your chest, and back to starting position.  Sort of like running in place… horizontally?")
