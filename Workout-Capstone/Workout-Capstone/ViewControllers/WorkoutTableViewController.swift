@@ -10,6 +10,7 @@ import UIKit
 
 
 class WorkoutTableViewController: UITableViewController {
+    @IBOutlet weak var headerLabel: UILabel!
     
     var workout: Workout!
     var exercises = [Exercise]()
@@ -18,13 +19,12 @@ class WorkoutTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let addButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: nil, action: nil)
-        navigationItem.backBarButtonItem = addButton
-        navigationItem.rightBarButtonItems = [addButton, editButtonItem]
+        let addButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(addButtonAction(_:)))
         
+        navigationItem.rightBarButtonItems = [addButton, editButtonItem]
         exercises.append(contentsOf: workout.exercises!)
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "Quit", style: .plain, target: nil, action: nil)
-        
+        headerLabel.text = workout.name!
         configureDataSource()
     }
     
@@ -64,7 +64,16 @@ class WorkoutTableViewController: UITableViewController {
         dataSource.apply(snapshot, animatingDifferences: false)
         
     }
+    @objc func addButtonAction(_ sender: Any) {
+        performSegue(withIdentifier: "addExerciseSegue", sender: nil)
+    }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let destination = segue.destination as? ExerciseListTableViewController else {
+            return
+        }
+        destination.isModal = true
+    }
     //MARK: - TableView Func
     
     override func setEditing(_ editing: Bool, animated: Bool) {

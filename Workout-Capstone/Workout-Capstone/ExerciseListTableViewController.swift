@@ -16,9 +16,13 @@ class ExerciseListTableViewController: UITableViewController, AddExerciseProtoca
     var dataSource: DataSource!
     var editingExercise: Exercise?
     var senderIndexPath: IndexPath?
+    var isModal = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        exercises = builtInExercises
+        
         navigationItem.leftBarButtonItem = editButtonItem
         tableView.delegate = self
         
