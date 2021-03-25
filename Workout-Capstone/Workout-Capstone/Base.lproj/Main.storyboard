@@ -404,7 +404,7 @@
             <objects>
                 <tableViewController id="ocZ-J9-eUK" customClass="ExerciseListTableViewController" customModule="Workout_Capstone" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="O6i-CM-8Y0">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" id="vE3-wT-7Qq">
@@ -414,20 +414,20 @@
                         </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="exerciseCell" id="QUX-oh-yKv" customClass="ExerciseListTableViewCell" customModule="Workout_Capstone" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="72" width="390" height="42.666667938232422"/>
+                                <rect key="frame" x="0.0" y="72" width="390" height="43.333332061767578"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QUX-oh-yKv" id="FA9-lJ-YAx">
-                                    <rect key="frame" x="0.0" y="0.0" width="346" height="42.666667938232422"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="346" height="43.333332061767578"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exercise" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ye6-At-XH9">
-                                            <rect key="frame" x="58" y="11.000000000000002" width="64" height="20.666666666666671"/>
+                                            <rect key="frame" x="58" y="10.999999999999998" width="64" height="21.333333333333329"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ljX-ii-vbv">
-                                            <rect key="frame" x="20" y="0.0" width="18" height="42.666666666666664"/>
+                                            <rect key="frame" x="20" y="0.0" width="18" height="43.333333333333336"/>
                                             <state key="normal" image="plus" catalog="system"/>
                                             <connections>
                                                 <action selector="addToWorkoutButtonTapped:" destination="QUX-oh-yKv" eventType="touchUpInside" id="vqk-Vr-uOS"/>
@@ -507,11 +507,11 @@
             </objects>
             <point key="canvasLocation" x="757" y="-716"/>
         </scene>
-        <!--Item-->
+        <!--Workouts-->
         <scene sceneID="CLY-CO-zd2">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CE5-cP-5Ub" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="41j-dG-pip"/>
+                    <tabBarItem key="tabBarItem" title="Workouts" image="house" catalog="system" selectedImage="house.fill" id="41j-dG-pip"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="2aG-sg-4Sm">
                         <rect key="frame" x="0.0" y="44" width="390" height="44"/>
@@ -526,11 +526,11 @@
             </objects>
             <point key="canvasLocation" x="22" y="123"/>
         </scene>
-        <!--Item-->
+        <!--Exercises-->
         <scene sceneID="dNV-um-U4v">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1gh-Ip-mNO" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="970-D1-WyT"/>
+                    <tabBarItem key="tabBarItem" title="Exercises" image="heart" catalog="system" selectedImage="heart.fill" id="970-D1-WyT"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ziW-pG-Umf">
@@ -546,11 +546,11 @@
             </objects>
             <point key="canvasLocation" x="757" y="123"/>
         </scene>
-        <!--Item-->
+        <!--Random-->
         <scene sceneID="bp7-BU-cZC">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Sug-bo-CIT" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="xhb-wA-UBe"/>
+                    <tabBarItem key="tabBarItem" title="Random" image="shuffle.circle" catalog="system" selectedImage="shuffle.circle.fill" id="xhb-wA-UBe"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="i1M-n8-Rhn">
                         <rect key="frame" x="0.0" y="44" width="390" height="44"/>
@@ -683,16 +683,22 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ggT-9f-eld"/>
+        <segue reference="CFi-zd-BVf"/>
         <segue reference="7v7-nX-0an"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.forward.circle" catalog="system" width="128" height="121"/>
         <image name="arrow.left" catalog="system" width="128" height="98"/>
         <image name="arrow.right" catalog="system" width="128" height="98"/>
+        <image name="heart" catalog="system" width="128" height="109"/>
+        <image name="heart.fill" catalog="system" width="128" height="109"/>
+        <image name="house" catalog="system" width="128" height="106"/>
+        <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="person" catalog="system" width="128" height="117"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="questionmark.circle" catalog="system" width="128" height="121"/>
+        <image name="shuffle.circle" catalog="system" width="128" height="121"/>
+        <image name="shuffle.circle.fill" catalog="system" width="128" height="121"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

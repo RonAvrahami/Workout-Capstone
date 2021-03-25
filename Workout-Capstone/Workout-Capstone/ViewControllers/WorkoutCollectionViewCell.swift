@@ -11,8 +11,15 @@ class WorkoutCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var workoutNameLabel: UILabel!
     @IBOutlet weak var cellImageView: UIImageView!
     
+    
     func update(workout: Workout) {
         workoutNameLabel.text = workout.name
         cellImageView.image = workout.image
+        cellImageView.layer.cornerRadius = 20
+        cellImageView.clipsToBounds = true
+        cellImageView.layer.shadowColor = UIColor.darkGray.cgColor
+        cellImageView.layer.shadowOffset = CGSize(width: 5.0, height: 5.0)
+        cellImageView.layer.shadowRadius = 25.0
+        cellImageView.layer.shadowOpacity = 0.9
     }
 }
