@@ -10,8 +10,10 @@ import UIKit
 class WorkoutsDisplayViewController: UIViewController {
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var timeGoalLabel: UILabel!
-    @IBOutlet weak var exerciseImage: UIImageView!
-    @IBOutlet weak var workoutDescriptionText: UITextView!
+    @IBOutlet weak var remainingReps: UILabel!
+    @IBOutlet weak var exerciseName: UILabel!
+    
+    
     
     var timer: Timer = Timer()
     var count: Int = 0
@@ -47,8 +49,13 @@ class WorkoutsDisplayViewController: UIViewController {
         timerLabel.text = String(count)
     }
     
+    @IBAction func workoutDescription(_ sender: Any) {
+    }
+    
+    
     @IBAction func previousWorkout(_ sender: Any) {
     }
+    
     
     @IBAction func nextWorkout(_ sender: Any) {
     }
