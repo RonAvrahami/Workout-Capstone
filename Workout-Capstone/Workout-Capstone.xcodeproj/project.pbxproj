@@ -29,6 +29,7 @@
 		BB4D1E4525FBBA2D00C3A6D0 /* WorkoutExercisesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4D1E4425FBBA2D00C3A6D0 /* WorkoutExercisesTableViewCell.swift */; };
 		BB4D1ED92604EC2A00C3A6D0 /* BuiltInExercises.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4D1ED82604EC2A00C3A6D0 /* BuiltInExercises.swift */; };
 		BB4D1EDE2604FDD600C3A6D0 /* BuiltInWorkouts.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4D1EDD2604FDD600C3A6D0 /* BuiltInWorkouts.swift */; };
+		BB62295B260CD98B00863BDD /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB62295A260CD98B00863BDD /* AudioPlayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		BB4D1E4425FBBA2D00C3A6D0 /* WorkoutExercisesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutExercisesTableViewCell.swift; sourceTree = "<group>"; };
 		BB4D1ED82604EC2A00C3A6D0 /* BuiltInExercises.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuiltInExercises.swift; sourceTree = "<group>"; };
 		BB4D1EDD2604FDD600C3A6D0 /* BuiltInWorkouts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuiltInWorkouts.swift; sourceTree = "<group>"; };
+		BB62295A260CD98B00863BDD /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				BB3AED1A25FA65F100DE2D9C /* WorkoutData.swift */,
+				BB62295A260CD98B00863BDD /* AudioPlayer.swift */,
 				BB3AED2025FA661100DE2D9C /* ExerciseData.swift */,
 				BB4D1ED82604EC2A00C3A6D0 /* BuiltInExercises.swift */,
 				BB4D1EDD2604FDD600C3A6D0 /* BuiltInWorkouts.swift */,
@@ -335,6 +338,7 @@
 				1F68B3902604E75B00F9DA79 /* WorkoutsDisplayViewController.swift in Sources */,
 				BB3AED2125FA661100DE2D9C /* ExerciseData.swift in Sources */,
 				0E144C3F25FBC49800D26E54 /* SectionHeaderView.swift in Sources */,
+				BB62295B260CD98B00863BDD /* AudioPlayer.swift in Sources */,
 				0EEF5C2925FFABDF008C7CE9 /* ExerciseListTableViewController.swift in Sources */,
 				0E144C3625FBC44400D26E54 /* LineView.swift in Sources */,
 				0E144BE025F9241500D26E54 /* Workout_Capstone.xcdatamodeld in Sources */,
