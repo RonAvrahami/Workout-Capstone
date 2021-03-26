@@ -75,6 +75,7 @@ class ExerciseListTableViewController: UITableViewController, AddExerciseProtoca
     
     func addToTableview(exercise: Exercise) {
         workoutTableViewController?.exercises.append(exercise)
+        workoutTableViewController?.workout.exercises?.append(exercise.exerciseData)
         workoutTableViewController?.updateDataSource()
         setExercises()
     }
