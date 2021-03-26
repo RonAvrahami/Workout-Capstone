@@ -12,7 +12,7 @@ struct Workout: Hashable {
     var name: String?
     var image: UIImage?
     var timer: Timer?
-    var exercises: [Exercise]?
+    var exercises: [ExerciseData]?
     var requiresEquipment: Bool?
     var id = UUID()
 }

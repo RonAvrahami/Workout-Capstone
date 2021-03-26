@@ -17,12 +17,11 @@ class ExerciseListTableViewController: UITableViewController, AddExerciseProtoca
     var editingExercise: Exercise?
     var senderIndexPath: IndexPath?
     var isModal = false
-    var workoutTableViewController: UITableViewController?
+    var workoutTableViewController: WorkoutTableViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        exercises = builtInExercises
         
         navigationItem.leftBarButtonItem = editButtonItem
         tableView.delegate = self
@@ -31,10 +30,10 @@ class ExerciseListTableViewController: UITableViewController, AddExerciseProtoca
             tableView.allowsSelection = false
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath ) as? ExerciseListTableViewCell
-            cell?.update(exercise: exercise, isModal: self.isModal, tableViewController: self.workoutTableViewController as? WorkoutTableViewController, navigationController: self.navigationController)
+            cell?.update(exercise: exercise, isModal: self.isModal, exerciseListTableViewController: self)
             return cell
         })
-        updateDataSource()
+        setExercises()
     }
     func addExercise(exercise: Exercise) {
         exercises.append(exercise)
@@ -65,6 +64,26 @@ class ExerciseListTableViewController: UITableViewController, AddExerciseProtoca
         dataSource.apply(snapshot, animatingDifferences: true, completion: nil)
     }
     
+    func setExercises() {
+        for exercise in builtInExercises {
+            exercises.append(Exercise(exerciseData: exercise, id: UUID()))
+        }
+        DispatchQueue.main.async {
+            self.updateDataSource()
+        }
+    }
+    
+    func addToTableview(exercise: Exercise) {
+        workoutTableViewController?.exercises.append(exercise)
+        workoutTableViewController?.updateDataSource()
+        setExercises()
+    }
+    
+    func dismissModal() {
+        navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func addExerciseButtonTapped(_ sender: Any) {
         performSegue(withIdentifier: "addExercise", sender: nil)
     }
@@ -74,10 +93,11 @@ class ExerciseListTableViewController: UITableViewController, AddExerciseProtoca
         destination.delegate = self
             
         if segue.identifier == "editExercise" {
-            guard let exerciseData = self.dataSource.itemIdentifier(for: sender as! IndexPath) else { return }
+            guard let exercise = self.dataSource.itemIdentifier(for: sender as! IndexPath) else { return }
             
             senderIndexPath = sender as? IndexPath
-            editingExercise = exerciseData
+            editingExercise = exercise
+            let exerciseData = exercise.exerciseData
             
             destination.exerciseNameTextFieldPlaceHolder = exerciseData.name
             destination.repsTextFieldPlaceHolder = exerciseData.reps

@@ -18,11 +18,12 @@ class WorkoutTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        for exercise in workout.exercises! {
+            exercises.append(Exercise(exerciseData: exercise, id: UUID()))
+        }
         let addButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(addButtonAction(_:)))
         
         navigationItem.rightBarButtonItems = [addButton, editButtonItem]
-        exercises.append(contentsOf: workout.exercises!)
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "Quit", style: .plain, target: nil, action: nil)
         headerLabel.text = workout.name!
         configureDataSource()
@@ -33,14 +34,14 @@ class WorkoutTableViewController: UITableViewController {
         dataSource = ExerciseDataSource(tableView: tableView, cellProvider: { (tableView, indexPath, exercise) -> UITableViewCell? in
             tableView.allowsSelection = false
             let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath) as! WorkoutExercisesTableViewCell
+            let exerciseData = exercise.exerciseData
+            cell.exerciseNameLabel.text = exerciseData.name
+            cell.exerciseTimeLabel.text = "Timer: \(exerciseData.timeGoal!) seconds"
             
-            cell.exerciseNameLabel.text = exercise.name
-            cell.exerciseTimeLabel.text = "Timer: \(exercise.timeGoal!) seconds"
-            
-            if exercise.reps == nil {
+            if exerciseData.reps == nil {
                 cell.repCountLabel.text = "Reps: 1"
             } else {
-                cell.repCountLabel.text = "Reps: \(exercise.reps!)"
+                cell.repCountLabel.text = "Reps: \(exerciseData.reps!)"
             }
             
             return cell
@@ -106,8 +107,6 @@ class ExerciseDataSource: UITableViewDiffableDataSource<WorkoutTableViewControll
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         return true
     }
-    
-    
 }
 
 extension WorkoutTableViewController {

@@ -11,7 +11,8 @@ class ExerciseListTableViewCell: UITableViewCell {
     @IBOutlet weak var exerciseNameLabel: UILabel!
     @IBOutlet weak var addToWorkoutButton: UIButton!
     
-    var tableViewController: WorkoutTableViewController?
+    var exerciseListTableviewController: ExerciseListTableViewController?
+
     var navigationController: UINavigationController?
     var exercise: Exercise!
     override func awakeFromNib() {
@@ -22,11 +23,10 @@ class ExerciseListTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func update(exercise: Exercise, isModal: Bool, tableViewController: WorkoutTableViewController?, navigationController: UINavigationController?) {
-        exerciseNameLabel.text = exercise.name
+    func update(exercise: Exercise, isModal: Bool, exerciseListTableViewController: ExerciseListTableViewController?) {
+        exerciseNameLabel.text = exercise.exerciseData.name
         self.exercise = exercise
-        self.tableViewController = tableViewController
-        self.navigationController = navigationController
+        self.exerciseListTableviewController = exerciseListTableViewController
         guard isModal == true else {
             addToWorkoutButton.isHidden = true
             return
@@ -34,9 +34,9 @@ class ExerciseListTableViewCell: UITableViewCell {
         addToWorkoutButton.isHidden = false
     }
     @IBAction func addToWorkoutButtonTapped(_ sender: Any) {
-        tableViewController?.exercises.append(exercise)
-        tableViewController?.updateDataSource()
-        navigationController?.dismiss(animated: true, completion: nil)
+        
+        exerciseListTableviewController?.addToTableview(exercise: exercise)
+        exerciseListTableviewController?.dismissModal()
     }
     
 }
