@@ -12,6 +12,8 @@ enum section {
 }
 class ExerciseListTableViewController: UITableViewController, AddExerciseProtocal {
     
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     var exercises = [Exercise]()
     var dataSource: DataSource!
     var editingExercise: Exercise?
