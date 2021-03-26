@@ -8,26 +8,37 @@
 import UIKit
 
 class WorkoutsDisplayViewController: UIViewController {
+    
+    
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var timeGoalLabel: UILabel!
     @IBOutlet weak var remainingReps: UILabel!
     @IBOutlet weak var exerciseName: UILabel!
+    @IBOutlet weak var exerciseLabel: UILabel!
+    @IBOutlet weak var repsLabel: UILabel!
     
     
-    
+    var workout: Workout!
     var timer: Timer = Timer()
-    var count: Int = 0
+    var count = 0
     var timerCounting: Bool = false
     
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-            
-        timerLabel.text = String(count)
         
+//        exerciseLabel.text = workout.name!
+        timerLabel.text = String(count)
     }
-
+    
+    func timeString(time:TimeInterval) -> String {
+        let hours = Int(time) / 3600
+        let minutes = Int(time) / 60 % 60
+        let seconds = Int(time) % 60
+        
+        return String(format: "%02i:%02i:%02i", hours, minutes, seconds)
+    }
     
     @IBAction func startStopButton(_ sender: UIButton) {
       
@@ -44,9 +55,11 @@ class WorkoutsDisplayViewController: UIViewController {
         }
     }
     
+ 
+    
     @objc func timerSet() -> Void {
         count += 1
-        timerLabel.text = String(count)
+        timerLabel.text = timeString(time: TimeInterval(count))
     }
     
     @IBAction func workoutDescription(_ sender: Any) {
@@ -60,8 +73,7 @@ class WorkoutsDisplayViewController: UIViewController {
     @IBAction func nextWorkout(_ sender: Any) {
     }
     
-    
-    
+
     
     /*
     // MARK: - Navigation
