@@ -132,7 +132,7 @@ class AddExerciseViewController: UIViewController, UITextViewDelegate, UIPickerV
         let equiptmentReq: Bool = (requiresEquiptmentControl.selectedSegmentIndex != 0) ? false : true
         let time = Int(timeGoalTextField.text!)
         
-        let exercise = Exercise(name: titleLabel.text, image: nil, timeGoal: time, reps: reps, requiresEquipment: equiptmentReq, muscle: pickedMuscle , description: descriptionTextView.text)
+        let exercise = Exercise(exerciseData: ExerciseData(name: titleLabel.text, image: nil, timeGoal: time, reps: reps, requiresEquipment: equiptmentReq, muscle: pickedMuscle , description: descriptionTextView.text), id: UUID())
         
         guard isEdit == false else {
         delegate?.updateExercise(exercise: exercise)

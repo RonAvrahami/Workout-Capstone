@@ -188,8 +188,8 @@
 		BB3AED1F25FA65FA00DE2D9C /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				BB3AED1A25FA65F100DE2D9C /* WorkoutData.swift */,
 				BB62295A260CD98B00863BDD /* AudioPlayer.swift */,
+				BB3AED1A25FA65F100DE2D9C /* WorkoutData.swift */,
 				BB3AED2025FA661100DE2D9C /* ExerciseData.swift */,
 				BB4D1ED82604EC2A00C3A6D0 /* BuiltInExercises.swift */,
 				BB4D1EDD2604FDD600C3A6D0 /* BuiltInWorkouts.swift */,

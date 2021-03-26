@@ -18,7 +18,7 @@ enum MuscleGroup: String, CaseIterable, Hashable {
     case chest = "Chest"
 }
 
-struct Exercise: Hashable {
+struct ExerciseData: Hashable {
     var name: String?
     var image: UIImage?
     var timeGoal: Int?
@@ -26,7 +26,10 @@ struct Exercise: Hashable {
     var requiresEquipment: Bool?
     var muscle: MuscleGroup?
     var description: String?
-    var id = UUID()
 }
 
+struct Exercise: Hashable {
+    var exerciseData: ExerciseData
+    var id: UUID
+}
 
