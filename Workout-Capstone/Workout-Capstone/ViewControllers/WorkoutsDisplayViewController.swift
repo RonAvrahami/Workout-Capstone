@@ -27,7 +27,8 @@ class WorkoutsDisplayViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        exerciseLabel.text = workout.name
+       // repsLabel.text = workout.exercises.
         timerLabel.text = String(count)
     }
     

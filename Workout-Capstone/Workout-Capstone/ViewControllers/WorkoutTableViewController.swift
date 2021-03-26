@@ -65,16 +65,26 @@ class WorkoutTableViewController: UITableViewController {
         dataSource.apply(snapshot, animatingDifferences: false)
         
     }
+    
+    @IBAction func startWorkoutButtonTapped(_ sender: Any) {
+        performSegue(withIdentifier: "displaySegue", sender: nil)
+        
+    }
+    
+    
     @objc func addButtonAction(_ sender: Any) {
         performSegue(withIdentifier: "addExerciseSegue", sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let destination = segue.destination as? ExerciseListTableViewController else {
-            return
+        if let destination = segue.destination as? ExerciseListTableViewController  {
+            
+            destination.isModal = true
+            destination.workoutTableViewController = self
+        } else if let destination = segue.destination as? WorkoutsDisplayViewController {
+            destination.workout = workout
         }
-        destination.isModal = true
-        destination.workoutTableViewController = self
+       
     }
     //MARK: - TableView Func
     
