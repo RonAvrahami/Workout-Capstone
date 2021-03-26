@@ -17,6 +17,7 @@ class ExerciseListTableViewController: UITableViewController, AddExerciseProtoca
     var editingExercise: Exercise?
     var senderIndexPath: IndexPath?
     var isModal = false
+    var workoutTableViewController: UITableViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +31,7 @@ class ExerciseListTableViewController: UITableViewController, AddExerciseProtoca
             tableView.allowsSelection = false
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath ) as? ExerciseListTableViewCell
-            cell?.update(exercise: exercise)
+            cell?.update(exercise: exercise, isModal: self.isModal, tableViewController: self.workoutTableViewController as? WorkoutTableViewController, navigationController: self.navigationController)
             return cell
         })
         updateDataSource()

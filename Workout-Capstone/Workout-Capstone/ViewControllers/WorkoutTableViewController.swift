@@ -73,6 +73,7 @@ class WorkoutTableViewController: UITableViewController {
             return
         }
         destination.isModal = true
+        destination.workoutTableViewController = self
     }
     //MARK: - TableView Func
     
