@@ -10,7 +10,7 @@ import UIKit
 enum section {
     case one
 }
-class ExerciseListTableViewController: UITableViewController, AddExerciseProtocal {
+class ExerciseListTableViewController: UITableViewController, AddExerciseProtocal, UISearchBarDelegate {
     
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -20,10 +20,14 @@ class ExerciseListTableViewController: UITableViewController, AddExerciseProtoca
     var senderIndexPath: IndexPath?
     var isModal = false
     var workoutTableViewController: WorkoutTableViewController?
+    var searchExercises = [Exercise]()
+    var allExercises = [Exercise]()
+    var isRepeat = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        searchBar.delegate = self
         
         navigationItem.leftBarButtonItem = editButtonItem
         tableView.delegate = self
@@ -36,6 +40,7 @@ class ExerciseListTableViewController: UITableViewController, AddExerciseProtoca
             return cell
         })
         setExercises()
+        allExercises = exercises
     }
     func addExercise(exercise: Exercise) {
         exercises.append(exercise)
@@ -94,7 +99,7 @@ class ExerciseListTableViewController: UITableViewController, AddExerciseProtoca
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let destination = segue.destination as? AddExerciseViewController else { return }
         destination.delegate = self
-            
+        
         if segue.identifier == "editExercise" {
             guard let exercise = self.dataSource.itemIdentifier(for: sender as! IndexPath) else { return }
             
@@ -114,25 +119,71 @@ class ExerciseListTableViewController: UITableViewController, AddExerciseProtoca
         }
     }
     
-    override func setEditing(_ editing: Bool, animated: Bool) {
-        super.setEditing(editing, animated: true)
-        tableView.setEditing(editing, animated: true)
-    }
-    
-    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (_, _, completion) in
-            guard let exercise = self.dataSource.itemIdentifier(for: indexPath) else {
-                return
-            }
-            self.deleteExercise(exercise: exercise)
-            completion(true)
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        guard searchText != "" else {
+            exercises = allExercises
+            return
         }
-        let actions = UISwipeActionsConfiguration(actions: [deleteAction])
-        return actions
+        
+        searchFilter(searchText: searchText.lowercased()) { (searchedExercises) in
+            
+            self.exercises.removeAll()
+            self.exercises.append(contentsOf: searchedExercises)
+            DispatchQueue.main.async {
+                self.updateDataSource()
+            }
+        }
     }
-    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        performSegue(withIdentifier: "editExercise", sender: indexPath)
+
+
+func searchFilter(searchText: String, completion: @escaping ([Exercise])->()) {
+    exercises = allExercises
+    searchExercises.removeAll()
+    for exercise in exercises {
+        
+        if exercise.exerciseData.name!.lowercased().contains(searchText) {
+            
+            self.searchExercises.append(exercise)
+            
+        }
     }
+    for exercise in exercises {
+        if exercise.exerciseData.description!.lowercased().contains(searchText) {
+            
+            self.isRepeat = false
+            for searchExercise in self.searchExercises {
+                if exercise == searchExercise {
+                    self.isRepeat = true
+                }
+            }
+            if self.isRepeat == false {
+                self.searchExercises.append(exercise)
+            }
+        }
+    }
+    completion(self.searchExercises)
+}
+
+override func setEditing(_ editing: Bool, animated: Bool) {
+    super.setEditing(editing, animated: true)
+    tableView.setEditing(editing, animated: true)
+}
+
+override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (_, _, completion) in
+        guard let exercise = self.dataSource.itemIdentifier(for: indexPath) else {
+            return
+        }
+        self.deleteExercise(exercise: exercise)
+        completion(true)
+    }
+    let actions = UISwipeActionsConfiguration(actions: [deleteAction])
+    return actions
+}
+override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+    performSegue(withIdentifier: "editExercise", sender: indexPath)
+}
 }
 
 class DataSource: UITableViewDiffableDataSource<Section, Exercise> {
