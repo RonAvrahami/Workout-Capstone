@@ -12,7 +12,6 @@ class WorkoutsDisplayViewController: UIViewController {
     
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var timeGoalLabel: UILabel!
-    @IBOutlet weak var remainingReps: UILabel!
     @IBOutlet weak var exerciseName: UILabel!
     @IBOutlet weak var exerciseLabel: UILabel!
     @IBOutlet weak var repsLabel: UILabel!
@@ -22,15 +21,23 @@ class WorkoutsDisplayViewController: UIViewController {
     var timer: Timer = Timer()
     var count = 0
     var timerCounting: Bool = false
+    var index = 0
     
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        exerciseLabel.text = workout.name
-       // repsLabel.text = workout.exercises.
+        updateExerciseTitle()
         timerLabel.text = String(count)
     }
+    
+    func updateExerciseTitle() {
+        DispatchQueue.main.async {
+            self.exerciseLabel.text = self.workout.exercises![self.index].name
+            self.repsLabel.text = "Reps: \(self.workout.exercises![self.index].reps ?? 1)"
+            self.timeGoalLabel.text = "Time Goal: \(self.workout.exercises![self.index].timeGoal ?? 1)"
+        }
+    }
+    
     
     func timeString(time:TimeInterval) -> String {
         let minutes = Int(time) / 60 % 60
@@ -66,10 +73,14 @@ class WorkoutsDisplayViewController: UIViewController {
     
     
     @IBAction func previousWorkout(_ sender: Any) {
+        index -= 1
+        updateExerciseTitle()
     }
     
     
     @IBAction func nextWorkout(_ sender: Any) {
+        index += 1
+        updateExerciseTitle()
     }
     
 
