@@ -48,5 +48,6 @@ var russianTwist = ExerciseData(name: "Russian Twist", image: nil, timeGoal: 60,
 var superMan = ExerciseData(name: "Super Man", image: nil, timeGoal: 60, reps: 1, requiresEquipment: false, muscle: .core, description: "")
 var jumpingJack = ExerciseData(name: "Jumping Jack", image: nil, timeGoal: 60, reps: 1, requiresEquipment: false, muscle: .core, description: "")
 var shoulderPress = ExerciseData(name: "Shoulder Press", image: nil, timeGoal: 60, reps: 15, requiresEquipment: true, muscle: .shoulders, description: "")
-
+    
+    
 let builtInExercises: [ExerciseData] = [pushUps, shoulderTapPlanks, mountainClimbers, stepUps, pullUps, barbellBenchPress, inclineBenchPress, dumbbellBenchPress, inclineDumbbellPress, dips, bentOverRow, barbellDeadLift, wideGripPullUps, wideGripSeatedCableRow, singleArmDumbbellRow, latPullDown, barbellBicepCurl, skullCrushers, singleArmDumbbellTricepsExtension, cableBicepCurl, cableTricepPushDown, seatedDumbbellShouldersPress, frontRaise, bentOverDumbbellLatRaise, dumbbellSquatWalk, dumbbellDeadliftShrug, gobletSquat, legPress, deadlift, squats, seatedCalfRaise, boxJump, jumpRope, lungeTwist, dumbbellJumpSquat, plank, situp, russianTwist, superMan, jumpingJack]

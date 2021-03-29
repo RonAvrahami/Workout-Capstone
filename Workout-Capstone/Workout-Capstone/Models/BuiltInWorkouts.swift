@@ -17,6 +17,8 @@ var legArray = [legWorkout1, legWorkout2, legWorkout3, legWorkout4]
 var coreArray = [coreWorkout1, coreWorkout2, coreWorkout3, coreWorkout4]
 var shoulderArray = [shoulderWorkout1, shoulderWorkout2, shoulderWorkout3, shoulderWorkout4]
 var backArray = [backWorkout1, backWorkout2, backWorkout3, backWorkout4]
+    
+var myWorkouts: [Workout] = []
 }
 
 var backWorkout1 = Workout(name: "Back Crusher", image: UIImage(named: "25"), timer: nil, exercises: [inclineDumbbellPress, latPullDown, skullCrushers, frontRaise, boxJump], requiresEquipment: true)

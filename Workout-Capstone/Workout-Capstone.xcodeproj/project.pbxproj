@@ -65,7 +65,7 @@
 		0E144BFA25F9241700D26E54 /* Workout_CapstoneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout_CapstoneUITests.swift; sourceTree = "<group>"; };
 		0E144BFC25F9241700D26E54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0E144C2025FA7CEF00D26E54 /* WorkoutsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsCollectionViewController.swift; sourceTree = "<group>"; };
-		0E144C2C25FA7E7500D26E54 /* WorkoutCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WorkoutCollectionViewCell.swift; path = ViewControllers/WorkoutCollectionViewCell.swift; sourceTree = "<group>"; };
+		0E144C2C25FA7E7500D26E54 /* WorkoutCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCollectionViewCell.swift; sourceTree = "<group>"; };
 		0E144C3525FBC44400D26E54 /* LineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
 		0E144C3E25FBC49800D26E54 /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
 		0EEF5C2825FFABDF008C7CE9 /* ExerciseListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ExerciseListTableViewController.swift; path = "Workout-Capstone/ExerciseListTableViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -129,15 +129,13 @@
 		0E144BD425F9241500D26E54 /* Workout-Capstone */ = {
 			isa = PBXGroup;
 			children = (
-				0E144C2C25FA7E7500D26E54 /* WorkoutCollectionViewCell.swift */,
 				0E144BD525F9241500D26E54 /* AppDelegate.swift */,
 				0E144BD725F9241500D26E54 /* SceneDelegate.swift */,
-				0E144C2525FA7CFD00D26E54 /* ViewControllers */,
 				BB3AED1F25FA65FA00DE2D9C /* Models */,
-				0E144BDB25F9241500D26E54 /* Main.storyboard */,
-				0EEF5C3D26010F10008C7CE9 /* ExerciseListTableViewCell.swift */,
-				BB4D1E4425FBBA2D00C3A6D0 /* WorkoutExercisesTableViewCell.swift */,
+				0E144C2525FA7CFD00D26E54 /* ViewControllers */,
+				0EA7A6EA2612179F003B60B9 /* DiffableCells */,
 				0E144C3A25FBC44D00D26E54 /* Supplementary Views */,
+				0E144BDB25F9241500D26E54 /* Main.storyboard */,
 				0E144BE125F9241700D26E54 /* Assets.xcassets */,
 				0E144BE325F9241700D26E54 /* LaunchScreen.storyboard */,
 				0E144BE625F9241700D26E54 /* Info.plist */,
@@ -183,6 +181,16 @@
 				0E144C3E25FBC49800D26E54 /* SectionHeaderView.swift */,
 			);
 			path = "Supplementary Views";
+			sourceTree = "<group>";
+		};
+		0EA7A6EA2612179F003B60B9 /* DiffableCells */ = {
+			isa = PBXGroup;
+			children = (
+				0EEF5C3D26010F10008C7CE9 /* ExerciseListTableViewCell.swift */,
+				BB4D1E4425FBBA2D00C3A6D0 /* WorkoutExercisesTableViewCell.swift */,
+				0E144C2C25FA7E7500D26E54 /* WorkoutCollectionViewCell.swift */,
+			);
+			path = DiffableCells;
 			sourceTree = "<group>";
 		};
 		BB3AED1F25FA65FA00DE2D9C /* Models */ = {

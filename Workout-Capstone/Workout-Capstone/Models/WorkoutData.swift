@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 struct Workout: Hashable {
-    var name: String?
+    var name: String
     var image: UIImage?
     var timer: Timer?
     var exercises: [ExerciseData]?
