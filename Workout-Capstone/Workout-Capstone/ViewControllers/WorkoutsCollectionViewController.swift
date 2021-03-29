@@ -44,6 +44,10 @@ class WorkoutsCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let customWorkoutPlaceholder: Workout = Workout(name: "New Workout", image: nil, timer: nil, exercises: [], requiresEquipment: nil, id: UUID())
+        let customWorkoutArray: [Workout] = [customWorkoutPlaceholder]
+        
+        customWorkouts.append(contentsOf: customWorkoutArray)
         armWorkouts.append(contentsOf: builtInWorkouts.armArray)
         backWorkouts.append(contentsOf: builtInWorkouts.backArray)
         legWorkouts.append(contentsOf: builtInWorkouts.legArray)
@@ -97,7 +101,7 @@ class WorkoutsCollectionViewController: UICollectionViewController {
         dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView, cellProvider: { (collectionView, indexPath, workout) -> UICollectionViewCell? in
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "workoutCell", for: indexPath) as! WorkoutCollectionViewCell
-            cell.update(workout: workout)
+            cell.update(workout: workout, section: self.sections[indexPath.section])
             return cell
         })
         dataSource.supplementaryViewProvider =  { (collectionView, kind, indexPath) -> UICollectionReusableView? in
@@ -170,6 +174,9 @@ class WorkoutsCollectionViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        guard indexPath.section != 0 else {
+//            return
+//        }
         performSegue(withIdentifier: "workoutSegue", sender: indexPath)
     }
     
@@ -178,6 +185,11 @@ class WorkoutsCollectionViewController: UICollectionViewController {
         guard let destination = segue.destination as? WorkoutTableViewController else {
             return
         }
-        destination.workout = dataSource.itemIdentifier(for: sender as! IndexPath)
+        let workout = dataSource.itemIdentifier(for: sender as! IndexPath)
+        destination.workout = workout
+        if workout?.name == "New workout" {
+            
+        }
+    
     }
 }
