@@ -105,6 +105,7 @@ class WorkoutTableViewController: UITableViewController {
         if let destination = segue.destination as? ExerciseListTableViewController  {
             
             destination.isModal = true
+            ExerciseListTableViewController.isNotModal = false
             destination.workoutTableViewController = self
         } else if let destination = segue.destination as? WorkoutsDisplayViewController {
             destination.workout = workout
