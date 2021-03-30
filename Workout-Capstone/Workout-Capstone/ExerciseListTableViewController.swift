@@ -142,25 +142,22 @@ class ExerciseListTableViewController: UITableViewController, AddExerciseProtoca
 func searchFilter(searchText: String, completion: @escaping ([Exercise])->()) {
     exercises = allExercises
     searchExercises.removeAll()
+    
+    let splitText = searchText.split(separator: " ")
+
+    
     for exercise in exercises {
-        
-        if exercise.exerciseData.name!.lowercased().contains(searchText) {
-            
-            self.searchExercises.append(exercise)
-            
-        }
-    }
-    for exercise in exercises {
-        if exercise.exerciseData.description!.lowercased().contains(searchText) {
-            
-            self.isRepeat = false
-            for searchExercise in self.searchExercises {
-                if exercise == searchExercise {
-                    self.isRepeat = true
+        let formatName = exercise.exerciseData.name!.replacingOccurrences(of: "-", with: " ")
+        var matchCount = 0
+        for searchWord in splitText {
+            if exercise.exerciseData.name!.lowercased().contains(searchWord) || formatName.lowercased().contains(searchWord)  {
+                matchCount += 1
+                guard !searchExercises.contains(exercise) else {
+                    return
                 }
-            }
-            if self.isRepeat == false {
-                self.searchExercises.append(exercise)
+                if matchCount == splitText.count {
+                    self.searchExercises.append(exercise)
+                }
             }
         }
     }
