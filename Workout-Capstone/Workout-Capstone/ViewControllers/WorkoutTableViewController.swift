@@ -17,6 +17,7 @@ class WorkoutTableViewController: UITableViewController {
     var exercises = [Exercise]()
     var dataSource: ExerciseDataSource!
     var tableViewIsEditing = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         startButton.layer.cornerRadius = 10
