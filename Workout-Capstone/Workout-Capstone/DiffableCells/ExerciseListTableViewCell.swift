@@ -13,8 +13,8 @@ class ExerciseListTableViewCell: UITableViewCell {
     
     var exerciseListTableviewController: ExerciseListTableViewController?
 
-    var navigationController: UINavigationController?
     var exercise: Exercise!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -34,9 +34,7 @@ class ExerciseListTableViewCell: UITableViewCell {
         addToWorkoutButton.isHidden = false
     }
     @IBAction func addToWorkoutButtonTapped(_ sender: Any) {
-        
-        exerciseListTableviewController?.addToTableview(exercise: exercise)
-        exerciseListTableviewController?.dismissModal()
+        exerciseListTableviewController?.addAlert(exercise: exercise)
     }
     
 }
