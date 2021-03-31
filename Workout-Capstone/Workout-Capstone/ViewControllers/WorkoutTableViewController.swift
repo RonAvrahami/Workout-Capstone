@@ -20,6 +20,9 @@ class WorkoutTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        tableView.backgroundView = UIImageView(image: workout.image)
+        tableView.backgroundView?.contentMode = .scaleAspectFill
         startButton.layer.cornerRadius = 10
         startButton.setBackgroundColor(color: .systemGray, forState: .disabled)
         startButton.setTitleColor(.lightGray, for: .disabled)
@@ -35,7 +38,7 @@ class WorkoutTableViewController: UITableViewController {
         
         //UIBarButtonItem(title: "Quit", style: .plain, target: nil, action: nil)
         
-        headerTextField.text = workout.name
+        headerTextField.backgroundColor = .clear
         configureDataSource()
     }
     
@@ -53,7 +56,8 @@ class WorkoutTableViewController: UITableViewController {
             } else {
                 cell.repCountLabel.text = "Reps: \(exerciseData.reps!)"
             }
-            
+            cell.backgroundColor = .clear
+            //cell.exerciseNameLabel.textColor = tableView.backgroundView?.tintColor.inverted
             return cell
             
         })
@@ -170,3 +174,10 @@ extension UIButton {
         }
     }
 }
+
+//extension UIColor {
+//    var inverted: UIColor {
+//        var a: CGFloat = 0.0, r: CGFloat = 0.0, g: CGFloat = 0.0, b: CGFloat = 0.0
+//        return getRed(&r, green: &g, blue: &b, alpha: &a) ? UIColor(red: 1.0-r, green: 1.0-g, blue: 1.0-b, alpha: a) : .white
+//    }
+//}

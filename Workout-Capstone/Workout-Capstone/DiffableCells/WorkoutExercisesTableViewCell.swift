@@ -12,7 +12,6 @@ class WorkoutExercisesTableViewCell: UITableViewCell {
     @IBOutlet weak var exerciseNameLabel: UILabel!
     @IBOutlet weak var repCountLabel: UILabel!
     @IBOutlet weak var exerciseTimeLabel: UILabel!
-    @IBOutlet weak var exerciseImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
