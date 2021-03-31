@@ -10,19 +10,21 @@ import UIKit
 class WorkoutsDisplayViewController: UIViewController {
     
     
-    @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var timeGoalLabel: UILabel!
     @IBOutlet weak var exerciseName: UILabel!
     @IBOutlet weak var exerciseLabel: UILabel!
     @IBOutlet weak var repsLabel: UILabel!
+    @IBOutlet weak var timerLabel: UITextField!
     
     
     var workout: Workout!
+    var exercise: ExerciseData!
     var timer: Timer = Timer()
     var count = 0
     var timerCounting: Bool = false
     var index = 0
     var timerGoal = 0
+    var timerCount: Double = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +34,7 @@ class WorkoutsDisplayViewController: UIViewController {
     
     func updateExercise() {
         count = 0
+        exercise = workout.exercises![count]
         DispatchQueue.main.async {
             self.timerLabel.text = String(self.count)
             self.exerciseLabel.text = self.workout.exercises![self.index].name
@@ -41,11 +44,11 @@ class WorkoutsDisplayViewController: UIViewController {
     }
     
     func updateTextColor() {
-        if timerLabel.text! > timeGoalLabel.text! {
+        if timerCount > Double(exercise.timeGoal!) {
             timerLabel.textColor = UIColor.red
         }
         else {
-            timerLabel.textColor = UIColor.black
+            timerLabel.textColor = UIColor.green
         }
     }
     
@@ -71,11 +74,14 @@ class WorkoutsDisplayViewController: UIViewController {
         }
     }
     
- 
+
+    
     
     @objc func timerSet() -> Void {
         count += 1
         timerLabel.text = timeString(time: TimeInterval(count))
+        timerCount = TimeInterval(count)
+        updateTextColor()
     }
     
     @IBAction func workoutDescription(_ sender: Any) {
@@ -84,6 +90,7 @@ class WorkoutsDisplayViewController: UIViewController {
     
     @IBAction func previousWorkout(_ sender: Any) {
         index -= 1
+        timer.invalidate()
         updateExercise()
     }
     

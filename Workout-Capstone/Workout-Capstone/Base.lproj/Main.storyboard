@@ -427,20 +427,20 @@
                         </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="exerciseCell" id="QUX-oh-yKv" customClass="ExerciseListTableViewCell" customModule="Workout_Capstone" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="72" width="390" height="43.666667938232422"/>
+                                <rect key="frame" x="0.0" y="72" width="390" height="42.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QUX-oh-yKv" id="FA9-lJ-YAx">
-                                    <rect key="frame" x="0.0" y="0.0" width="346" height="43.666667938232422"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="346" height="42.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exercise" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ye6-At-XH9">
-                                            <rect key="frame" x="58" y="11.000000000000002" width="64" height="21.666666666666671"/>
+                                            <rect key="frame" x="58" y="11.000000000000002" width="64" height="20.666666666666671"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ljX-ii-vbv">
-                                            <rect key="frame" x="20" y="0.0" width="18" height="43.666666666666664"/>
+                                            <rect key="frame" x="20" y="0.0" width="18" height="42.666666666666664"/>
                                             <state key="normal" image="plus" catalog="system"/>
                                             <connections>
                                                 <action selector="addToWorkoutButtonTapped:" destination="QUX-oh-yKv" eventType="touchUpInside" id="vqk-Vr-uOS"/>
@@ -590,15 +590,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oQR-aG-LmK" userLabel="Timer Label">
-                                <rect key="frame" x="154" y="474" width="114" height="47"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="47" id="GwL-av-Ts1"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hqh-AD-cID" userLabel="Time Goal Amount Label">
                                 <rect key="frame" x="165" y="354" width="92" height="40.666666666666686"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
@@ -606,7 +597,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ofg-vf-Fsc" userLabel="Time Label">
-                                <rect key="frame" x="55" y="483" width="67" height="25"/>
+                                <rect key="frame" x="55" y="483" width="44.666666666666657" height="25"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -648,25 +639,29 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="00:00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Q83-w2-700">
+                                <rect key="frame" x="179.66666666666663" y="474.66666666666669" width="130.33333333333337" height="44.666666666666686"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="s2D-Ry-rft"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="yUH-Ar-6og" firstAttribute="leading" secondItem="s2D-Ry-rft" secondAttribute="leading" constant="24" id="0yi-c1-QgZ"/>
                             <constraint firstItem="D1H-jn-JRf" firstAttribute="top" secondItem="yUH-Ar-6og" secondAttribute="bottom" constant="26" id="1IR-0S-Cmp"/>
-                            <constraint firstItem="hqh-AD-cID" firstAttribute="centerX" secondItem="oQR-aG-LmK" secondAttribute="centerX" id="2DW-Dv-cKb"/>
+                            <constraint firstItem="s2D-Ry-rft" firstAttribute="trailing" secondItem="Q83-w2-700" secondAttribute="trailing" constant="80" id="4qH-w5-GKa"/>
                             <constraint firstItem="ofg-vf-Fsc" firstAttribute="top" secondItem="yCb-ul-VCE" secondAttribute="bottom" constant="95.999999999999943" id="6xn-II-AWE"/>
                             <constraint firstItem="yUH-Ar-6og" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="L8N-cA-IsD" secondAttribute="leading" id="7ZA-K4-3xh"/>
                             <constraint firstItem="ofg-vf-Fsc" firstAttribute="leading" secondItem="s2D-Ry-rft" secondAttribute="leading" constant="55" id="8aH-mm-dWk"/>
-                            <constraint firstItem="D1H-jn-JRf" firstAttribute="leading" secondItem="oQR-aG-LmK" secondAttribute="leading" id="9We-MM-hsH"/>
                             <constraint firstItem="D1H-jn-JRf" firstAttribute="centerX" secondItem="voK-gH-geV" secondAttribute="centerX" id="Cyr-TV-0lm"/>
                             <constraint firstItem="yUH-Ar-6og" firstAttribute="trailing" secondItem="voK-gH-geV" secondAttribute="trailingMargin" id="F6Y-ai-Ri2"/>
-                            <constraint firstItem="oQR-aG-LmK" firstAttribute="leading" secondItem="ofg-vf-Fsc" secondAttribute="trailing" constant="32" id="IZT-TO-Zu8"/>
                             <constraint firstItem="yUH-Ar-6og" firstAttribute="top" secondItem="s2D-Ry-rft" secondAttribute="top" constant="44" id="QjL-ZL-7Ud"/>
+                            <constraint firstItem="Q83-w2-700" firstAttribute="top" secondItem="hqh-AD-cID" secondAttribute="bottom" constant="80" id="QmP-hY-tSQ"/>
                             <constraint firstItem="hqh-AD-cID" firstAttribute="leading" secondItem="yCb-ul-VCE" secondAttribute="trailing" constant="54.333333333333343" id="Qoy-H6-a4w"/>
                             <constraint firstItem="s2D-Ry-rft" firstAttribute="trailing" secondItem="ZNY-OT-eKD" secondAttribute="trailing" id="RZC-uo-uCY"/>
-                            <constraint firstItem="oQR-aG-LmK" firstAttribute="top" secondItem="hqh-AD-cID" secondAttribute="bottom" constant="79.333333333333314" id="SmG-ak-Wt2"/>
                             <constraint firstItem="ZNY-OT-eKD" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3Yk-X9-9AQ" secondAttribute="trailing" symbolic="YES" id="Y4a-se-qUb"/>
+                            <constraint firstItem="Q83-w2-700" firstAttribute="leading" secondItem="ofg-vf-Fsc" secondAttribute="trailing" constant="80" id="Zqf-gz-qzF"/>
                             <constraint firstItem="yCb-ul-VCE" firstAttribute="centerY" secondItem="hqh-AD-cID" secondAttribute="centerY" id="ab6-Uk-b8X"/>
                             <constraint firstItem="L8N-cA-IsD" firstAttribute="centerY" secondItem="3Yk-X9-9AQ" secondAttribute="centerY" id="d72-Iq-u4U"/>
                             <constraint firstItem="hqh-AD-cID" firstAttribute="top" secondItem="voK-gH-geV" secondAttribute="top" constant="354" id="guN-cf-vrT"/>
@@ -690,7 +685,7 @@
                         <outlet property="exerciseName" destination="yUH-Ar-6og" id="jfF-re-a0Y"/>
                         <outlet property="repsLabel" destination="D1H-jn-JRf" id="bXV-bu-fWt"/>
                         <outlet property="timeGoalLabel" destination="hqh-AD-cID" id="6yM-kV-BIR"/>
-                        <outlet property="timerLabel" destination="oQR-aG-LmK" id="kkO-Ao-JxB"/>
+                        <outlet property="timerLabel" destination="Q83-w2-700" id="ypD-wO-emF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qYK-AA-Sb6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
