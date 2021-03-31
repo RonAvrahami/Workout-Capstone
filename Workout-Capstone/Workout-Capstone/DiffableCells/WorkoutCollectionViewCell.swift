@@ -9,8 +9,9 @@ import UIKit
 
 class WorkoutCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var workoutNameLabel: UILabel!
-    @IBOutlet weak var cellImageView: UIImageView!
     
+    @IBOutlet weak var cellImageView: UIImageView!
+    @IBOutlet weak var imageContainerView: UIView!
     
     func update(workout: Workout, section: Section) {
         
@@ -23,9 +24,12 @@ class WorkoutCollectionViewCell: UICollectionViewCell {
         }
         cellImageView.layer.cornerRadius = 20
         cellImageView.clipsToBounds = true
-        cellImageView.layer.shadowColor = UIColor.darkGray.cgColor
-        cellImageView.layer.shadowOffset = CGSize(width: 5.0, height: 5.0)
-        cellImageView.layer.shadowRadius = 25.0
-        cellImageView.layer.shadowOpacity = 0.9
+        
+        imageContainerView.layer.shadowColor = UIColor.black.cgColor
+        imageContainerView.layer.shadowRadius = 5
+        imageContainerView.layer.shadowOffset = CGSize(width: 0.5, height: 1)
+        imageContainerView.layer.shadowOpacity = 0.7
     }
 }
+
+
