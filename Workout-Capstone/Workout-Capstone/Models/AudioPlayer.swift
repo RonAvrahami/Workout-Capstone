@@ -10,7 +10,7 @@ import AVFoundation
 var passedTimeGoalSound: AVAudioPlayer?
 
 func playSound() {
-    let path = Bundle.main.path(forResource: "", ofType:nil)!
+    let path = Bundle.main.path(forResource: "BuzzerNoise", ofType:nil)!
     let url = URL(fileURLWithPath: path)
 
     do {
