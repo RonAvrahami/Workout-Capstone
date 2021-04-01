@@ -116,7 +116,7 @@ class ExerciseListTableViewController: UITableViewController, AddExerciseProtoca
             
             destination.exerciseNameTextFieldPlaceHolder = exerciseData.name
             destination.repsTextFieldPlaceHolder = exerciseData.reps
-            destination.timeGoalTextFieldPlaceHolder = exerciseData.reps
+            destination.timeGoalTextFieldPlaceHolder = exerciseData.timeGoal
             destination.requiresEquiptmentPlaceHolder = exerciseData.requiresEquipment == true ? 0 : 1
             destination.descriptionTextViewPlaceHolder = exerciseData.description
             destination.muscleGroupPickerStatePlaceHolder = exerciseData.muscle

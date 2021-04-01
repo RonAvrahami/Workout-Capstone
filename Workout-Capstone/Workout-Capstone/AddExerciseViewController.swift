@@ -17,13 +17,15 @@ class AddExerciseViewController: UIViewController, UITextViewDelegate, UIPickerV
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var exerciseNameTextField: UITextField!
     @IBOutlet weak var repsTextField: UITextField!
-    @IBOutlet weak var timeGoalTextField: UITextField!
     @IBOutlet weak var requiresEquiptmentControl: UISegmentedControl!
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var muscleGroupDropDownButton: UIButton!
     @IBOutlet weak var muscleGroupPicker: UIPickerView!
     @IBOutlet weak var muscleGroupLabel: UILabel!
     @IBOutlet weak var submitButton: UIButton!
+    @IBOutlet weak var timeGoalPicker: UIPickerView!
+    @IBOutlet weak var timeGoalLabel: UILabel!
+    @IBOutlet weak var timeGoalDownButton: UIButton!
     
     let largeConfig = UIImage.SymbolConfiguration(pointSize: 20, weight: .bold, scale: .large)
     
@@ -40,6 +42,10 @@ class AddExerciseViewController: UIViewController, UITextViewDelegate, UIPickerV
     var muscleGroupPickerStatePlaceHolder: MuscleGroup?
     var isEdit = false
     
+    
+    var minutes:Int = 0
+    var seconds:Int = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,9 +54,12 @@ class AddExerciseViewController: UIViewController, UITextViewDelegate, UIPickerV
         }
         muscleGroupPicker.delegate = self
         muscleGroupPicker.dataSource = self
+        timeGoalPicker.delegate = self
+        timeGoalPicker.dataSource = self
         descriptionTextView.delegate = self
         
         muscleGroupPicker.isHidden = true
+        timeGoalPicker.isHidden = true
         submitButton.isEnabled = false
         
         descriptionTextView.textContainerInset = UIEdgeInsets(top: 12, left: 6, bottom: 12, right: 6)
@@ -60,6 +69,9 @@ class AddExerciseViewController: UIViewController, UITextViewDelegate, UIPickerV
         
         muscleGroupDropDownButton.setImage(UIImage(systemName: "arrow.forward.circle", withConfiguration: largeConfig), for: .normal)
         muscleGroupDropDownButton.setImage(UIImage(systemName: "arrow.down.circle", withConfiguration: largeConfig), for: .selected)
+        
+        timeGoalDownButton.setImage(UIImage(systemName: "arrow.forward.circle", withConfiguration: largeConfig), for: .normal)
+        timeGoalDownButton.setImage(UIImage(systemName: "arrow.down.circle", withConfiguration: largeConfig), for: .selected)
                 
         if let nameTitle = exerciseNameTextFieldPlaceHolder, let repsCount = repsTextFieldPlaceHolder, let timeGoal = timeGoalTextFieldPlaceHolder, let segmentIndex = requiresEquiptmentPlaceHolder, let descriptionText = descriptionTextViewPlaceHolder, let muscleGroupLabelPlaceHolder = muscleGroupPickerStatePlaceHolder?.rawValue {
             
@@ -68,10 +80,16 @@ class AddExerciseViewController: UIViewController, UITextViewDelegate, UIPickerV
             titleLabel.text = nameTitle
             exerciseNameTextField.text = nameTitle
             repsTextField.text = "\(repsCount)"
-            timeGoalTextField.text = "\(timeGoal)"
             descriptionTextView.text = descriptionText
             descriptionTextView.textColor = .black
             muscleGroupLabel.text = "Muscle Group: \(muscleGroupLabelPlaceHolder)"
+            minutes = timeGoal/60
+            seconds = timeGoal - (60 * minutes)
+            
+            timeGoalPicker.selectRow(minutes, inComponent: 0, animated: false)
+            timeGoalPicker.selectRow(seconds, inComponent: 1, animated: false)
+
+            timeGoalLabel.text = "Time Goal: \(minutes) Min \(seconds) Sec"
             requiresEquiptmentControl.selectedSegmentIndex = segmentIndex
             let muscleIndex = muscleGroups.firstIndex { (index) -> Bool in
                 index.rawValue == muscleGroupLabelPlaceHolder
@@ -115,13 +133,18 @@ class AddExerciseViewController: UIViewController, UITextViewDelegate, UIPickerV
     @IBAction func repsTextFieldEdited(_ sender: Any) {
         enableSubmitCheck()
     }
-    @IBAction func timeGoalTextFieldEditing(_ sender: Any) {
-        enableSubmitCheck()
-    }
     
     @IBAction func muscleGroupDropDownButtonTapped(_ sender: Any) {
         muscleGroupDropDownButton.isSelected.toggle()
         muscleGroupPicker.isHidden.toggle()
+        timeGoalDownButton.isSelected = false
+        timeGoalPicker.isHidden = true
+    }
+    @IBAction func timeGoalDropDownButtonTapped(_ sender: Any) {
+        timeGoalDownButton.isSelected.toggle()
+        timeGoalPicker.isHidden.toggle()
+        muscleGroupDropDownButton.isSelected = false
+        muscleGroupPicker.isHidden = true
     }
     
     
@@ -130,9 +153,9 @@ class AddExerciseViewController: UIViewController, UITextViewDelegate, UIPickerV
         dismiss(animated: true, completion: nil)
         let reps = Int(repsTextField.text!)
         let equiptmentReq: Bool = (requiresEquiptmentControl.selectedSegmentIndex != 0) ? false : true
-        let time = Int(timeGoalTextField.text!)
+        let timeInSeconds = (60 * minutes) + seconds
         
-        let exercise = Exercise(exerciseData: ExerciseData(name: titleLabel.text, image: nil, timeGoal: time, reps: reps, requiresEquipment: equiptmentReq, muscle: pickedMuscle , description: descriptionTextView.text), id: UUID())
+        let exercise = Exercise(exerciseData: ExerciseData(name: titleLabel.text, image: nil, timeGoal: timeInSeconds, reps: reps, requiresEquipment: equiptmentReq, muscle: pickedMuscle , description: descriptionTextView.text), id: UUID())
         
         guard isEdit == false else {
         delegate?.updateExercise(exercise: exercise)
@@ -142,7 +165,7 @@ class AddExerciseViewController: UIViewController, UITextViewDelegate, UIPickerV
     }
     
     func enableSubmitCheck() {
-        if (exerciseNameTextField.text != "") && (repsTextField.text != "") && (timeGoalTextField.text != "") && (descriptionTextView.textColor != .placeholderText) && (descriptionTextView.text != "") && (muscleGroupLabel.text != "Muscle Group: Pick Group") {
+        if (exerciseNameTextField.text != "") && (repsTextField.text != "") && (timeGoalLabel.text != "") && (descriptionTextView.textColor != .placeholderText) && (descriptionTextView.text != "") && (muscleGroupLabel.text != "Muscle Group: Pick Group") {
             submitButton.isEnabled = true
         } else {
             submitButton.isEnabled = false
@@ -164,13 +187,6 @@ class AddExerciseViewController: UIViewController, UITextViewDelegate, UIPickerV
             } else {
             repsTextField.placeholder = "0"
             }
-        }
-        if timeGoalTextField.text == "" {
-            guard let timeGoal = timeGoalTextFieldPlaceHolder else {
-                repsTextField.placeholder = "0"
-                return
-            }
-            timeGoalTextField.text = "\(timeGoal)"
         }
     }
     
@@ -197,14 +213,35 @@ class AddExerciseViewController: UIViewController, UITextViewDelegate, UIPickerV
     //MARK: - PickerView
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+        return pickerView.tag
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
+        guard pickerView.tag == 1 else {
+            switch component {
+            case 1:
+                return 60
+            case 2:
+                return 60
+            default:
+                return 60
+            }
+        }
         return muscleGroups.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        
+        guard pickerView.tag == 1 else {
+            switch component {
+            case 0:
+                return "\(row) Min"
+            case 1:
+                return "\(row) Sec"
+            default:
+                return ""
+            }
+        }
         guard row != 0 else {
             return "Pick Group"
         }
@@ -213,6 +250,22 @@ class AddExerciseViewController: UIViewController, UITextViewDelegate, UIPickerV
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
         enableSubmitCheck()
+        
+        guard pickerView.tag == 1 else {
+        
+            switch component {
+            case 0:
+                minutes = row
+            case 1:
+                seconds = row
+            default:
+                break;
+            }
+            timeGoalLabel.text = "Time Goal: \(minutes) Min \(seconds) Sec"
+            enableSubmitCheck()
+            self.view.endEditing(true)
+            return
+        }
         guard row != 0 else {
             muscleGroupLabel.text = "Muscle Group: Pick Group"
             enableSubmitCheck()
@@ -224,3 +277,7 @@ class AddExerciseViewController: UIViewController, UITextViewDelegate, UIPickerV
         self.view.endEditing(true)
     }
 }
+
+
+
+
