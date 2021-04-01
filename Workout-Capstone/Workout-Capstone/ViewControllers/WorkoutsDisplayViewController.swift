@@ -25,12 +25,16 @@ class WorkoutsDisplayViewController: UIViewController {
     var index = 0
     var timerGoal = 0
     var timerCount: Double = 0
+    var workoutDescriptionText: String?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         updateExercise()
         updateTextColor()
     }
+    
+    
     
     func updateExercise() {
         count = 0
@@ -42,6 +46,7 @@ class WorkoutsDisplayViewController: UIViewController {
             self.timeGoalLabel.text = "\(self.workout.exercises![self.index].timeGoal ?? 1)"
         }
     }
+    
     
     func updateTextColor() {
         if timerCount > Double(exercise.timeGoal!) {
@@ -75,7 +80,7 @@ class WorkoutsDisplayViewController: UIViewController {
     }
     
 
-    
+
     
     @objc func timerSet() -> Void {
         count += 1
@@ -101,7 +106,6 @@ class WorkoutsDisplayViewController: UIViewController {
         updateExercise()
     }
     
-
     
     /*
     // MARK: - Navigation
@@ -114,3 +118,4 @@ class WorkoutsDisplayViewController: UIViewController {
     */
 
 }
+
