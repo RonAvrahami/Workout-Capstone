@@ -180,6 +180,26 @@ class WorkoutsCollectionViewController: UICollectionViewController {
         performSegue(withIdentifier: "workoutSegue", sender: indexPath)
     }
     
+    override func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        
+        let config = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { (elements) -> UIMenu? in
+            
+            guard let workout = self.dataSource.itemIdentifier(for: indexPath) else { return nil }
+        
+            let startOnWatch = UIAction(title: "Start on Watch") { (_) in
+                print(workout.name)
+            }
+            
+            let startOnIphone = UIAction(title: "Start on Iphone") { (_) in
+                
+            }
+    
+            return UIMenu(title: "", image: nil, identifier: nil, options: [], children: [startOnWatch, startOnIphone])
+        }
+    
+        return config
+    }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let destination = segue.destination as? WorkoutTableViewController else {

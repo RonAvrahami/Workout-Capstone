@@ -175,6 +175,7 @@ class ExerciseListTableViewController: UITableViewController, AddExerciseProtoca
         
         guard searchText != "" else {
             exercises = allExercises
+            updateDataSource()
             return
         }
         
@@ -200,7 +201,7 @@ class ExerciseListTableViewController: UITableViewController, AddExerciseProtoca
             let formatName = exercise.exerciseData.name!.replacingOccurrences(of: "-", with: " ")
             var matchCount = 0
             for searchWord in splitText {
-                if exercise.exerciseData.name!.lowercased().contains(searchWord) || formatName.lowercased().contains(searchWord)  {
+                if exercise.exerciseData.name!.lowercased().contains(searchWord) || formatName.lowercased().contains(searchWord) {
                     matchCount += 1
                     guard !searchExercises.contains(exercise) else {
                         return
