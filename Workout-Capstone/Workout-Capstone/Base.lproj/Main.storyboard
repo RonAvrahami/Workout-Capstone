@@ -598,8 +598,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exercise Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yUH-Ar-6og">
-                                <rect key="frame" x="24" y="132" width="350" height="41"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exercise Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yUH-Ar-6og">
+                                <rect key="frame" x="24" y="132" width="350" height="40.666666666666657"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -635,7 +635,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reps:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D1H-jn-JRf">
-                                <rect key="frame" x="154" y="199" width="82" height="41"/>
+                                <rect key="frame" x="154" y="198.66666666666666" width="82" height="41"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -692,7 +692,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="uPX-Yh-rif">
-                        <barButtonItem key="backBarButtonItem" title="Quit" id="xeE-oX-3uj"/>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="questionmark.circle" catalog="system" style="plain" id="EGn-3P-v6v">
                             <connections>
                                 <action selector="workoutDescription:" destination="jai-ML-2lT" id="x5O-rx-6rG"/>
@@ -714,7 +713,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="ggT-9f-eld"/>
-        <segue reference="7v7-nX-0an"/>
+        <segue reference="Sfy-aL-60w"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.forward.circle" catalog="system" width="128" height="121"/>
