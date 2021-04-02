@@ -15,6 +15,8 @@ class WorkoutsDisplayViewController: UIViewController {
     @IBOutlet weak var exerciseLabel: UILabel!
     @IBOutlet weak var repsLabel: UILabel!
     @IBOutlet weak var timerLabel: UITextField!
+    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var nextButton: UIButton!
     
     
     var workout: Workout!
@@ -31,6 +33,7 @@ class WorkoutsDisplayViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateExercise()
+        indexCheck()
         updateTextColor()
     }
     
@@ -73,14 +76,24 @@ class WorkoutsDisplayViewController: UIViewController {
         }
         else {
             timerCounting = true
+            timer.invalidate()
             sender.setTitle("STOP", for: .normal)
             timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerSet), userInfo: nil, repeats: true)
             
         }
     }
-    
+      
 
-
+    func indexCheck() {
+        if index == 0 {
+            backButton.isEnabled = false
+        } else if index == workout.exercises!.count - 1 {
+            nextButton.isEnabled = false
+        } else {
+            backButton.isEnabled = true
+            nextButton.isEnabled = true
+        }
+    }
     
     @objc func timerSet() -> Void {
         count += 1
@@ -96,6 +109,7 @@ class WorkoutsDisplayViewController: UIViewController {
     @IBAction func previousWorkout(_ sender: Any) {
         index -= 1
         timer.invalidate()
+        indexCheck()
         updateExercise()
     }
     
@@ -103,6 +117,7 @@ class WorkoutsDisplayViewController: UIViewController {
     @IBAction func nextWorkout(_ sender: Any) {
         index += 1
         timer.invalidate()
+        indexCheck()
         updateExercise()
     }
     
