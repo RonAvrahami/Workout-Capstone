@@ -37,11 +37,22 @@ class WorkoutsDisplayViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        timerLabel.text = "00:00"
+        self.navigationItem.hidesBackButton = true
+        let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItem.Style.done, target: self, action: #selector(myLeftBarButtonTapped))
+        self.navigationItem.leftBarButtonItem = newBackButton
         updateExercise()
         indexCheck()
         updateTextColor()
     }
     
+    @objc func myLeftBarButtonTapped() {
+        let returnAlert = UIAlertController(title: "Leaving Workout!", message: "Are you sure you want to leave the workout?", preferredStyle: .alert)
+        returnAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (UIAlertAction) in
+            print("Dismiss Tapped.")
+        }))
+        present(returnAlert, animated: true)
+    }
     
     
     func updateExercise() {
