@@ -438,20 +438,20 @@
                         </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="exerciseCell" id="QUX-oh-yKv" customClass="ExerciseListTableViewCell" customModule="Workout_Capstone" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="72" width="390" height="43"/>
+                                <rect key="frame" x="0.0" y="72" width="390" height="43.333332061767578"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QUX-oh-yKv" id="FA9-lJ-YAx">
-                                    <rect key="frame" x="0.0" y="0.0" width="346" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="346" height="43.333332061767578"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exercise" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ye6-At-XH9">
-                                            <rect key="frame" x="58" y="11" width="268" height="21"/>
+                                            <rect key="frame" x="58" y="10.999999999999998" width="268" height="21.333333333333329"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ljX-ii-vbv">
-                                            <rect key="frame" x="20" y="0.0" width="18" height="43"/>
+                                            <rect key="frame" x="20" y="0.0" width="18" height="43.333333333333336"/>
                                             <state key="normal" image="plus" catalog="system"/>
                                             <connections>
                                                 <action selector="addToWorkoutButtonTapped:" destination="QUX-oh-yKv" eventType="touchUpInside" id="vqk-Vr-uOS"/>
@@ -703,6 +703,7 @@
                         <outlet property="exerciseName" destination="yUH-Ar-6og" id="jfF-re-a0Y"/>
                         <outlet property="nextButton" destination="ZNY-OT-eKD" id="9b5-CK-qob"/>
                         <outlet property="repsLabel" destination="D1H-jn-JRf" id="bXV-bu-fWt"/>
+                        <outlet property="startStop" destination="3Yk-X9-9AQ" id="3xN-YT-Ba3"/>
                         <outlet property="timeGoalLabel" destination="hqh-AD-cID" id="6yM-kV-BIR"/>
                         <outlet property="timerLabel" destination="Q83-w2-700" id="ypD-wO-emF"/>
                     </connections>

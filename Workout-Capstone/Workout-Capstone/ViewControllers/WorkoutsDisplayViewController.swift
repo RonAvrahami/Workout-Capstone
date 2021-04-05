@@ -17,6 +17,7 @@ class WorkoutsDisplayViewController: UIViewController {
     @IBOutlet weak var timerLabel: UITextField!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var startStop: UIButton!
     
     
     var workout: Workout!
@@ -28,6 +29,10 @@ class WorkoutsDisplayViewController: UIViewController {
     var timerGoal = 0
     var timerCount: Double = 0
     var workoutDescriptionText: String?
+    var timerText: String?
+    var exerciseText: String?
+    var repsText: String?
+    var timeGoalText: String?
     
     
     override func viewDidLoad() {
@@ -42,13 +47,21 @@ class WorkoutsDisplayViewController: UIViewController {
     func updateExercise() {
         count = 0
         exercise = workout.exercises![count]
-        DispatchQueue.main.async {
-            self.timerLabel.text = String(self.count)
-            self.exerciseLabel.text = self.workout.exercises![self.index].name
-            self.repsLabel.text = "Reps: \(self.workout.exercises![self.index].reps ?? 1)"
-            self.timeGoalLabel.text = "\(self.workout.exercises![self.index].timeGoal ?? 1)"
+        DispatchQueue.main.async { [self] in
+            timerText = String(count)
+            exerciseText = workout.exercises![index].name
+            repsText = "Reps: \(workout.exercises![index].reps ?? 1)"
+            timeGoalText = "\(workout.exercises![index].timeGoal ?? 1)"
+            workoutDescriptionText = workout.exercises![index].description
+            
+            timerLabel.text = timerText
+            exerciseLabel.text = exerciseText
+            repsLabel.text = repsText
+            timeGoalLabel.text = timeGoalText
         }
     }
+    
+    
     
     
     func updateTextColor() {
@@ -82,7 +95,14 @@ class WorkoutsDisplayViewController: UIViewController {
             
         }
     }
-      
+     
+    func displayAlert() {
+        let alert = UIAlertController(title: String(exerciseText!), message: String(workoutDescriptionText!), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action  in
+            print("tapped Dismiss")
+        }))
+        present(alert, animated: true)
+    }
 
     func indexCheck() {
         if index == 0 {
@@ -103,22 +123,29 @@ class WorkoutsDisplayViewController: UIViewController {
     }
     
     @IBAction func workoutDescription(_ sender: Any) {
+        displayAlert()
+        
     }
     
     
     @IBAction func previousWorkout(_ sender: Any) {
         index -= 1
         timer.invalidate()
-        indexCheck()
         updateExercise()
+        timerCounting = false
+        startStop.setTitle("START", for: .normal)
+        indexCheck()
     }
     
     
     @IBAction func nextWorkout(_ sender: Any) {
         index += 1
-        timer.invalidate()
-        indexCheck()
         updateExercise()
+        timer.invalidate()
+        timerCounting = false
+        startStop.setTitle("START", for: .normal)
+        indexCheck()
+        
     }
     
     
