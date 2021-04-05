@@ -240,7 +240,6 @@
                     <connections>
                         <outlet property="headerTextField" destination="VYd-7O-4l2" id="ZY9-h2-2HI"/>
                         <outlet property="startButton" destination="CU3-nj-5Nd" id="viO-x8-Hn4"/>
-                        <segue destination="jai-ML-2lT" kind="show" identifier="displaySegue" id="Pna-eZ-Elr"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PDX-F4-K3P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -594,11 +593,11 @@
             <objects>
                 <viewController id="jai-ML-2lT" customClass="WorkoutsDisplayViewController" customModule="Workout_Capstone" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="voK-gH-geV">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exercise Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yUH-Ar-6og">
-                                <rect key="frame" x="24" y="44" width="350" height="40.666666666666657"/>
+                                <rect key="frame" x="24" y="132" width="350" height="40.666666666666657"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -619,7 +618,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Yk-X9-9AQ">
-                                <rect key="frame" x="165" y="719" width="60" height="36"/>
+                                <rect key="frame" x="165" y="724" width="60" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="START"/>
                                 <connections>
@@ -627,14 +626,14 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZNY-OT-eKD">
-                                <rect key="frame" x="300.33333333333331" y="725" width="73.666666666666686" height="22"/>
+                                <rect key="frame" x="300.33333333333331" y="730" width="73.666666666666686" height="22"/>
                                 <state key="normal" title="Button" image="arrow.right" catalog="system"/>
                                 <connections>
                                     <action selector="nextWorkout:" destination="jai-ML-2lT" eventType="touchUpInside" id="HYh-Lf-3qV"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reps:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D1H-jn-JRf">
-                                <rect key="frame" x="154" y="110.66666666666669" width="82" height="41"/>
+                                <rect key="frame" x="154" y="198.66666666666666" width="82" height="41"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -654,7 +653,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L8N-cA-IsD">
-                                <rect key="frame" x="58.000000000000007" y="724" width="73.666666666666686" height="22"/>
+                                <rect key="frame" x="58.000000000000007" y="729" width="73.666666666666686" height="22"/>
                                 <state key="normal" title="Button" image="arrow.left" catalog="system"/>
                                 <connections>
                                     <action selector="previousWorkout:" destination="jai-ML-2lT" eventType="touchUpInside" id="miJ-rq-Sra"/>
@@ -788,9 +787,12 @@
                                     <constraint firstAttribute="height" constant="60" id="ehO-UA-rb7"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                                <state key="normal" title="Button">
+                                <state key="normal" title="Start">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="startButtonTapped:" destination="W6K-xf-Wpp" eventType="touchUpInside" id="TIJ-y7-mUm"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="zAg-Jr-uCP"/>
@@ -809,6 +811,7 @@
                     <connections>
                         <outlet property="collectionView" destination="FVS-c2-zfg" id="ufo-vN-aTa"/>
                         <segue destination="ocZ-J9-eUK" kind="presentation" identifier="addExerciseSegue" id="R9a-6z-txA"/>
+                        <segue destination="jai-ML-2lT" kind="show" identifier="displaySegue" id="RVA-0g-DIU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t7E-SL-P3X" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

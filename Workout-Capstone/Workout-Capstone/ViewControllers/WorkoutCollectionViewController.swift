@@ -32,6 +32,9 @@ class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegat
         
         
     }
+    @IBAction func startButtonTapped(_ sender: Any) {
+        performSegue(withIdentifier: "displaySegue", sender: nil)
+    }
     
     func configureDataSource() {
         
@@ -60,7 +63,25 @@ class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegat
     }
     
     func configureCollectionViewLayout() -> UICollectionViewLayout {
-        let configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
+        var configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
+        configuration.trailingSwipeActionsConfigurationProvider = { [self] (indexPath) in // possible crash
+            
+            guard let exercise = dataSource.itemIdentifier(for: indexPath) else {
+                return nil
+            }
+            let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completion) in
+                DispatchQueue.main.async {
+                    deleteExercise(exercise: exercise)
+                    completion(true)
+                }
+                
+            }
+            deleteAction.backgroundColor = .systemRed
+            
+            return UISwipeActionsConfiguration(actions: [deleteAction])
+        }
+        
+        
         let layout = UICollectionViewCompositionalLayout.list(using: configuration)
         return layout
     }
@@ -73,30 +94,41 @@ class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegat
         dataSource.apply(snapshot, animatingDifferences: true)
         
     }
+    func deleteExercise(exercise: Exercise) {
+        exercises.removeAll(where: { (deleteExercise) -> Bool in
+            exercise == deleteExercise
+        })
+        var snapshot = dataSource.snapshot()
+        snapshot.deleteItems([exercise])
+        dataSource.apply(snapshot, animatingDifferences: true)
+    }
     
     @objc func addButtonAction(_ sender: Any) {
         performSegue(withIdentifier: "addExerciseSegue", sender: nil)
     }
-    
-    //    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    //        <#code#>
-    //    }
     func collectionView(_ collectionView: UICollectionView, canEditItemAt indexPath: IndexPath) -> Bool {
         return true
     }
-    //    func collectionView(_ collectionView: UICollectionView, targetIndexPathForMoveFromItemAt originalIndexPath: IndexPath, toProposedIndexPath proposedIndexPath: IndexPath) -> IndexPath {
-    //        <#code#>
-    //    }
-    //    func collectionView(_ collectionView: UICollectionView, didBeginMultipleSelectionInteractionAt indexPath: IndexPath) {
-    //        <#code#>
-    //    }
     override func setEditing(_ editing: Bool, animated: Bool) {
         setEditing(true, animated: true)
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            if let destination = segue.destination as? ExerciseListTableViewController  {
+    
+                destination.isModal = true
+                ExerciseListTableViewController.isNotModal = false
+                destination.workoutCollectionViewController = self
+            } else if let destination = segue.destination as? WorkoutsDisplayViewController {
+                destination.workout = workout
+            }
+    
+        }
     
 }
+
 class ExerciseDataSource: UICollectionViewDiffableDataSource<CollectionViewSection, Exercise> {
     
 }
+
 
 
