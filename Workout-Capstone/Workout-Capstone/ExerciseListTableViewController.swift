@@ -18,7 +18,7 @@ class ExerciseListTableViewController: UITableViewController, AddExerciseProtoca
     var dataSource: DataSource!
     var editingExercise: Exercise?
     var senderIndexPath: IndexPath?
-    var workoutTableViewController: WorkoutTableViewController?
+    var workoutCollectionViewController: WorkoutCollectionViewController?
     var searchExercises = [Exercise]()
     var allExercises = [Exercise]()
     var isModal = false
@@ -86,11 +86,11 @@ class ExerciseListTableViewController: UITableViewController, AddExerciseProtoca
     }
     
     func addToTableview(exercise: Exercise) {
-        workoutTableViewController?.exercises.append(exercise)
+        workoutCollectionViewController?.exercises.append(exercise)
         
-        workoutTableViewController?.workout.exercises?.append(exercise.exerciseData)
+        workoutCollectionViewController?.workout.exercises?.append(exercise.exerciseData)
         
-        workoutTableViewController?.updateDataSource()
+        workoutCollectionViewController?.updateDataSource()
         setExercises()
     }
     

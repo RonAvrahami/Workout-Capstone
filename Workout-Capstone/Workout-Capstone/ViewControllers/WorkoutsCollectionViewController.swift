@@ -204,7 +204,7 @@ class WorkoutsCollectionViewController: UICollectionViewController {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let destination = segue.destination as? WorkoutTableViewController else {
+        guard let destination = segue.destination as? WorkoutCollectionViewController else {
             return
         }
         let workout = dataSource.itemIdentifier(for: sender as! IndexPath)
