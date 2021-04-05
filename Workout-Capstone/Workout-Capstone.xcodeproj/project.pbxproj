@@ -29,6 +29,8 @@
 		BB4D1E4525FBBA2D00C3A6D0 /* WorkoutExercisesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4D1E4425FBBA2D00C3A6D0 /* WorkoutExercisesTableViewCell.swift */; };
 		BB4D1ED92604EC2A00C3A6D0 /* BuiltInExercises.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4D1ED82604EC2A00C3A6D0 /* BuiltInExercises.swift */; };
 		BB4D1EDE2604FDD600C3A6D0 /* BuiltInWorkouts.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4D1EDD2604FDD600C3A6D0 /* BuiltInWorkouts.swift */; };
+		BB5F1BA026175E1E00060581 /* WorkoutCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5F1B9F26175E1E00060581 /* WorkoutCollectionViewController.swift */; };
+		BB5F1BA52617600600060581 /* ExerciseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5F1BA42617600600060581 /* ExerciseCollectionViewCell.swift */; };
 		BB62295B260CD98B00863BDD /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB62295A260CD98B00863BDD /* AudioPlayer.swift */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +80,8 @@
 		BB4D1E4425FBBA2D00C3A6D0 /* WorkoutExercisesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutExercisesTableViewCell.swift; sourceTree = "<group>"; };
 		BB4D1ED82604EC2A00C3A6D0 /* BuiltInExercises.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuiltInExercises.swift; sourceTree = "<group>"; };
 		BB4D1EDD2604FDD600C3A6D0 /* BuiltInWorkouts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuiltInWorkouts.swift; sourceTree = "<group>"; };
+		BB5F1B9F26175E1E00060581 /* WorkoutCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCollectionViewController.swift; sourceTree = "<group>"; };
+		BB5F1BA42617600600060581 /* ExerciseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCollectionViewCell.swift; sourceTree = "<group>"; };
 		BB62295A260CD98B00863BDD /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -167,6 +171,7 @@
 			children = (
 				0EEF5C2D25FFBD45008C7CE9 /* AddExerciseViewController.swift */,
 				0EEF5C2825FFABDF008C7CE9 /* ExerciseListTableViewController.swift */,
+				BB5F1B9F26175E1E00060581 /* WorkoutCollectionViewController.swift */,
 				1F68B38F2604E75B00F9DA79 /* WorkoutsDisplayViewController.swift */,
 				BB4D1E3F25FBB99500C3A6D0 /* WorkoutTableViewController.swift */,
 				0E144C2025FA7CEF00D26E54 /* WorkoutsCollectionViewController.swift */,
@@ -188,6 +193,7 @@
 			children = (
 				0EEF5C3D26010F10008C7CE9 /* ExerciseListTableViewCell.swift */,
 				BB4D1E4425FBBA2D00C3A6D0 /* WorkoutExercisesTableViewCell.swift */,
+				BB5F1BA42617600600060581 /* ExerciseCollectionViewCell.swift */,
 				0E144C2C25FA7E7500D26E54 /* WorkoutCollectionViewCell.swift */,
 			);
 			path = DiffableCells;
@@ -337,6 +343,7 @@
 			files = (
 				0E144C2125FA7CEF00D26E54 /* WorkoutsCollectionViewController.swift in Sources */,
 				BB4D1ED92604EC2A00C3A6D0 /* BuiltInExercises.swift in Sources */,
+				BB5F1BA026175E1E00060581 /* WorkoutCollectionViewController.swift in Sources */,
 				BB4D1E4525FBBA2D00C3A6D0 /* WorkoutExercisesTableViewCell.swift in Sources */,
 				0E144C2D25FA7E7500D26E54 /* WorkoutCollectionViewCell.swift in Sources */,
 				BB4D1E4025FBB99500C3A6D0 /* WorkoutTableViewController.swift in Sources */,
@@ -350,6 +357,7 @@
 				0EEF5C2925FFABDF008C7CE9 /* ExerciseListTableViewController.swift in Sources */,
 				0E144C3625FBC44400D26E54 /* LineView.swift in Sources */,
 				0E144BE025F9241500D26E54 /* Workout_Capstone.xcdatamodeld in Sources */,
+				BB5F1BA52617600600060581 /* ExerciseCollectionViewCell.swift in Sources */,
 				0E144BD625F9241500D26E54 /* AppDelegate.swift in Sources */,
 				0EEF5C2E25FFBD45008C7CE9 /* AddExerciseViewController.swift in Sources */,
 				0E144BD825F9241500D26E54 /* SceneDelegate.swift in Sources */,

@@ -18,10 +18,14 @@ class WorkoutCollectionViewCell: UICollectionViewCell {
         if section == .custom {
             workoutNameLabel.text = "New Workout"
             cellImageView.image = UIImage(systemName: "plus")
+            let tintableImage = cellImageView.image?.withRenderingMode(.alwaysTemplate)
+            cellImageView.image = tintableImage
+            cellImageView.tintColor = UIColor(named: "customOragne")
         } else {
             workoutNameLabel.text = workout.name
             cellImageView.image = workout.image
         }
+        
         cellImageView.layer.cornerRadius = 20
         cellImageView.clipsToBounds = true
         

@@ -28,7 +28,7 @@ class ExerciseListTableViewController: UITableViewController, AddExerciseProtoca
         super.viewDidLoad()
         
         ExerciseListTableViewController.isNotModal = !isModal
-        
+       // tableView.backgroundColor = UIColor(named: "customLightCream")
         searchBar.delegate = self
         navigationItem.leftBarButtonItem = editButtonItem
         tableView.delegate = self

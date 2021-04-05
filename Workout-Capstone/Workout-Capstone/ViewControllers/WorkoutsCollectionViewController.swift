@@ -54,7 +54,9 @@ class WorkoutsCollectionViewController: UICollectionViewController {
         chestWorkouts.append(contentsOf: builtInWorkouts.chestArray)
         coreWorkouts.append(contentsOf: builtInWorkouts.coreArray)
         shoulderWorkouts.append(contentsOf: builtInWorkouts.shoulderArray)
-        
+        collectionView.backgroundColor = UIColor(named: "customLightCream")
+        navigationController?.navigationBar.barTintColor = UIColor(named: "customLightGray")
+        tabBarController?.tabBar.barTintColor = UIColor(named: "customLightGray")
 
         collectionView.collectionViewLayout = configureCollectionViewLayout()
         collectionView.register(SectionHeaderView.self, forSupplementaryViewOfKind: SupplementaryViewKind.header, withReuseIdentifier: SectionHeaderView.reuseIdentifier)
