@@ -39,8 +39,10 @@ class WorkoutsCollectionViewController: UICollectionViewController {
     var chestWorkouts = [Workout]()
     var coreWorkouts = [Workout]()
     
- 
+    
     var sections = [Section]()
+    var newWorkoutName: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -57,13 +59,17 @@ class WorkoutsCollectionViewController: UICollectionViewController {
         collectionView.backgroundColor = UIColor(named: "customLightCream")
         navigationController?.navigationBar.barTintColor = UIColor(named: "customLightGray")
         tabBarController?.tabBar.barTintColor = UIColor(named: "customLightGray")
-
+        
         collectionView.collectionViewLayout = configureCollectionViewLayout()
         collectionView.register(SectionHeaderView.self, forSupplementaryViewOfKind: SupplementaryViewKind.header, withReuseIdentifier: SectionHeaderView.reuseIdentifier)
         collectionView.register(LineView.self, forSupplementaryViewOfKind: SupplementaryViewKind.topLine, withReuseIdentifier: LineView.reuseIdentifier)
         collectionView.register(LineView.self, forSupplementaryViewOfKind: SupplementaryViewKind.buttomLine, withReuseIdentifier: LineView.reuseIdentifier)
         
         configureDataSource()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        updateDataSource()
     }
     
     func configureCollectionViewLayout() -> UICollectionViewLayout {
@@ -169,17 +175,36 @@ class WorkoutsCollectionViewController: UICollectionViewController {
         
         snapshot.appendSections([.core])
         snapshot.appendItems(coreWorkouts)
-    
+        
         sections = snapshot.sectionIdentifiers
-
+        
         dataSource.apply(snapshot, animatingDifferences: true, completion: nil )
     }
     
+    func newWorkoutAlert(indexPath: IndexPath) {
+        let alert = UIAlertController(title: "New Workout", message: nil, preferredStyle: .alert)
+        
+        alert.addTextField { (textField) in
+            textField.placeholder = "Enter Name"
+        }
+        let repsTextField = alert.textFields![0]
+        
+        let addAction = UIAlertAction(title: "Add", style: .default) { [self] (_) in
+            newWorkoutName = repsTextField.text!
+            performSegue(withIdentifier: "newWorkoutSegue", sender: indexPath)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        alert.addAction(cancelAction)
+        alert.addAction(addAction)
+        
+        self.present(alert, animated: true, completion: nil)    }
+    
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        guard indexPath.section != 0 else {
-//            return
-//        }
-        performSegue(withIdentifier: "workoutSegue", sender: indexPath)
+        if indexPath.section == 0 && indexPath.row == 0 {
+            newWorkoutAlert(indexPath: indexPath)
+        } else {
+            performSegue(withIdentifier: "workoutSegue", sender: indexPath)
+        }
     }
     
     override func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
@@ -187,7 +212,7 @@ class WorkoutsCollectionViewController: UICollectionViewController {
         let config = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { (elements) -> UIMenu? in
             
             guard let workout = self.dataSource.itemIdentifier(for: indexPath) else { return nil }
-        
+            
             let startOnWatch = UIAction(title: "Start on Watch") { (_) in
                 print(workout.name)
             }
@@ -195,10 +220,10 @@ class WorkoutsCollectionViewController: UICollectionViewController {
             let startOnIphone = UIAction(title: "Start on Iphone") { (_) in
                 
             }
-    
+            
             return UIMenu(title: "", image: nil, identifier: nil, options: [], children: [startOnWatch, startOnIphone])
         }
-    
+        
         return config
     }
     
@@ -207,11 +232,14 @@ class WorkoutsCollectionViewController: UICollectionViewController {
         guard let destination = segue.destination as? WorkoutCollectionViewController else {
             return
         }
-        let workout = dataSource.itemIdentifier(for: sender as! IndexPath)
-        destination.workout = workout
-        if workout?.name == "New workout" {
+        if let workout = dataSource.itemIdentifier(for: sender as! IndexPath) {
+            var newWorkout = workout
             
+            if segue.identifier == "newWorkoutSegue" {
+                newWorkout.name = newWorkoutName ?? "Error"
+                customWorkouts.append(newWorkout)
+            }
+            destination.workout = newWorkout
         }
-    
     }
 }
