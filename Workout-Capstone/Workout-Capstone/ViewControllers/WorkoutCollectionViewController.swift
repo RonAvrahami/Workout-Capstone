@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 enum CollectionViewSection {
     case main
@@ -14,6 +15,8 @@ enum CollectionViewSection {
 class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegate {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    let systemSoundID: SystemSoundID = 1005
+
     
     var workout: Workout!
     lazy var exercises = self.workout.exercises?.compactMap { Exercise(exerciseData: $0, id: UUID())} ?? []
@@ -27,9 +30,13 @@ class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegat
         configureDataSource()
         collectionView.dataSource = dataSource
         let addButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(addButtonAction(_:)))
+        let editButton = editButtonItem
+        editButton.primaryAction = UIAction(title: "Edit") { _ in
+            self.setEditing(!self.isEditing, animated: true)
+        }
         
-        navigationItem.rightBarButtonItems = [addButton, editButtonItem]
-        
+        navigationItem.rightBarButtonItems = [addButton, editButton]
+        self.navigationItem.title = "\(workout.name)"
         
     }
     @IBAction func startButtonTapped(_ sender: Any) {
@@ -55,7 +62,10 @@ class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegat
                     cell.repCountLabel.text = "Reps: \(exerciseData.reps!)"
                 }
             }
-            
+            let reorder = UICellAccessory.reorder()
+            cell.accessories = [reorder]
+            self.dataSource.reorderingHandlers.canReorderItem = { indexPath in true }
+
             return cell
             
         })
@@ -105,12 +115,15 @@ class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegat
     
     @objc func addButtonAction(_ sender: Any) {
         performSegue(withIdentifier: "addExerciseSegue", sender: nil)
+        //AudioServicesPlaySystemSound(systemSoundID)
+        
     }
     func collectionView(_ collectionView: UICollectionView, canEditItemAt indexPath: IndexPath) -> Bool {
         return true
     }
     override func setEditing(_ editing: Bool, animated: Bool) {
-        setEditing(true, animated: true)
+        super.setEditing(editing, animated: animated)
+        self.collectionView.isEditing = editing
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
             if let destination = segue.destination as? ExerciseListTableViewController  {
