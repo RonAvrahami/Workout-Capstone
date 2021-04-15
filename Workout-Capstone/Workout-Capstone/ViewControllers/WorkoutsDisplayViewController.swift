@@ -26,18 +26,17 @@ class WorkoutsDisplayViewController: UIViewController {
     var count = 0
     var timerCounting: Bool = false
     var index = 0
-    var timerGoal = 0
     var timerCount: Double = 0
     var workoutDescriptionText: String?
     var timerText: String?
     var exerciseText: String?
     var repsText: String?
     var timeGoalText: String?
-    
+    var timeGoal: ExerciseData!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        timerLabel.text = "00:00"
+        
         self.navigationItem.hidesBackButton = true
         let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItem.Style.done, target: self, action: #selector(myLeftBarButtonTapped))
         self.navigationItem.leftBarButtonItem = newBackButton
@@ -46,12 +45,15 @@ class WorkoutsDisplayViewController: UIViewController {
         updateTextColor()
     }
     
+    
     @objc func myLeftBarButtonTapped() {
         let returnAlert = UIAlertController(title: "Leaving Workout!", message: "Are you sure you want to leave the workout?", preferredStyle: .alert)
-        returnAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (UIAlertAction) in
-            print("Dismiss Tapped.")
+        returnAlert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (UIAlertAction) in
+        
         }))
-        present(returnAlert, animated: true)
+        let closeAlert = UIAlertAction(title: "Return To Workout!", style: .default, handler: nil)
+        returnAlert.addAction(closeAlert)
+        present(returnAlert, animated: true, completion: nil)
     }
     
     
@@ -59,20 +61,26 @@ class WorkoutsDisplayViewController: UIViewController {
         count = 0
         exercise = workout.exercises![count]
         DispatchQueue.main.async { [self] in
-            timerText = String(count)
+            timerText = "00:00"
             exerciseText = workout.exercises![index].name
             repsText = "Reps: \(workout.exercises![index].reps ?? 1)"
+        //    timeGoalText = "\(formatMinuteToSeconds(totalSeconds: timerGoal ))"
             timeGoalText = "\(workout.exercises![index].timeGoal ?? 1)"
             workoutDescriptionText = workout.exercises![index].description
             
             timerLabel.text = timerText
             exerciseLabel.text = exerciseText
             repsLabel.text = repsText
-            timeGoalLabel.text = timeGoalText
+            timeGoalLabel.text = formatMinuteToSeconds(totalSeconds: exercise.timeGoal ?? 0)
         }
     }
     
-    
+    func formatMinuteToSeconds(totalSeconds: Int) -> String {
+        let minutes = Int(totalSeconds) / 60 % 60;
+        let seconds = totalSeconds % 60;
+        
+        return String(format: "%02d:%02d", minutes, seconds)
+    }
     
     
     func updateTextColor() {
