@@ -118,6 +118,11 @@ class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegat
         //AudioServicesPlaySystemSound(systemSoundID)
         
     }
+    
+    @IBAction func unwindToWorkout(segue: UIStoryboardSegue) {
+
+    }
+    
     func collectionView(_ collectionView: UICollectionView, canEditItemAt indexPath: IndexPath) -> Bool {
         return true
     }
