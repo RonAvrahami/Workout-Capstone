@@ -15,6 +15,7 @@ enum CollectionViewSection {
 class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegate {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var startButton: UIButton!
     let systemSoundID: SystemSoundID = 1005
 
     
@@ -24,9 +25,14 @@ class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        startButton.layer.cornerRadius = 10
+        startButtonState()
+        
         collectionView.delegate = self
         collectionView.collectionViewLayout = configureCollectionViewLayout()
-        
+        collectionView.allowsSelection = false
+        collectionView.allowsSelectionDuringEditing = false
+
         configureDataSource()
         collectionView.dataSource = dataSource
         let addButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(addButtonAction(_:)))
@@ -102,7 +108,7 @@ class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegat
         snapshot.appendItems(exercises)
         
         dataSource.apply(snapshot, animatingDifferences: true)
-        
+        startButtonState()
     }
     func deleteExercise(exercise: Exercise) {
         exercises.removeAll(where: { (deleteExercise) -> Bool in
@@ -111,6 +117,16 @@ class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegat
         var snapshot = dataSource.snapshot()
         snapshot.deleteItems([exercise])
         dataSource.apply(snapshot, animatingDifferences: true)
+    }
+    
+    func startButtonState() {
+        guard exercises.count != 0 else {
+            startButton.isEnabled = false
+            startButton.backgroundColor = .gray
+            return
+        }
+        startButton.isEnabled = true
+        startButton.backgroundColor = .systemBlue
     }
     
     @objc func addButtonAction(_ sender: Any) {
