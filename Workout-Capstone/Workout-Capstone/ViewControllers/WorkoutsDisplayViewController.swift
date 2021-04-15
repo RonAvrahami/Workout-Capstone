@@ -32,7 +32,7 @@ class WorkoutsDisplayViewController: UIViewController {
     var exerciseText: String?
     var repsText: String?
     var timeGoalText: String?
-    var timeGoal: ExerciseData!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,13 +48,17 @@ class WorkoutsDisplayViewController: UIViewController {
     
     @objc func myLeftBarButtonTapped() {
         let returnAlert = UIAlertController(title: "Leaving Workout!", message: "Are you sure you want to leave the workout?", preferredStyle: .alert)
-        returnAlert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (UIAlertAction) in
+        returnAlert.addAction(UIAlertAction(title: "YES", style: .destructive, handler: { (UIAlertAction) in
         
+        self.performSegue(withIdentifier: "unwindWorkout", sender: nil)
+            
         }))
-        let closeAlert = UIAlertAction(title: "Return To Workout!", style: .default, handler: nil)
+        let closeAlert = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         returnAlert.addAction(closeAlert)
         present(returnAlert, animated: true, completion: nil)
     }
+    
+    
     
     
     func updateExercise() {
@@ -64,7 +68,6 @@ class WorkoutsDisplayViewController: UIViewController {
             timerText = "00:00"
             exerciseText = workout.exercises![index].name
             repsText = "Reps: \(workout.exercises![index].reps ?? 1)"
-        //    timeGoalText = "\(formatMinuteToSeconds(totalSeconds: timerGoal ))"
             timeGoalText = "\(workout.exercises![index].timeGoal ?? 1)"
             workoutDescriptionText = workout.exercises![index].description
             
@@ -167,16 +170,5 @@ class WorkoutsDisplayViewController: UIViewController {
         
     }
     
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller. 6614059850
-    }
-    */
-
 }
 
