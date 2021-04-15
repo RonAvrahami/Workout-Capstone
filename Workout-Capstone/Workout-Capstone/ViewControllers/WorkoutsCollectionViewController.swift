@@ -214,6 +214,11 @@ class WorkoutsCollectionViewController: UICollectionViewController {
             guard let workout = self.dataSource.itemIdentifier(for: indexPath) else { return nil }
             
             let startOnWatch = UIAction(title: "Start on Watch") { (_) in
+                
+                DispatchQueue.main.async {
+                    MemoryLayout.size(ofValue: self.backWorkouts.first!)
+                    WatchConnectivityHelper.sharedInstance.sendToWatch(workout: self.backWorkouts.first!)
+                } 
                 print(workout.name)
             }
             

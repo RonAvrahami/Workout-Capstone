@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="17701" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch38"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="17500"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+    </dependencies>
+    <scenes>
+        <!--Interface Controller-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="Workouts_Capstone_Watch" customModuleProvider="target">
+                    <items>
+                        <group width="136" height="149" alignment="center" layout="vertical" spacing="8" id="LHL-3t-0vn">
+                            <items>
+                                <group width="1" alignment="left" layout="vertical" id="QhW-k7-z3y">
+                                    <items>
+                                        <label alignment="center" text="Label" id="FkW-Me-kGt">
+                                            <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
+                                        </label>
+                                    </items>
+                                </group>
+                                <label alignment="center" text="Label" id="Hag-rf-whd">
+                                    <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
+                                </label>
+                                <group width="1" alignment="left" id="91S-66-Vyf">
+                                    <items>
+                                        <label alignment="left" verticalAlignment="center" text="Goal" id="svY-jw-OM0">
+                                            <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
+                                        </label>
+                                        <timer alignment="center" id="Ehx-WM-L4s">
+                                            <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                                            <calendarUnit key="units" minute="YES" second="YES"/>
+                                        </timer>
+                                    </items>
+                                </group>
+                                <group width="1" alignment="left" id="9Om-y7-Vtq">
+                                    <items>
+                                        <label alignment="left" verticalAlignment="center" text="Time" id="em4-aR-lJ7">
+                                            <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
+                                        </label>
+                                        <timer alignment="center" id="eYb-8V-zX2">
+                                            <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                                            <calendarUnit key="units" minute="YES" second="YES"/>
+                                        </timer>
+                                    </items>
+                                </group>
+                                <group width="136" alignment="center" verticalAlignment="bottom" id="99g-rV-Ogl">
+                                    <items>
+                                        <button width="30" height="30" alignment="left" backgroundImage="backward.fill" catalog="system" id="zvF-IT-tpA">
+                                            <color key="backgroundColor" name="customOragne"/>
+                                            <connections>
+                                                <action selector="previousExerciseButtonTapped" destination="AgC-eL-Hgc" id="30N-Uo-0Xs"/>
+                                            </connections>
+                                        </button>
+                                        <button width="30" height="30" alignment="center" backgroundImage="playpause.fill" catalog="system" id="O0K-mp-tvO">
+                                            <color key="backgroundColor" red="0.70964458630000005" green="0.23137254900000001" blue="0.27785897370000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <connections>
+                                                <action selector="playPauseButtonTapped" destination="AgC-eL-Hgc" id="Ev4-Dw-gNh"/>
+                                            </connections>
+                                        </button>
+                                        <button width="30" height="30" alignment="right" backgroundImage="forward.fill" catalog="system" id="8Ol-Rx-v3B">
+                                            <color key="backgroundColor" name="customOragne"/>
+                                            <connections>
+                                                <action selector="nextExerciseButtonTapped" destination="AgC-eL-Hgc" id="mYY-Rb-fz9"/>
+                                            </connections>
+                                        </button>
+                                    </items>
+                                </group>
+                            </items>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="currentTimeTimer" destination="eYb-8V-zX2" id="vOG-XX-FSu"/>
+                        <outlet property="exerciseNameLabel" destination="FkW-Me-kGt" id="hpQ-Q4-w9q"/>
+                        <outlet property="repCountLabel" destination="Hag-rf-whd" id="KYm-Ip-9rL"/>
+                        <outlet property="timeGoalTimer" destination="Ehx-WM-L4s" id="dep-gH-IGD"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="220" y="345"/>
+        </scene>
+        <!--Static Notification Interface Controller-->
+        <scene sceneID="AEw-b0-oYE">
+            <objects>
+                <notificationController id="YCC-NB-fut">
+                    <items>
+                        <label alignment="left" text="Alert Label" numberOfLines="0" id="IdU-wH-bcW"/>
+                    </items>
+                    <notificationCategory key="notificationCategory" identifier="myCategory" id="JfB-70-Muf"/>
+                    <connections>
+                        <outlet property="notificationAlertLabel" destination="IdU-wH-bcW" id="JKC-fr-R95"/>
+                        <segue destination="4sK-HA-Art" kind="relationship" relationship="dynamicNotificationInterface" id="kXh-Jw-8B1"/>
+                        <segue destination="eXb-UN-Cd0" kind="relationship" relationship="dynamicInteractiveNotificationInterface" id="mpB-YA-K8N"/>
+                    </connections>
+                </notificationController>
+            </objects>
+            <point key="canvasLocation" x="220" y="643"/>
+        </scene>
+        <!--Notification Controller-->
+        <scene sceneID="ZPc-GJ-vnh">
+            <objects>
+                <controller id="4sK-HA-Art" customClass="NotificationController" customModule="Workouts_Capstone_Watch" customModuleProvider="target"/>
+            </objects>
+            <point key="canvasLocation" x="468" y="643"/>
+        </scene>
+        <!--Notification Controller-->
+        <scene sceneID="Niz-AI-uX2">
+            <objects>
+                <controller id="eXb-UN-Cd0" customClass="NotificationController" customModule="Workouts_Capstone_Watch" customModuleProvider="target"/>
+            </objects>
+            <point key="canvasLocation" x="468" y="345"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="backward.fill" catalog="system" width="128" height="77"/>
+        <image name="forward.fill" catalog="system" width="128" height="77"/>
+        <image name="playpause.fill" catalog="system" width="128" height="68"/>
+        <namedColor name="customOragne">
+            <color red="1" green="0.66299998760223389" blue="0.19200000166893005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
