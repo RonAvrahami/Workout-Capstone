@@ -30,6 +30,18 @@
 		BB4D1EDE2604FDD600C3A6D0 /* BuiltInWorkouts.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4D1EDD2604FDD600C3A6D0 /* BuiltInWorkouts.swift */; };
 		BB5F1BA026175E1E00060581 /* WorkoutCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5F1B9F26175E1E00060581 /* WorkoutCollectionViewController.swift */; };
 		BB5F1BA52617600600060581 /* ExerciseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5F1BA42617600600060581 /* ExerciseCollectionViewCell.swift */; };
+		BBB49ECD262735C300E9B747 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBB49ECB262735C300E9B747 /* Interface.storyboard */; };
+		BBB49ECF262735C500E9B747 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBB49ECE262735C500E9B747 /* Assets.xcassets */; };
+		BBB49ED6262735C500E9B747 /* Workouts-Capstone-Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BBB49ED5262735C500E9B747 /* Workouts-Capstone-Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BBB49EDB262735C600E9B747 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB49EDA262735C600E9B747 /* InterfaceController.swift */; };
+		BBB49EDD262735C600E9B747 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB49EDC262735C600E9B747 /* ExtensionDelegate.swift */; };
+		BBB49EDF262735C600E9B747 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB49EDE262735C600E9B747 /* NotificationController.swift */; };
+		BBB49EE1262735C600E9B747 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB49EE0262735C600E9B747 /* ComplicationController.swift */; };
+		BBB49EE3262735C900E9B747 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBB49EE2262735C900E9B747 /* Assets.xcassets */; };
+		BBB49EE8262735C900E9B747 /* Workouts-Capstone-Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = BBB49EC9262735C300E9B747 /* Workouts-Capstone-Watch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BBB49EF82627386400E9B747 /* WatchConnectivityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB49EF72627386400E9B747 /* WatchConnectivityHelper.swift */; };
+		BBB49F2426287EC500E9B747 /* WorkoutData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3AED1A25FA65F100DE2D9C /* WorkoutData.swift */; };
+		BBB49F2A26287EFF00E9B747 /* ExerciseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3AED2025FA661100DE2D9C /* ExerciseData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,7 +59,46 @@
 			remoteGlobalIDString = 0E144BD125F9241500D26E54;
 			remoteInfo = "Workout-Capstone";
 		};
+		BBB49ED7262735C500E9B747 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0E144BCA25F9241500D26E54 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BBB49ED4262735C500E9B747;
+			remoteInfo = "Workouts-Capstone-Watch Extension";
+		};
+		BBB49EE6262735C900E9B747 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0E144BCA25F9241500D26E54 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BBB49EC8262735C300E9B747;
+			remoteInfo = "Workouts-Capstone-Watch";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BBB49EE9262735C900E9B747 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				BBB49EE8262735C900E9B747 /* Workouts-Capstone-Watch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BBB49EEC262735C900E9B747 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				BBB49ED6262735C500E9B747 /* Workouts-Capstone-Watch Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0E144BD225F9241500D26E54 /* Workout-Capstone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Workout-Capstone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -79,6 +130,19 @@
 		BB4D1EDD2604FDD600C3A6D0 /* BuiltInWorkouts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuiltInWorkouts.swift; sourceTree = "<group>"; };
 		BB5F1B9F26175E1E00060581 /* WorkoutCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCollectionViewController.swift; sourceTree = "<group>"; };
 		BB5F1BA42617600600060581 /* ExerciseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCollectionViewCell.swift; sourceTree = "<group>"; };
+		BBB49EC9262735C300E9B747 /* Workouts-Capstone-Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Workouts-Capstone-Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BBB49ECC262735C300E9B747 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		BBB49ECE262735C500E9B747 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BBB49ED0262735C500E9B747 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BBB49ED5262735C500E9B747 /* Workouts-Capstone-Watch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Workouts-Capstone-Watch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BBB49EDA262735C600E9B747 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		BBB49EDC262735C600E9B747 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		BBB49EDE262735C600E9B747 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		BBB49EE0262735C600E9B747 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		BBB49EE2262735C900E9B747 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BBB49EE4262735C900E9B747 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BBB49EE5262735C900E9B747 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		BBB49EF72627386400E9B747 /* WatchConnectivityHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnectivityHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +167,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BBB49ED2262735C500E9B747 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -112,6 +183,8 @@
 				0E144BD425F9241500D26E54 /* Workout-Capstone */,
 				0E144BEE25F9241700D26E54 /* Workout-CapstoneTests */,
 				0E144BF925F9241700D26E54 /* Workout-CapstoneUITests */,
+				BBB49ECA262735C300E9B747 /* Workouts-Capstone-Watch */,
+				BBB49ED9262735C600E9B747 /* Workouts-Capstone-Watch Extension */,
 				0E144BD325F9241500D26E54 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -122,6 +195,8 @@
 				0E144BD225F9241500D26E54 /* Workout-Capstone.app */,
 				0E144BEB25F9241700D26E54 /* Workout-CapstoneTests.xctest */,
 				0E144BF625F9241700D26E54 /* Workout-CapstoneUITests.xctest */,
+				BBB49EC9262735C300E9B747 /* Workouts-Capstone-Watch.app */,
+				BBB49ED5262735C500E9B747 /* Workouts-Capstone-Watch Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -130,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				0E144BD525F9241500D26E54 /* AppDelegate.swift */,
+				BBB49EF62627383600E9B747 /* Helpers */,
 				0E144BD725F9241500D26E54 /* SceneDelegate.swift */,
 				BB3AED1F25FA65FA00DE2D9C /* Models */,
 				0E144C2525FA7CFD00D26E54 /* ViewControllers */,
@@ -205,6 +281,38 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		BBB49ECA262735C300E9B747 /* Workouts-Capstone-Watch */ = {
+			isa = PBXGroup;
+			children = (
+				BBB49ECB262735C300E9B747 /* Interface.storyboard */,
+				BBB49ECE262735C500E9B747 /* Assets.xcassets */,
+				BBB49ED0262735C500E9B747 /* Info.plist */,
+			);
+			path = "Workouts-Capstone-Watch";
+			sourceTree = "<group>";
+		};
+		BBB49ED9262735C600E9B747 /* Workouts-Capstone-Watch Extension */ = {
+			isa = PBXGroup;
+			children = (
+				BBB49EDA262735C600E9B747 /* InterfaceController.swift */,
+				BBB49EDC262735C600E9B747 /* ExtensionDelegate.swift */,
+				BBB49EDE262735C600E9B747 /* NotificationController.swift */,
+				BBB49EE0262735C600E9B747 /* ComplicationController.swift */,
+				BBB49EE2262735C900E9B747 /* Assets.xcassets */,
+				BBB49EE4262735C900E9B747 /* Info.plist */,
+				BBB49EE5262735C900E9B747 /* PushNotificationPayload.apns */,
+			);
+			path = "Workouts-Capstone-Watch Extension";
+			sourceTree = "<group>";
+		};
+		BBB49EF62627383600E9B747 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				BBB49EF72627386400E9B747 /* WatchConnectivityHelper.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -215,10 +323,12 @@
 				0E144BCE25F9241500D26E54 /* Sources */,
 				0E144BCF25F9241500D26E54 /* Frameworks */,
 				0E144BD025F9241500D26E54 /* Resources */,
+				BBB49EE9262735C900E9B747 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				BBB49EE7262735C900E9B747 /* PBXTargetDependency */,
 			);
 			name = "Workout-Capstone";
 			productName = "Workout-Capstone";
@@ -261,6 +371,40 @@
 			productReference = 0E144BF625F9241700D26E54 /* Workout-CapstoneUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		BBB49EC8262735C300E9B747 /* Workouts-Capstone-Watch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BBB49EF0262735C900E9B747 /* Build configuration list for PBXNativeTarget "Workouts-Capstone-Watch" */;
+			buildPhases = (
+				BBB49EC7262735C300E9B747 /* Resources */,
+				BBB49EEC262735C900E9B747 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BBB49ED8262735C500E9B747 /* PBXTargetDependency */,
+			);
+			name = "Workouts-Capstone-Watch";
+			productName = "Workouts-Capstone-Watch";
+			productReference = BBB49EC9262735C300E9B747 /* Workouts-Capstone-Watch.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		BBB49ED4262735C500E9B747 /* Workouts-Capstone-Watch Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BBB49EEF262735C900E9B747 /* Build configuration list for PBXNativeTarget "Workouts-Capstone-Watch Extension" */;
+			buildPhases = (
+				BBB49ED1262735C500E9B747 /* Sources */,
+				BBB49ED2262735C500E9B747 /* Frameworks */,
+				BBB49ED3262735C500E9B747 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Workouts-Capstone-Watch Extension";
+			productName = "Workouts-Capstone-Watch Extension";
+			productReference = BBB49ED5262735C500E9B747 /* Workouts-Capstone-Watch Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -281,6 +425,12 @@
 						CreatedOnToolsVersion = 12.4;
 						TestTargetID = 0E144BD125F9241500D26E54;
 					};
+					BBB49EC8262735C300E9B747 = {
+						CreatedOnToolsVersion = 12.4;
+					};
+					BBB49ED4262735C500E9B747 = {
+						CreatedOnToolsVersion = 12.4;
+					};
 				};
 			};
 			buildConfigurationList = 0E144BCD25F9241500D26E54 /* Build configuration list for PBXProject "Workout-Capstone" */;
@@ -299,6 +449,8 @@
 				0E144BD125F9241500D26E54 /* Workout-Capstone */,
 				0E144BEA25F9241700D26E54 /* Workout-CapstoneTests */,
 				0E144BF525F9241700D26E54 /* Workout-CapstoneUITests */,
+				BBB49EC8262735C300E9B747 /* Workouts-Capstone-Watch */,
+				BBB49ED4262735C500E9B747 /* Workouts-Capstone-Watch Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -328,6 +480,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BBB49EC7262735C300E9B747 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BBB49ECF262735C500E9B747 /* Assets.xcassets in Resources */,
+				BBB49ECD262735C300E9B747 /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BBB49ED3262735C500E9B747 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BBB49EE3262735C900E9B747 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -337,6 +506,7 @@
 			files = (
 				0E144C2125FA7CEF00D26E54 /* WorkoutsCollectionViewController.swift in Sources */,
 				BB4D1ED92604EC2A00C3A6D0 /* BuiltInExercises.swift in Sources */,
+				BBB49EF82627386400E9B747 /* WatchConnectivityHelper.swift in Sources */,
 				BB5F1BA026175E1E00060581 /* WorkoutCollectionViewController.swift in Sources */,
 				BB4D1E4525FBBA2D00C3A6D0 /* WorkoutExercisesTableViewCell.swift in Sources */,
 				0E144C2D25FA7E7500D26E54 /* WorkoutCollectionViewCell.swift in Sources */,
@@ -372,6 +542,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BBB49ED1262735C500E9B747 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BBB49F2426287EC500E9B747 /* WorkoutData.swift in Sources */,
+				BBB49F2A26287EFF00E9B747 /* ExerciseData.swift in Sources */,
+				BBB49EDF262735C600E9B747 /* NotificationController.swift in Sources */,
+				BBB49EE1262735C600E9B747 /* ComplicationController.swift in Sources */,
+				BBB49EDD262735C600E9B747 /* ExtensionDelegate.swift in Sources */,
+				BBB49EDB262735C600E9B747 /* InterfaceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -384,6 +567,16 @@
 			isa = PBXTargetDependency;
 			target = 0E144BD125F9241500D26E54 /* Workout-Capstone */;
 			targetProxy = 0E144BF725F9241700D26E54 /* PBXContainerItemProxy */;
+		};
+		BBB49ED8262735C500E9B747 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BBB49ED4262735C500E9B747 /* Workouts-Capstone-Watch Extension */;
+			targetProxy = BBB49ED7262735C500E9B747 /* PBXContainerItemProxy */;
+		};
+		BBB49EE7262735C900E9B747 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BBB49EC8262735C300E9B747 /* Workouts-Capstone-Watch */;
+			targetProxy = BBB49EE6262735C900E9B747 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -402,6 +595,14 @@
 				0E144BE425F9241700D26E54 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		BBB49ECB262735C300E9B747 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BBB49ECC262735C300E9B747 /* Base */,
+			);
+			name = Interface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -639,6 +840,88 @@
 			};
 			name = Release;
 		};
+		BBB49EEA262735C900E9B747 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				IBSC_MODULE = Workouts_Capstone_Watch_Extension;
+				INFOPLIST_FILE = "Workouts-Capstone-Watch/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "Avrahami.Workout-Capstone.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.2;
+			};
+			name = Debug;
+		};
+		BBB49EEB262735C900E9B747 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				IBSC_MODULE = Workouts_Capstone_Watch_Extension;
+				INFOPLIST_FILE = "Workouts-Capstone-Watch/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "Avrahami.Workout-Capstone.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.2;
+			};
+			name = Release;
+		};
+		BBB49EED262735C900E9B747 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UM9Y9LV6LU;
+				INFOPLIST_FILE = "Workouts-Capstone-Watch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Avrahami.Workout-Capstone.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.2;
+			};
+			name = Debug;
+		};
+		BBB49EEE262735C900E9B747 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UM9Y9LV6LU;
+				INFOPLIST_FILE = "Workouts-Capstone-Watch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Avrahami.Workout-Capstone.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.2;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -674,6 +957,24 @@
 			buildConfigurations = (
 				0E144C0625F9241700D26E54 /* Debug */,
 				0E144C0725F9241700D26E54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BBB49EEF262735C900E9B747 /* Build configuration list for PBXNativeTarget "Workouts-Capstone-Watch Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BBB49EED262735C900E9B747 /* Debug */,
+				BBB49EEE262735C900E9B747 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BBB49EF0262735C900E9B747 /* Build configuration list for PBXNativeTarget "Workouts-Capstone-Watch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BBB49EEA262735C900E9B747 /* Debug */,
+				BBB49EEB262735C900E9B747 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
