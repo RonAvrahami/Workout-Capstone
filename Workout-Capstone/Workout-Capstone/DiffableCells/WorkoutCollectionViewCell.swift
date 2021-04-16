@@ -13,9 +13,9 @@ class WorkoutCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var cellImageView: UIImageView!
     @IBOutlet weak var imageContainerView: UIView!
     
-    func update(workout: Workout, section: Section) {
-        
-        if section == .custom {
+    func update(workout: Workout, section: Section, indexPath: IndexPath) {
+    
+        if section == .custom && indexPath.row == 0  {
             workoutNameLabel.text = "New Workout"
             cellImageView.image = UIImage(systemName: "plus")
             let tintableImage = cellImageView.image?.withRenderingMode(.alwaysTemplate)

@@ -69,7 +69,7 @@ class WorkoutsCollectionViewController: UICollectionViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        updateDataSource()
+        
     }
     
     func configureCollectionViewLayout() -> UICollectionViewLayout {
@@ -109,7 +109,7 @@ class WorkoutsCollectionViewController: UICollectionViewController {
         dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView, cellProvider: { (collectionView, indexPath, workout) -> UICollectionViewCell? in
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "workoutCell", for: indexPath) as! WorkoutCollectionViewCell
-            cell.update(workout: workout, section: self.sections[indexPath.section])
+            cell.update(workout: workout, section: self.sections[indexPath.section], indexPath: indexPath)
             return cell
         })
         dataSource.supplementaryViewProvider =  { (collectionView, kind, indexPath) -> UICollectionReusableView? in
@@ -155,6 +155,7 @@ class WorkoutsCollectionViewController: UICollectionViewController {
     func updateDataSource() {
         
         var snapshot = NSDiffableDataSourceSnapshot<Section, Workout>()
+        
         snapshot.appendSections([.custom])
         snapshot.appendItems(customWorkouts)
         
@@ -229,6 +230,7 @@ class WorkoutsCollectionViewController: UICollectionViewController {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         guard let destination = segue.destination as? WorkoutCollectionViewController else {
             return
         }
@@ -237,7 +239,11 @@ class WorkoutsCollectionViewController: UICollectionViewController {
             
             if segue.identifier == "newWorkoutSegue" {
                 newWorkout.name = newWorkoutName ?? "Error"
+                newWorkout.image = UIImage(named: "customWorkoutImage")
+                newWorkout.id = UUID()
+                
                 customWorkouts.append(newWorkout)
+                updateDataSource()
             }
             destination.workout = newWorkout
         }

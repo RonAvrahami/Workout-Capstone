@@ -277,20 +277,20 @@
                         </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="exerciseCell" id="QUX-oh-yKv" customClass="ExerciseListTableViewCell" customModule="Workout_Capstone" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="72" width="390" height="43.666667938232422"/>
+                                <rect key="frame" x="0.0" y="72" width="390" height="42.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QUX-oh-yKv" id="FA9-lJ-YAx">
-                                    <rect key="frame" x="0.0" y="0.0" width="346" height="43.666667938232422"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="346" height="42.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exercise" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ye6-At-XH9">
-                                            <rect key="frame" x="58" y="11.000000000000002" width="268" height="21.666666666666671"/>
+                                            <rect key="frame" x="58" y="11.000000000000002" width="268" height="20.666666666666671"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ljX-ii-vbv">
-                                            <rect key="frame" x="20" y="0.0" width="18" height="43.666666666666664"/>
+                                            <rect key="frame" x="20" y="0.0" width="18" height="42.666666666666664"/>
                                             <state key="normal" image="plus" catalog="system"/>
                                             <connections>
                                                 <action selector="addToWorkoutButtonTapped:" destination="QUX-oh-yKv" eventType="touchUpInside" id="vqk-Vr-uOS"/>
@@ -587,17 +587,29 @@
                             <constraint firstItem="zAg-Jr-uCP" firstAttribute="trailing" secondItem="FVS-c2-zfg" secondAttribute="trailing" id="wEH-cd-fqh"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="AT6-qM-jCk"/>
+                    <navigationItem key="navigationItem" id="AT6-qM-jCk">
+                        <nil key="title"/>
+                        <textField key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" id="xWq-Dk-PPc">
+                            <rect key="frame" x="95" y="5" width="200" height="34"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <action selector="titleChanged:" destination="W6K-xf-Wpp" eventType="editingChanged" id="bnm-l7-uyT"/>
+                            </connections>
+                        </textField>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="FVS-c2-zfg" id="ufo-vN-aTa"/>
                         <outlet property="startButton" destination="z1v-kj-Lw6" id="ngR-JW-aFv"/>
+                        <outlet property="titleTextField" destination="xWq-Dk-PPc" id="xxh-hn-as3"/>
                         <segue destination="ocZ-J9-eUK" kind="presentation" identifier="addExerciseSegue" id="R9a-6z-txA"/>
                         <segue destination="jai-ML-2lT" kind="show" identifier="displaySegue" id="RVA-0g-DIU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t7E-SL-P3X" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-97" y="822"/>
+            <point key="canvasLocation" x="-98.461538461538453" y="821.80094786729853"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

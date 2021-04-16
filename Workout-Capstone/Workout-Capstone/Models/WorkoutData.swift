@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 struct Workout: Hashable {
+    
     var name: String
     var image: UIImage?
     var timer: Timer?
@@ -16,4 +17,3 @@ struct Workout: Hashable {
     var requiresEquipment: Bool?
     var id = UUID()
 }
-
