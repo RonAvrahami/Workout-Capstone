@@ -21,6 +21,7 @@ var backArray = [backWorkout1, backWorkout2, backWorkout3, backWorkout4]
 var myWorkouts: [Workout] = []
 }
 
+
 var backWorkout1 = Workout(name: "Back Crusher", image: UIImage(named: "25"), timer: nil, exercises: [inclineDumbbellPress, latPullDown, skullCrushers, frontRaise, boxJump], requiresEquipment: true)
 var backWorkout2 = Workout(name: "No looking Back", image: UIImage(named: "27"), timer: nil, exercises: [latPullDown, bentOverDumbbellLatRaise, pullUps, wideGripSeatedCableRow, wideGripPullUps, jumpRope, dumbbellDeadliftShrug], requiresEquipment: true)
 var backWorkout3 = Workout(name: "Dont Back Down", image: UIImage(named: "28"), timer: nil, exercises: [superMan, jumpRope, wideGripPullUps, russianTwist, dips, pullUps, latPullDown, dumbbellSquatWalk, bentOverDumbbellLatRaise, deadlift, lungeTwist], requiresEquipment: true)
