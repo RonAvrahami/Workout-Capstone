@@ -32,7 +32,7 @@ class WorkoutsDisplayViewController: UIViewController {
     var exerciseText: String?
     var repsText: String?
     var timeGoalText: String?
-
+    var isPaused: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,14 +47,19 @@ class WorkoutsDisplayViewController: UIViewController {
     
     
     @objc func myLeftBarButtonTapped() {
+        timer.invalidate()
+        startStop.setTitle("START", for: [])
         let returnAlert = UIAlertController(title: "Leaving Workout!", message: "Are you sure you want to leave the workout?", preferredStyle: .alert)
         returnAlert.addAction(UIAlertAction(title: "YES", style: .destructive, handler: { (UIAlertAction) in
         
-        self.performSegue(withIdentifier: "unwindWorkout", sender: nil)
-            
-        }))
+            self.performSegue(withIdentifier: "unwindWorkout", sender: nil)
+                }
+            )
+        )
+        
         let closeAlert = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         returnAlert.addAction(closeAlert)
+        timer.fire()
         present(returnAlert, animated: true, completion: nil)
     }
     
@@ -117,6 +122,16 @@ class WorkoutsDisplayViewController: UIViewController {
             
         }
     }
+    
+    @IBAction func pauseTimer(sender: NSObject) {
+        if isPaused{
+            timer.fire()
+            isPaused = false
+        } else {
+            timer.invalidate()
+        }
+    }
+    
      
     func displayAlert() {
         let alert = UIAlertController(title: String(exerciseText!), message: String(workoutDescriptionText!), preferredStyle: .alert)
