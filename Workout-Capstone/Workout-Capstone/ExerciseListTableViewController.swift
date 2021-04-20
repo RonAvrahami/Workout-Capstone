@@ -86,11 +86,13 @@ class ExerciseListTableViewController: UITableViewController, AddExerciseProtoca
     }
     
     func addToTableview(exercise: Exercise) {
+        
         workoutCollectionViewController?.exercises.append(exercise)
         
-        workoutCollectionViewController?.workout.exercises?.append(exercise.exerciseData)
+        workoutCollectionViewController?.workout.workoutObject.exercises?.append(exercise.exerciseData)
         
         workoutCollectionViewController?.updateDataSource()
+        
         setExercises()
     }
     
@@ -159,8 +161,8 @@ class ExerciseListTableViewController: UITableViewController, AddExerciseProtoca
         
         let addAction = UIAlertAction(title: "Add", style: .default) { (_) in
             var editedExercise = exercise
-            editedExercise.exerciseData.reps = Int(repsTextField.text!)
-            editedExercise.exerciseData.timeGoal = Int(timeGoalTextField.text!)
+            editedExercise.exerciseData.reps = Int(repsTextField.text!) ?? 0
+            editedExercise.exerciseData.timeGoal = Int(timeGoalTextField.text!) ?? 0
             self.addToTableview(exercise: editedExercise)
             self.dismissModal()
         }
@@ -198,10 +200,10 @@ class ExerciseListTableViewController: UITableViewController, AddExerciseProtoca
         
         
         for exercise in exercises {
-            let formatName = exercise.exerciseData.name!.replacingOccurrences(of: "-", with: " ")
+            let formatName = exercise.exerciseData.name.replacingOccurrences(of: "-", with: " ")
             var matchCount = 0
             for searchWord in splitText {
-                if exercise.exerciseData.name!.lowercased().contains(searchWord) || formatName.lowercased().contains(searchWord) {
+                if exercise.exerciseData.name.lowercased().contains(searchWord) || formatName.lowercased().contains(searchWord) {
                     matchCount += 1
                     guard !searchExercises.contains(exercise) else {
                         return

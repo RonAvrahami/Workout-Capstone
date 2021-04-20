@@ -38,7 +38,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
         let workout = message["workout"] as! Workout
-        exerciseNameLabel.setText(workout.name)
+        exerciseNameLabel.setText(workout.workoutObject.name)
     }
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
