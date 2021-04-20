@@ -22,7 +22,7 @@ class WorkoutCollectionViewCell: UICollectionViewCell {
             cellImageView.image = tintableImage
             cellImageView.tintColor = UIColor(named: "customOragne")
         } else {
-            workoutNameLabel.text = workout.name
+            workoutNameLabel.text = workout.workoutObject.name
             cellImageView.image = workout.image
         }
         

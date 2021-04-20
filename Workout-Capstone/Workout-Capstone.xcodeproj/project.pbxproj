@@ -19,6 +19,7 @@
 		0E144C2D25FA7E7500D26E54 /* WorkoutCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E144C2C25FA7E7500D26E54 /* WorkoutCollectionViewCell.swift */; };
 		0E144C3625FBC44400D26E54 /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E144C3525FBC44400D26E54 /* LineView.swift */; };
 		0E144C3F25FBC49800D26E54 /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E144C3E25FBC49800D26E54 /* SectionHeaderView.swift */; };
+		0E2064CC262DC04300EFD055 /* JSONManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2064CB262DC04300EFD055 /* JSONManager.swift */; };
 		0EEF5C2925FFABDF008C7CE9 /* ExerciseListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEF5C2825FFABDF008C7CE9 /* ExerciseListTableViewController.swift */; };
 		0EEF5C2E25FFBD45008C7CE9 /* AddExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEF5C2D25FFBD45008C7CE9 /* AddExerciseViewController.swift */; };
 		0EEF5C3E26010F10008C7CE9 /* ExerciseListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEF5C3D26010F10008C7CE9 /* ExerciseListTableViewCell.swift */; };
@@ -119,6 +120,7 @@
 		0E144C2C25FA7E7500D26E54 /* WorkoutCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCollectionViewCell.swift; sourceTree = "<group>"; };
 		0E144C3525FBC44400D26E54 /* LineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
 		0E144C3E25FBC49800D26E54 /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
+		0E2064CB262DC04300EFD055 /* JSONManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONManager.swift; sourceTree = "<group>"; };
 		0EEF5C2825FFABDF008C7CE9 /* ExerciseListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ExerciseListTableViewController.swift; path = "Workout-Capstone/ExerciseListTableViewController.swift"; sourceTree = SOURCE_ROOT; };
 		0EEF5C2D25FFBD45008C7CE9 /* AddExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddExerciseViewController.swift; path = "Workout-Capstone/AddExerciseViewController.swift"; sourceTree = SOURCE_ROOT; };
 		0EEF5C3D26010F10008C7CE9 /* ExerciseListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListTableViewCell.swift; sourceTree = "<group>"; };
@@ -205,8 +207,8 @@
 			isa = PBXGroup;
 			children = (
 				0E144BD525F9241500D26E54 /* AppDelegate.swift */,
-				BBB49EF62627383600E9B747 /* Helpers */,
 				0E144BD725F9241500D26E54 /* SceneDelegate.swift */,
+				BBB49EF62627383600E9B747 /* Helpers */,
 				BB3AED1F25FA65FA00DE2D9C /* Models */,
 				0E144C2525FA7CFD00D26E54 /* ViewControllers */,
 				0EA7A6EA2612179F003B60B9 /* DiffableCells */,
@@ -309,6 +311,7 @@
 			isa = PBXGroup;
 			children = (
 				BBB49EF72627386400E9B747 /* WatchConnectivityHelper.swift */,
+				0E2064CB262DC04300EFD055 /* JSONManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -517,6 +520,7 @@
 				BB3AED2125FA661100DE2D9C /* ExerciseData.swift in Sources */,
 				0E144C3F25FBC49800D26E54 /* SectionHeaderView.swift in Sources */,
 				0EEF5C2925FFABDF008C7CE9 /* ExerciseListTableViewController.swift in Sources */,
+				0E2064CC262DC04300EFD055 /* JSONManager.swift in Sources */,
 				0E144C3625FBC44400D26E54 /* LineView.swift in Sources */,
 				0E144BE025F9241500D26E54 /* Workout_Capstone.xcdatamodeld in Sources */,
 				BB5F1BA52617600600060581 /* ExerciseCollectionViewCell.swift in Sources */,
