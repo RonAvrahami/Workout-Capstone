@@ -124,7 +124,7 @@
 		0EEF5C2825FFABDF008C7CE9 /* ExerciseListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ExerciseListTableViewController.swift; path = "Workout-Capstone/ExerciseListTableViewController.swift"; sourceTree = SOURCE_ROOT; };
 		0EEF5C2D25FFBD45008C7CE9 /* AddExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddExerciseViewController.swift; path = "Workout-Capstone/AddExerciseViewController.swift"; sourceTree = SOURCE_ROOT; };
 		0EEF5C3D26010F10008C7CE9 /* ExerciseListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListTableViewCell.swift; sourceTree = "<group>"; };
-		1F68B38F2604E75B00F9DA79 /* WorkoutsDisplayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsDisplayViewController.swift; sourceTree = "<group>"; };
+		1F68B38F2604E75B00F9DA79 /* WorkoutsDisplayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsDisplayViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		BB3AED1A25FA65F100DE2D9C /* WorkoutData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutData.swift; sourceTree = "<group>"; };
 		BB3AED2025FA661100DE2D9C /* ExerciseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseData.swift; sourceTree = "<group>"; };
 		BB4D1E4425FBBA2D00C3A6D0 /* WorkoutExercisesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutExercisesTableViewCell.swift; sourceTree = "<group>"; };
