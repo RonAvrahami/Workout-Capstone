@@ -380,29 +380,14 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ofg-vf-Fsc" userLabel="Time Label">
                                 <rect key="frame" x="58" y="481.66666666666669" width="56.666666666666657" height="25"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="uqp-ra-Dqs"/>
+                                    <constraint firstAttribute="height" constant="25" id="TsL-bA-KJr"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="27"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Yk-X9-9AQ">
-                                <rect key="frame" x="165" y="773" width="60" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="START"/>
-                                <connections>
-                                    <action selector="startStopButton:" destination="jai-ML-2lT" eventType="touchUpInside" id="aSv-py-d5s"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZNY-OT-eKD">
-                                <rect key="frame" x="300.33333333333331" y="779" width="73.666666666666686" height="22"/>
-                                <state key="normal" title="Button" image="arrow.right" catalog="system"/>
-                                <connections>
-                                    <action selector="nextWorkout:" destination="jai-ML-2lT" eventType="touchUpInside" id="HYh-Lf-3qV"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reps:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D1H-jn-JRf">
-                                <rect key="frame" x="154" y="198.66666666666666" width="82" height="41"/>
+                                <rect key="frame" x="154.33333333333334" y="198.66666666666666" width="81.666666666666657" height="40.666666666666657"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -410,7 +395,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Goal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yCb-ul-VCE">
                                 <rect key="frame" x="58" y="361.66666666666669" width="56.666666666666657" height="25.333333333333314"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="25.333333333333314" id="n9f-24-kMm"/>
+                                    <constraint firstAttribute="height" constant="25.333333333333314" id="CpW-eI-xxa"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="27"/>
                                 <nil key="textColor"/>
@@ -421,41 +406,69 @@
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L8N-cA-IsD">
-                                <rect key="frame" x="58.000000000000007" y="778" width="73.666666666666686" height="22"/>
-                                <state key="normal" title="Button" image="arrow.left" catalog="system"/>
-                                <connections>
-                                    <action selector="previousWorkout:" destination="jai-ML-2lT" eventType="touchUpInside" id="miJ-rq-Sra"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="2MZ-lH-5Id">
+                                <rect key="frame" x="26" y="694" width="339.33333333333331" height="115.33333333333337"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceLeftToRight" horizontalHuggingPriority="249" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L8N-cA-IsD">
+                                        <rect key="frame" x="0.0" y="0.0" width="86.333333333333329" height="115.33333333333333"/>
+                                        <color key="tintColor" name="customOragne"/>
+                                        <state key="normal" image="arrow.backward.square.fill" catalog="system">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="75"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="previousWorkout:" destination="jai-ML-2lT" eventType="touchUpInside" id="miJ-rq-Sra"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Yk-X9-9AQ">
+                                        <rect key="frame" x="90.333333333333314" y="0.0" width="156" height="115.33333333333333"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                        <color key="tintColor" systemColor="systemOrangeColor"/>
+                                        <state key="normal">
+                                            <imageReference key="image" image="play.rectangle.fill" catalog="system" symbolScale="large"/>
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="90"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="startStopButton:" destination="jai-ML-2lT" eventType="touchUpInside" id="aSv-py-d5s"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZNY-OT-eKD">
+                                        <rect key="frame" x="250.33333333333331" y="0.0" width="89" height="115.33333333333333"/>
+                                        <color key="tintColor" name="customOragne"/>
+                                        <state key="normal" image="arrow.forward.square.fill" catalog="system">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="75"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="nextWorkout:" destination="jai-ML-2lT" eventType="touchUpInside" id="HYh-Lf-3qV"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="s2D-Ry-rft"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="ZNY-OT-eKD" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3Yk-X9-9AQ" secondAttribute="trailing" constant="8" symbolic="YES" id="1NE-Ms-Hga"/>
-                            <constraint firstItem="s2D-Ry-rft" firstAttribute="bottom" secondItem="ZNY-OT-eKD" secondAttribute="bottom" constant="9" id="3c4-oR-xG6"/>
-                            <constraint firstItem="L8N-cA-IsD" firstAttribute="centerY" secondItem="3Yk-X9-9AQ" secondAttribute="centerY" constant="-2" id="3uN-lf-GLf"/>
-                            <constraint firstItem="3Yk-X9-9AQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="L8N-cA-IsD" secondAttribute="trailing" constant="20" id="5B9-er-6ul"/>
-                            <constraint firstItem="yCb-ul-VCE" firstAttribute="trailing" secondItem="ofg-vf-Fsc" secondAttribute="trailing" id="8eC-UI-c96"/>
-                            <constraint firstItem="yUH-Ar-6og" firstAttribute="top" secondItem="s2D-Ry-rft" secondAttribute="top" constant="44" id="E8c-Gj-c2d"/>
-                            <constraint firstItem="yCb-ul-VCE" firstAttribute="leading" secondItem="s2D-Ry-rft" secondAttribute="leading" constant="58" id="FOY-lp-hrb"/>
-                            <constraint firstItem="D1H-jn-JRf" firstAttribute="top" secondItem="yUH-Ar-6og" secondAttribute="bottom" constant="26" id="IPm-aR-ejZ"/>
-                            <constraint firstItem="s2D-Ry-rft" firstAttribute="bottom" secondItem="3Yk-X9-9AQ" secondAttribute="bottom" constant="1" id="P7c-HD-yZ2"/>
-                            <constraint firstItem="D1H-jn-JRf" firstAttribute="centerX" secondItem="3Yk-X9-9AQ" secondAttribute="centerX" id="PTe-Nz-8gB"/>
-                            <constraint firstItem="hqh-AD-cID" firstAttribute="top" secondItem="voK-gH-geV" secondAttribute="top" constant="354" id="R3N-IJ-czM"/>
-                            <constraint firstItem="yCb-ul-VCE" firstAttribute="leading" secondItem="ofg-vf-Fsc" secondAttribute="leading" id="Vbi-b8-kOf"/>
-                            <constraint firstItem="hqh-AD-cID" firstAttribute="leading" secondItem="yCb-ul-VCE" secondAttribute="trailing" constant="78.999999999999972" id="VzV-Ta-YaM"/>
-                            <constraint firstItem="yUH-Ar-6og" firstAttribute="trailing" secondItem="voK-gH-geV" secondAttribute="trailingMargin" id="Wz4-fY-duR"/>
-                            <constraint firstItem="yUH-Ar-6og" firstAttribute="leading" secondItem="s2D-Ry-rft" secondAttribute="leading" constant="24" id="dYH-2h-BXB"/>
-                            <constraint firstItem="s2D-Ry-rft" firstAttribute="trailing" secondItem="Q83-w2-700" secondAttribute="trailing" constant="71" id="eTC-OW-wQd"/>
-                            <constraint firstItem="Q83-w2-700" firstAttribute="top" secondItem="hqh-AD-cID" secondAttribute="bottom" constant="78.333333333333314" id="eZd-tQ-sw6"/>
-                            <constraint firstItem="yUH-Ar-6og" firstAttribute="trailing" secondItem="ZNY-OT-eKD" secondAttribute="trailing" id="nTH-ix-gfq"/>
-                            <constraint firstItem="L8N-cA-IsD" firstAttribute="leading" secondItem="voK-gH-geV" secondAttribute="leading" constant="58" id="q53-E2-C5Y"/>
-                            <constraint firstItem="hqh-AD-cID" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Q83-w2-700" secondAttribute="leading" id="qh5-kr-I9a"/>
-                            <constraint firstItem="s2D-Ry-rft" firstAttribute="trailing" secondItem="hqh-AD-cID" secondAttribute="trailing" constant="104.33333333333337" id="s7r-ip-v04"/>
-                            <constraint firstItem="D1H-jn-JRf" firstAttribute="centerX" secondItem="voK-gH-geV" secondAttribute="centerX" id="sVa-sj-6Qz"/>
-                            <constraint firstItem="yCb-ul-VCE" firstAttribute="centerY" secondItem="hqh-AD-cID" secondAttribute="centerY" id="tkp-69-5jz"/>
-                            <constraint firstItem="ofg-vf-Fsc" firstAttribute="centerY" secondItem="Q83-w2-700" secondAttribute="centerY" id="yHK-AP-tJG"/>
+                            <constraint firstItem="ZNY-OT-eKD" firstAttribute="leading" secondItem="s2D-Ry-rft" secondAttribute="leading" constant="276.33333333333337" id="Fcz-Gv-fXm"/>
+                            <constraint firstItem="2MZ-lH-5Id" firstAttribute="height" secondItem="voK-gH-geV" secondAttribute="height" multiplier="0.136651" id="Hhb-iN-aLV"/>
+                            <constraint firstItem="hqh-AD-cID" firstAttribute="leading" secondItem="yCb-ul-VCE" secondAttribute="trailing" constant="78.999999999999972" id="JL0-7s-6iZ"/>
+                            <constraint firstItem="s2D-Ry-rft" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="hqh-AD-cID" secondAttribute="trailing" symbolic="YES" id="MQI-va-cpQ"/>
+                            <constraint firstItem="2MZ-lH-5Id" firstAttribute="width" secondItem="voK-gH-geV" secondAttribute="width" multiplier="0.870085" id="RRc-vu-YXr"/>
+                            <constraint firstItem="s2D-Ry-rft" firstAttribute="trailing" secondItem="L8N-cA-IsD" secondAttribute="trailing" constant="277.66666666666669" id="UCV-Bx-5fF"/>
+                            <constraint firstItem="s2D-Ry-rft" firstAttribute="trailing" secondItem="Q83-w2-700" secondAttribute="trailing" constant="71" id="UKv-nx-PtV"/>
+                            <constraint firstItem="hqh-AD-cID" firstAttribute="top" secondItem="voK-gH-geV" secondAttribute="top" constant="354" id="Zq5-cs-VlK"/>
+                            <constraint firstItem="yCb-ul-VCE" firstAttribute="centerY" secondItem="hqh-AD-cID" secondAttribute="centerY" id="b5x-Nt-71b"/>
+                            <constraint firstItem="D1H-jn-JRf" firstAttribute="centerX" secondItem="voK-gH-geV" secondAttribute="centerX" id="egN-yA-z2D"/>
+                            <constraint firstItem="yUH-Ar-6og" firstAttribute="top" secondItem="s2D-Ry-rft" secondAttribute="top" constant="44" id="f3t-iZ-4m7"/>
+                            <constraint firstItem="yCb-ul-VCE" firstAttribute="leading" secondItem="ofg-vf-Fsc" secondAttribute="leading" id="f4g-QQ-46H"/>
+                            <constraint firstItem="yUH-Ar-6og" firstAttribute="leading" secondItem="s2D-Ry-rft" secondAttribute="leading" constant="24" id="gsD-cS-BnN"/>
+                            <constraint firstItem="ofg-vf-Fsc" firstAttribute="centerY" secondItem="Q83-w2-700" secondAttribute="centerY" id="j7f-cu-Rdh"/>
+                            <constraint firstItem="s2D-Ry-rft" firstAttribute="trailing" secondItem="ZNY-OT-eKD" secondAttribute="trailing" constant="24.666666666666629" id="mkf-R8-M5B"/>
+                            <constraint firstItem="yCb-ul-VCE" firstAttribute="leading" secondItem="s2D-Ry-rft" secondAttribute="leading" constant="58" id="q2o-fs-kPg"/>
+                            <constraint firstItem="yUH-Ar-6og" firstAttribute="trailing" secondItem="voK-gH-geV" secondAttribute="trailingMargin" id="qtY-CU-N7W"/>
+                            <constraint firstItem="yCb-ul-VCE" firstAttribute="trailing" secondItem="ofg-vf-Fsc" secondAttribute="trailing" id="smf-4n-XWF"/>
+                            <constraint firstItem="Q83-w2-700" firstAttribute="top" secondItem="hqh-AD-cID" secondAttribute="bottom" constant="78.333333333333314" id="t6S-Gt-cQp"/>
+                            <constraint firstItem="D1H-jn-JRf" firstAttribute="top" secondItem="yUH-Ar-6og" secondAttribute="bottom" constant="26" id="vEF-UZ-xaY"/>
+                            <constraint firstItem="2MZ-lH-5Id" firstAttribute="centerY" secondItem="s2D-Ry-rft" secondAttribute="centerY" constant="302.66666666666663" id="xPJ-Yy-8nM"/>
+                            <constraint firstItem="hqh-AD-cID" firstAttribute="leading" secondItem="Q83-w2-700" secondAttribute="leading" id="yRc-JQ-CWd"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="uPX-Yh-rif">
@@ -480,7 +493,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qYK-AA-Sb6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="WMs-3y-5jm" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-98" y="1547"/>
+            <point key="canvasLocation" x="-98.461538461538453" y="1546.9194312796208"/>
         </scene>
         <!--Workout Collection View Controller-->
         <scene sceneID="B72-V9-zeQ">
@@ -615,12 +628,13 @@
         <segue reference="Sfy-aL-60w"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="arrow.backward.square.fill" catalog="system" width="128" height="114"/>
         <image name="arrow.forward.circle" catalog="system" width="128" height="121"/>
-        <image name="arrow.left" catalog="system" width="128" height="98"/>
-        <image name="arrow.right" catalog="system" width="128" height="98"/>
+        <image name="arrow.forward.square.fill" catalog="system" width="128" height="114"/>
         <image name="house" catalog="system" width="128" height="106"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="person" catalog="system" width="128" height="117"/>
+        <image name="play.rectangle.fill" catalog="system" width="128" height="93"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="questionmark.circle" catalog="system" width="128" height="121"/>
         <namedColor name="customOragne">
@@ -631,6 +645,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tertiarySystemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

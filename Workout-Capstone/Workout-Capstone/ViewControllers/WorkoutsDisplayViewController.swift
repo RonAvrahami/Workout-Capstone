@@ -40,6 +40,9 @@ class WorkoutsDisplayViewController: UIViewController {
         self.navigationItem.hidesBackButton = true
         let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItem.Style.done, target: self, action: #selector(myLeftBarButtonTapped))
         self.navigationItem.leftBarButtonItem = newBackButton
+        startStop.setTitle("START", for: .normal)
+        startStop.setTitle("STOP", for: .selected)
+
         updateExercise()
         indexCheck()
         updateTextColor()
@@ -47,8 +50,8 @@ class WorkoutsDisplayViewController: UIViewController {
     
     
     @objc func myLeftBarButtonTapped() {
+        startStop.isSelected = false
         timer.invalidate()
-        startStop.setTitle("START", for: [])
         let returnAlert = UIAlertController(title: "Leaving Workout!", message: "Are you sure you want to leave the workout?", preferredStyle: .alert)
         returnAlert.addAction(UIAlertAction(title: "YES", style: .destructive, handler: { (UIAlertAction) in
         
@@ -57,12 +60,20 @@ class WorkoutsDisplayViewController: UIViewController {
             )
         )
         
-        let closeAlert = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let closeAlert = UIAlertAction(title: "Cancel", style: .cancel, handler: { [self] (_) in
+            startStop.isSelected = true
+            timer.fire()
+        })
         returnAlert.addAction(closeAlert)
-        timer.fire()
         present(returnAlert, animated: true, completion: nil)
     }
-    
+
+    @objc func timerSet() -> Void {
+        count += 1
+        timerLabel.text = timeString(time: TimeInterval(count))
+        timerCount = TimeInterval(count)
+        updateTextColor()
+    }
     
     func updateExercise() {
         count = 0
@@ -106,31 +117,7 @@ class WorkoutsDisplayViewController: UIViewController {
         return String(format: "%02i:%02i", minutes, seconds)
     }
     
-    @IBAction func startStopButton(_ sender: UIButton) {
-      
-        if(timerCounting) {
-            timerCounting = false
-            timer.invalidate()
-            sender.setTitle("START", for: .normal)
-        }
-        else {
-            timerCounting = true
-            timer.invalidate()
-            sender.setTitle("STOP", for: .normal)
-            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerSet), userInfo: nil, repeats: true)
-            
-        }
-    }
-    
-    @IBAction func pauseTimer(sender: NSObject) {
-        if isPaused{
-            timer.fire()
-            isPaused = false
-        } else {
-            timer.invalidate()
-        }
-    }
-    
+  
      
     func displayAlert() {
         let alert = UIAlertController(title: String(exerciseText!), message: String(workoutDescriptionText!), preferredStyle: .alert)
@@ -151,11 +138,21 @@ class WorkoutsDisplayViewController: UIViewController {
         }
     }
     
-    @objc func timerSet() -> Void {
-        count += 1
-        timerLabel.text = timeString(time: TimeInterval(count))
-        timerCount = TimeInterval(count)
-        updateTextColor()
+
+    
+    @IBAction func startStopButton(_ sender: UIButton) {
+      
+        startStop.isSelected.toggle()
+        if(timerCounting) {
+            timerCounting = false
+            timer.invalidate()
+            startStop.setImage(UIImage(systemName: "play.rectangle.fill"), for: .normal)
+        }
+        else {
+            timerCounting = true
+            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerSet), userInfo: nil, repeats: true)
+            startStop.setImage(UIImage(systemName: "pause.rectangle.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 90)), for: .normal)
+        }
     }
     
     @IBAction func workoutDescription(_ sender: Any) {
@@ -167,7 +164,7 @@ class WorkoutsDisplayViewController: UIViewController {
         timer.invalidate()
         updateExercise()
         timerCounting = false
-        startStop.setTitle("START", for: .normal)
+        startStop.isSelected = false
         indexCheck()
     }
     
@@ -176,7 +173,7 @@ class WorkoutsDisplayViewController: UIViewController {
         updateExercise()
         timer.invalidate()
         timerCounting = false
-        startStop.setTitle("START", for: .normal)
+        startStop.isSelected = false
         indexCheck()
         
     }
