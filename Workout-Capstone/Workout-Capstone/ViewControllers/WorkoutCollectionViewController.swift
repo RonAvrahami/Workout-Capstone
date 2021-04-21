@@ -39,12 +39,12 @@ class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegat
         collectionView.dataSource = dataSource
         
         let addButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(addButtonAction(_:)))
-        let editButton = editButtonItem
-        editButton.primaryAction = UIAction(title: "Edit") { _ in
-            self.setEditing(!self.isEditing, animated: true)
-        }
+//        let editButton = editButtonItem
+//        editButton.primaryAction = UIAction(title: "Edit") { _ in
+//            self.setEditing(!self.isEditing, animated: true)
+//        }
         
-        navigationItem.rightBarButtonItems = [addButton, editButton]
+        navigationItem.rightBarButtonItems = [addButton]
         titleTextField.text = "\(workout.workoutObject.name)"
         titleTextField.isEnabled = false
     }
@@ -68,8 +68,10 @@ class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegat
                 cell.exerciseTimeLabel.text = "Timer: \(exerciseData.timeGoal) seconds"
                 cell.repCountLabel.text = "Reps: \(exerciseData.reps)"
             }
-            let reorder = UICellAccessory.reorder()
-            cell.accessories = [reorder]
+            
+            cell.accessories = [
+                .reorder(displayed: .always)
+            ]
             self.dataSource.reorderingHandlers.canReorderItem = { indexPath in true }
             
             return cell
