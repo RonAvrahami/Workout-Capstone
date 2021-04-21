@@ -8,10 +8,16 @@
 import UIKit
 
 class ExerciseCollectionViewCell: UICollectionViewListCell {
+   
+    
+    
     
     @IBOutlet weak var exerciseNameLabel: UILabel!
     @IBOutlet weak var repCountLabel: UILabel!
     @IBOutlet weak var exerciseTimeLabel: UILabel!
+    @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
+    
     
     
 }
+

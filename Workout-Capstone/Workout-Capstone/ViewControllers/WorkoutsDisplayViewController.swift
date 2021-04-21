@@ -64,22 +64,21 @@ class WorkoutsDisplayViewController: UIViewController {
     }
     
     
-    
-    
     func updateExercise() {
         count = 0
-        exercise = workout.exercises![count]
+        exercise = workout.workoutObject.exercises![count]
+        
         DispatchQueue.main.async { [self] in
             timerText = "00:00"
-            exerciseText = workout.exercises![index].name
-            repsText = "Reps: \(workout.exercises![index].reps ?? 1)"
-            timeGoalText = "\(workout.exercises![index].timeGoal ?? 1)"
-            workoutDescriptionText = workout.exercises![index].description
+            exerciseText = workout.workoutObject.exercises![index].name
+            repsText = "Reps: \(workout.workoutObject.exercises![index].reps)"
+            timeGoalText = "\(workout.workoutObject.exercises![index].timeGoal)"
+            workoutDescriptionText = workout.workoutObject.exercises![index].description
             
             timerLabel.text = timerText
             exerciseLabel.text = exerciseText
             repsLabel.text = repsText
-            timeGoalLabel.text = formatMinuteToSeconds(totalSeconds: exercise.timeGoal ?? 0)
+            timeGoalLabel.text = formatMinuteToSeconds(totalSeconds: exercise.timeGoal)
         }
     }
     
@@ -92,7 +91,7 @@ class WorkoutsDisplayViewController: UIViewController {
     
     
     func updateTextColor() {
-        if timerCount > Double(exercise.timeGoal!) {
+        if timerCount > Double(exercise.timeGoal) {
             timerLabel.textColor = UIColor.red
         }
         else {
@@ -144,7 +143,7 @@ class WorkoutsDisplayViewController: UIViewController {
     func indexCheck() {
         if index == 0 {
             backButton.isEnabled = false
-        } else if index == workout.exercises!.count - 1 {
+        } else if index == workout.workoutObject.exercises!.count - 1 {
             nextButton.isEnabled = false
         } else {
             backButton.isEnabled = true
@@ -161,9 +160,7 @@ class WorkoutsDisplayViewController: UIViewController {
     
     @IBAction func workoutDescription(_ sender: Any) {
         displayAlert()
-        
     }
-    
     
     @IBAction func previousWorkout(_ sender: Any) {
         index -= 1
@@ -174,7 +171,6 @@ class WorkoutsDisplayViewController: UIViewController {
         indexCheck()
     }
     
-    
     @IBAction func nextWorkout(_ sender: Any) {
         index += 1
         updateExercise()
@@ -184,6 +180,5 @@ class WorkoutsDisplayViewController: UIViewController {
         indexCheck()
         
     }
-    
 }
 

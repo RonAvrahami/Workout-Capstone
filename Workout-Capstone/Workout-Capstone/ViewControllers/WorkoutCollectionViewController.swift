@@ -20,9 +20,8 @@ class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegat
     
     let systemSoundID: SystemSoundID = 1005
     
-    
     var workout: Workout!
-    lazy var exercises = self.workout.exercises?.compactMap { Exercise(exerciseData: $0, id: UUID())} ?? []
+    lazy var exercises = self.workout.workoutObject.exercises?.compactMap { Exercise(exerciseData: $0, id: UUID())} ?? []
     var dataSource: ExerciseDataSource!
     
     override func viewDidLoad() {
@@ -46,11 +45,12 @@ class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegat
         }
         
         navigationItem.rightBarButtonItems = [addButton, editButton]
-        titleTextField.text = "\(workout.name)"
+        titleTextField.text = "\(workout.workoutObject.name)"
         titleTextField.isEnabled = false
     }
     @IBAction func startButtonTapped(_ sender: Any) {
         performSegue(withIdentifier: "displaySegue", sender: nil)
+        //AudioServicesPlaySystemSound(systemSoundID)
     }
     
     func configureDataSource() {
@@ -65,12 +65,8 @@ class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegat
             } else {
                 
                 cell.exerciseNameLabel.text = exerciseData.name
-                cell.exerciseTimeLabel.text = "Timer: \(exerciseData.timeGoal ?? 0) seconds"
-                if exerciseData.reps == nil {
-                    cell.repCountLabel.text = "Reps: 1"
-                } else {
-                    cell.repCountLabel.text = "Reps: \(exerciseData.reps!)"
-                }
+                cell.exerciseTimeLabel.text = "Timer: \(exerciseData.timeGoal) seconds"
+                cell.repCountLabel.text = "Reps: \(exerciseData.reps)"
             }
             let reorder = UICellAccessory.reorder()
             cell.accessories = [reorder]
@@ -110,28 +106,21 @@ class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegat
         var snapshot = NSDiffableDataSourceSnapshot<CollectionViewSection, Exercise>()
         snapshot.appendSections([.main])
         snapshot.appendItems(exercises)
-        updateWorkoutAdd(isAdd: true, exercise: nil)
         
         dataSource.apply(snapshot, animatingDifferences: true)
         startButtonState()
     }
     
-    func updateWorkoutAdd(isAdd: Bool, exercise: Exercise?) {
-        guard isAdd == true else {
-            workout.exercises?.removeAll(where: { (removeExercise) -> Bool in
-                removeExercise == exercise?.exerciseData
-            })
-            return
-        }
-        for exercise in exercises {
-            workout.exercises?.append(exercise.exerciseData)
-        }
-    }
     func deleteExercise(exercise: Exercise) {
         exercises.removeAll(where: { (deleteExercise) -> Bool in
+            
             exercise == deleteExercise
+            
         })
-        updateWorkoutAdd(isAdd: false, exercise: exercise)
+        workout.workoutObject.exercises?.removeAll(where: { (removeExercise) -> Bool in
+            removeExercise == exercise.exerciseData
+        })
+        
         var snapshot = dataSource.snapshot()
         snapshot.deleteItems([exercise])
         dataSource.apply(snapshot, animatingDifferences: true)
@@ -150,8 +139,6 @@ class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegat
     
     @objc func addButtonAction(_ sender: Any) {
         performSegue(withIdentifier: "addExerciseSegue", sender: nil)
-        //AudioServicesPlaySystemSound(systemSoundID)
-        
     }
     
     @IBAction func unwindToWorkout(segue: UIStoryboardSegue) {
@@ -178,14 +165,13 @@ class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegat
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? ExerciseListTableViewController  {
-            
             destination.isModal = true
             ExerciseListTableViewController.isNotModal = false
             destination.workoutCollectionViewController = self
         } else if let destination = segue.destination as? WorkoutsDisplayViewController {
+
             destination.workout = workout
         }
-        
     }
     
     
@@ -193,6 +179,7 @@ class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegat
     @IBAction func titleChanged(_ sender: Any) {
         if titleTextField.text == "" {
             editButtonItem.isEnabled = false
+            workout.workoutObject.name = titleTextField.text!
         } else {
             editButtonItem.isEnabled = true
         }
