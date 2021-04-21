@@ -34,6 +34,7 @@ class WorkoutsDisplayViewController: UIViewController {
     var timeGoalText: String?
     var isPaused: Bool = true
     
+    let largeConfig = UIImage.SymbolConfiguration(pointSize: 90)
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,6 +47,9 @@ class WorkoutsDisplayViewController: UIViewController {
         updateExercise()
         indexCheck()
         updateTextColor()
+        
+        startStop.setImage(UIImage(systemName: "play.rectangle.fill", withConfiguration: largeConfig), for: .normal)
+        startStop.setImage(UIImage(systemName: "pause.rectangle.fill", withConfiguration: largeConfig), for: .selected)
     }
     
     
@@ -140,18 +144,16 @@ class WorkoutsDisplayViewController: UIViewController {
     
 
     
-    @IBAction func startStopButton(_ sender: UIButton) {
+    @IBAction func playPauseButton(_ sender: UIButton) {
       
         startStop.isSelected.toggle()
         if(timerCounting) {
             timerCounting = false
             timer.invalidate()
-            startStop.setImage(UIImage(systemName: "play.rectangle.fill"), for: .normal)
         }
         else {
             timerCounting = true
             timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerSet), userInfo: nil, repeats: true)
-            startStop.setImage(UIImage(systemName: "pause.rectangle.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 90)), for: .normal)
         }
     }
     

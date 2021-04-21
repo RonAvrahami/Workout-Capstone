@@ -406,21 +406,21 @@
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="2MZ-lH-5Id">
-                                <rect key="frame" x="26" y="694" width="339.33333333333331" height="115.33333333333337"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="8" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g85-uc-LjG">
+                                <rect key="frame" x="8" y="686.66666666666663" width="374" height="115.33333333333337"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceLeftToRight" horizontalHuggingPriority="249" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L8N-cA-IsD">
-                                        <rect key="frame" x="0.0" y="0.0" width="86.333333333333329" height="115.33333333333333"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L8N-cA-IsD">
+                                        <rect key="frame" x="0.0" y="24" width="119.33333333333333" height="67.333333333333329"/>
                                         <color key="tintColor" name="customOragne"/>
                                         <state key="normal" image="arrow.backward.square.fill" catalog="system">
-                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="75"/>
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="65"/>
                                         </state>
                                         <connections>
                                             <action selector="previousWorkout:" destination="jai-ML-2lT" eventType="touchUpInside" id="miJ-rq-Sra"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Yk-X9-9AQ">
-                                        <rect key="frame" x="90.333333333333314" y="0.0" width="156" height="115.33333333333333"/>
+                                    <button opaque="NO" contentMode="center" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Yk-X9-9AQ" userLabel="Play Pause">
+                                        <rect key="frame" x="127.33333333333334" y="0.0" width="119.33333333333334" height="115.33333333333333"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                         <color key="tintColor" systemColor="systemOrangeColor"/>
                                         <state key="normal">
@@ -428,14 +428,14 @@
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="90"/>
                                         </state>
                                         <connections>
-                                            <action selector="startStopButton:" destination="jai-ML-2lT" eventType="touchUpInside" id="aSv-py-d5s"/>
+                                            <action selector="playPauseButton:" destination="jai-ML-2lT" eventType="touchUpInside" id="wD6-Vm-SZn"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZNY-OT-eKD">
-                                        <rect key="frame" x="250.33333333333331" y="0.0" width="89" height="115.33333333333333"/>
+                                        <rect key="frame" x="254.66666666666671" y="24" width="119.33333333333334" height="67.333333333333329"/>
                                         <color key="tintColor" name="customOragne"/>
                                         <state key="normal" image="arrow.forward.square.fill" catalog="system">
-                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="75"/>
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="65"/>
                                         </state>
                                         <connections>
                                             <action selector="nextWorkout:" destination="jai-ML-2lT" eventType="touchUpInside" id="HYh-Lf-3qV"/>
@@ -447,13 +447,10 @@
                         <viewLayoutGuide key="safeArea" id="s2D-Ry-rft"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="ZNY-OT-eKD" firstAttribute="leading" secondItem="s2D-Ry-rft" secondAttribute="leading" constant="276.33333333333337" id="Fcz-Gv-fXm"/>
-                            <constraint firstItem="2MZ-lH-5Id" firstAttribute="height" secondItem="voK-gH-geV" secondAttribute="height" multiplier="0.136651" id="Hhb-iN-aLV"/>
                             <constraint firstItem="hqh-AD-cID" firstAttribute="leading" secondItem="yCb-ul-VCE" secondAttribute="trailing" constant="78.999999999999972" id="JL0-7s-6iZ"/>
                             <constraint firstItem="s2D-Ry-rft" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="hqh-AD-cID" secondAttribute="trailing" symbolic="YES" id="MQI-va-cpQ"/>
-                            <constraint firstItem="2MZ-lH-5Id" firstAttribute="width" secondItem="voK-gH-geV" secondAttribute="width" multiplier="0.870085" id="RRc-vu-YXr"/>
-                            <constraint firstItem="s2D-Ry-rft" firstAttribute="trailing" secondItem="L8N-cA-IsD" secondAttribute="trailing" constant="277.66666666666669" id="UCV-Bx-5fF"/>
                             <constraint firstItem="s2D-Ry-rft" firstAttribute="trailing" secondItem="Q83-w2-700" secondAttribute="trailing" constant="71" id="UKv-nx-PtV"/>
+                            <constraint firstItem="s2D-Ry-rft" firstAttribute="trailing" secondItem="g85-uc-LjG" secondAttribute="trailing" constant="8" id="ZSg-yy-VSE"/>
                             <constraint firstItem="hqh-AD-cID" firstAttribute="top" secondItem="voK-gH-geV" secondAttribute="top" constant="354" id="Zq5-cs-VlK"/>
                             <constraint firstItem="yCb-ul-VCE" firstAttribute="centerY" secondItem="hqh-AD-cID" secondAttribute="centerY" id="b5x-Nt-71b"/>
                             <constraint firstItem="D1H-jn-JRf" firstAttribute="centerX" secondItem="voK-gH-geV" secondAttribute="centerX" id="egN-yA-z2D"/>
@@ -461,13 +458,13 @@
                             <constraint firstItem="yCb-ul-VCE" firstAttribute="leading" secondItem="ofg-vf-Fsc" secondAttribute="leading" id="f4g-QQ-46H"/>
                             <constraint firstItem="yUH-Ar-6og" firstAttribute="leading" secondItem="s2D-Ry-rft" secondAttribute="leading" constant="24" id="gsD-cS-BnN"/>
                             <constraint firstItem="ofg-vf-Fsc" firstAttribute="centerY" secondItem="Q83-w2-700" secondAttribute="centerY" id="j7f-cu-Rdh"/>
-                            <constraint firstItem="s2D-Ry-rft" firstAttribute="trailing" secondItem="ZNY-OT-eKD" secondAttribute="trailing" constant="24.666666666666629" id="mkf-R8-M5B"/>
                             <constraint firstItem="yCb-ul-VCE" firstAttribute="leading" secondItem="s2D-Ry-rft" secondAttribute="leading" constant="58" id="q2o-fs-kPg"/>
+                            <constraint firstItem="s2D-Ry-rft" firstAttribute="bottom" secondItem="g85-uc-LjG" secondAttribute="bottom" constant="8" id="qEw-5d-64e"/>
                             <constraint firstItem="yUH-Ar-6og" firstAttribute="trailing" secondItem="voK-gH-geV" secondAttribute="trailingMargin" id="qtY-CU-N7W"/>
                             <constraint firstItem="yCb-ul-VCE" firstAttribute="trailing" secondItem="ofg-vf-Fsc" secondAttribute="trailing" id="smf-4n-XWF"/>
                             <constraint firstItem="Q83-w2-700" firstAttribute="top" secondItem="hqh-AD-cID" secondAttribute="bottom" constant="78.333333333333314" id="t6S-Gt-cQp"/>
                             <constraint firstItem="D1H-jn-JRf" firstAttribute="top" secondItem="yUH-Ar-6og" secondAttribute="bottom" constant="26" id="vEF-UZ-xaY"/>
-                            <constraint firstItem="2MZ-lH-5Id" firstAttribute="centerY" secondItem="s2D-Ry-rft" secondAttribute="centerY" constant="302.66666666666663" id="xPJ-Yy-8nM"/>
+                            <constraint firstItem="g85-uc-LjG" firstAttribute="leading" secondItem="s2D-Ry-rft" secondAttribute="leading" constant="8" id="xde-yT-qyB"/>
                             <constraint firstItem="hqh-AD-cID" firstAttribute="leading" secondItem="Q83-w2-700" secondAttribute="leading" id="yRc-JQ-CWd"/>
                         </constraints>
                     </view>
