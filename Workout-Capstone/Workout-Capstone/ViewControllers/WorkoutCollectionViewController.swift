@@ -12,7 +12,9 @@ enum CollectionViewSection {
     case main
 }
 
-class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegate {
+class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegate, UIGestureRecognizerDelegate {
+    
+    
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var startButton: UIButton!
@@ -29,6 +31,12 @@ class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegat
         startButton.layer.cornerRadius = 10
         startButtonState()
         startButton.setTitle("DELETE EXERCISE", for: .highlighted)
+        // MARK: Long press
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(gestureRecognizer:)))
+        longPressGesture.minimumPressDuration = 0.5
+        longPressGesture.delegate = self
+        longPressGesture.delaysTouchesBegan = true
+        collectionView.addGestureRecognizer(longPressGesture)
         
         collectionView.delegate = self
         collectionView.collectionViewLayout = configureCollectionViewLayout()
@@ -44,9 +52,11 @@ class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegat
             self.setEditing(!self.isEditing, animated: true)
         }
         
-        navigationItem.rightBarButtonItems = [addButton, editButton]
+        navigationItem.rightBarButtonItems = [addButton]
         titleTextField.text = "\(workout.workoutObject.name)"
-        titleTextField.isEnabled = false
+        titleTextField.resignFirstResponder()
+        titleTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        titleTextField.isEnabled = true
     }
     @IBAction func startButtonTapped(_ sender: Any) {
         performSegue(withIdentifier: "displaySegue", sender: nil)
@@ -68,12 +78,14 @@ class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegat
                 cell.exerciseTimeLabel.text = "Timer: \(exerciseData.timeGoal) seconds"
                 cell.repCountLabel.text = "Reps: \(exerciseData.reps)"
             }
-            let reorder = UICellAccessory.reorder()
-            cell.accessories = [reorder]
-            self.dataSource.reorderingHandlers.canReorderItem = { indexPath in true }
-            
+            // MARK: Accessories
+            cell.accessories = [
+                .reorder(displayed: .always)
+            ]
+            self.dataSource.reorderingHandlers.canReorderItem = { indexPath in
+                return true
+            }
             return cell
-            
         })
         updateDataSource()
     }
@@ -144,10 +156,11 @@ class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegat
     @IBAction func unwindToWorkout(segue: UIStoryboardSegue) {
         
     }
-    
+    // MARK: collectionView Funcs
     func collectionView(_ collectionView: UICollectionView, canEditItemAt indexPath: IndexPath) -> Bool {
         return true
     }
+
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         self.collectionView.isEditing = editing
@@ -173,8 +186,26 @@ class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegat
             destination.workout = workout
         }
     }
-    
-    
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        updateDataSource()
+    }
+
+    @objc func handleLongPress(gestureRecognizer: UIGestureRecognizer) {
+        switch (gestureRecognizer.state) {
+        case .began:
+            guard let selectedIndexPath = collectionView.indexPathForItem(at: gestureRecognizer.location(in: collectionView)) else {
+                return
+            }
+            collectionView.beginInteractiveMovementForItem(at: selectedIndexPath)
+        case .changed:
+            collectionView.updateInteractiveMovementTargetPosition(gestureRecognizer.location(in: gestureRecognizer.view!))
+        case .ended:
+            collectionView.endInteractiveMovement()
+            
+        default:
+            collectionView.cancelInteractiveMovement()
+        }
+    }
     
     @IBAction func titleChanged(_ sender: Any) {
         if titleTextField.text == "" {

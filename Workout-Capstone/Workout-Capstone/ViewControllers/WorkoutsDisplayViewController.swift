@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class WorkoutsDisplayViewController: UIViewController {
     
@@ -33,6 +34,7 @@ class WorkoutsDisplayViewController: UIViewController {
     var repsText: String?
     var timeGoalText: String?
     var isPaused: Bool = true
+    let systemSoundID: SystemSoundID = 1005
     
     let largeConfig = UIImage.SymbolConfiguration(pointSize: 90)
     override func viewDidLoad() {
@@ -108,6 +110,7 @@ class WorkoutsDisplayViewController: UIViewController {
     func updateTextColor() {
         if timerCount > Double(exercise.timeGoal) {
             timerLabel.textColor = UIColor.red
+            //AudioServicesPlayAlertSound(systemSoundID)
         }
         else {
             timerLabel.textColor = UIColor.green
