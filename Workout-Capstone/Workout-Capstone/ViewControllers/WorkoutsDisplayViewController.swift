@@ -32,9 +32,9 @@ class WorkoutsDisplayViewController: UIViewController {
     var timerText: String?
     var exerciseText: String?
     var repsText: String?
-    var timeGoalText: String?
     var isPaused: Bool = true
     let systemSoundID: SystemSoundID = 1005
+    
     
     let largeConfig = UIImage.SymbolConfiguration(pointSize: 90)
     override func viewDidLoad() {
@@ -43,8 +43,6 @@ class WorkoutsDisplayViewController: UIViewController {
         self.navigationItem.hidesBackButton = true
         let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItem.Style.done, target: self, action: #selector(myLeftBarButtonTapped))
         self.navigationItem.leftBarButtonItem = newBackButton
-        startStop.setTitle("START", for: .normal)
-        startStop.setTitle("STOP", for: .selected)
 
         updateExercise()
         indexCheck()
@@ -82,14 +80,12 @@ class WorkoutsDisplayViewController: UIViewController {
     }
     
     func updateExercise() {
-        count = 0
-        exercise = workout.workoutObject.exercises![count]
+        exercise = workout.workoutObject.exercises![index]
         
         DispatchQueue.main.async { [self] in
             timerText = "00:00"
             exerciseText = workout.workoutObject.exercises![index].name
             repsText = "Reps: \(workout.workoutObject.exercises![index].reps)"
-            timeGoalText = "\(workout.workoutObject.exercises![index].timeGoal)"
             workoutDescriptionText = workout.workoutObject.exercises![index].description
             
             timerLabel.text = timerText

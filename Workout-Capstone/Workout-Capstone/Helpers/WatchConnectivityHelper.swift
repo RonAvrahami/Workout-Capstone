@@ -9,7 +9,6 @@ import Foundation
 import WatchConnectivity
 
 class WatchConnectivityHelper: NSObject, WCSessionDelegate {
-    static let sharedInstance = WatchConnectivityHelper()
     var wcSession: WCSession! = nil
     
     override init() {
@@ -20,6 +19,7 @@ class WatchConnectivityHelper: NSObject, WCSessionDelegate {
     }
     
     func sendToWatch(workout: Workout) {
+       // let data = workout.workoutObject.encode(to: <#T##Encoder#>)
         let message = ["workout" : workout]
         wcSession.sendMessage(message, replyHandler: nil) { (error) in
             print(error)
