@@ -29,6 +29,7 @@ class WorkoutsCollectionViewController: UICollectionViewController {
     var dataSource: UICollectionViewDiffableDataSource<Section,Workout>!
     var builtInWorkouts = BuiltInWorkouts()
     var jsonManager = JSONManager()
+    var watchHelper = WatchConnectivityHelper()
     
     var customWorkouts = [Workout]()
     var customArray = [Workout]()
@@ -360,8 +361,8 @@ class WorkoutsCollectionViewController: UICollectionViewController {
                 
                 guard let workout = self.dataSource.itemIdentifier(for: indexPath) else { return nil }
                 
-                let startOnWatch = UIAction(title: "Start on Watch") { (_) in
-                    
+                let startOnWatch = UIAction(title: "Start on Watch") { [self] (_) in
+                    watchHelper.sendToWatch(workout: dataSource.itemIdentifier(for: indexPath)!)
                     print(workout.workoutObject.name)
                 }
                 
