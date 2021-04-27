@@ -58,7 +58,7 @@ class WorkoutsCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
         
         DispatchQueue.main.async { [self] in
-            
+            loadBuiltInWorkouts()
             guard let workoutObjects = jsonManager.readWorkoutsFromDisk()?.workouts else {
                 loadBuiltInWorkouts()
                 return
@@ -321,6 +321,9 @@ class WorkoutsCollectionViewController: UICollectionViewController {
             
         jsonManager.writeWorkoutsToDisk(workout: readWorkouts!)
         }
+    }
+    @IBAction func unwindToHome(segue: UIStoryboardSegue) {
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

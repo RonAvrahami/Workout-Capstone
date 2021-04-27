@@ -120,7 +120,14 @@ class WorkoutsDisplayViewController: UIViewController {
         return String(format: "%02i:%02i", minutes, seconds)
     }
     
-  
+    func endWorkoutAlert() {
+        let actionsheet = UIAlertController(title: "Workout finished", message: "Workout length", preferredStyle: .actionSheet)
+        actionsheet.addAction(UIAlertAction(title: "End", style: .destructive, handler: { (action) in
+            self.performSegue(withIdentifier: "unwindToHome", sender: self)
+            print("Tapped end workout")
+        }))
+        present(actionsheet, animated: true)
+    }
      
     func displayAlert() {
         let alert = UIAlertController(title: String(exerciseText!), message: String(workoutDescriptionText!), preferredStyle: .alert)
@@ -134,8 +141,10 @@ class WorkoutsDisplayViewController: UIViewController {
         if index == 0 {
             backButton.isEnabled = false
         } else if index == workout.workoutObject.exercises!.count - 1 {
-            nextButton.isEnabled = false
+            //nextButton.isEnabled = false
+            nextButton.setImage(UIImage(systemName: "clear.fill"), for: .normal)
         } else {
+            nextButton.setImage(UIImage(systemName: "arrow.forward.square.fill"), for: .normal)
             backButton.isEnabled = true
             nextButton.isEnabled = true
         }
@@ -170,13 +179,16 @@ class WorkoutsDisplayViewController: UIViewController {
     }
     
     @IBAction func nextWorkout(_ sender: Any) {
+        if index == workout.workoutObject.exercises!.count - 1 {
+            endWorkoutAlert()
+        } else {
         index += 1
         updateExercise()
         timer.invalidate()
         timerCounting = false
         startStop.isSelected = false
         indexCheck()
-        
+        }
     }
 }
 

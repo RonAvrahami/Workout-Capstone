@@ -17,16 +17,28 @@ class WatchConnectivityHelper: NSObject, WCSessionDelegate {
         wcSession.delegate = self
         wcSession.activate()
     }
-    
+    let myString = "This works"
     func sendToWatch(workout: Workout) {
-       // let data = workout.workoutObject.encode(to: <#T##Encoder#>)
-        let message = ["workout" : workout]
-        wcSession.sendMessage(message, replyHandler: nil) { (error) in
-            print(error)
+       
+        if let validSession = self.wcSession, validSession.isReachable {
+            validSession.sendMessage(["iPhone" : myString], replyHandler: nil, errorHandler: nil)
         }
+        // let message = ["workout" : workout]
+//        let data = try? JSONEncoder().encode(workout.workoutObject)
+        
+//        wcSession.updateApplicationContext([String : Any])
+        
+//        wcSession.sendMessageData(data!, replyHandler: nil) { (error) in
+//            print(error)
+//
+//        }
+//        wcSession.sendMessage(message, replyHandler: nil) { (error) in
+//            print(error)
+//        }
         
         
     }
+    
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         
