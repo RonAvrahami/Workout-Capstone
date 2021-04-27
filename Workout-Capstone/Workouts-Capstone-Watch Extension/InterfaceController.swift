@@ -37,14 +37,16 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     }
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-        let workout = message["workout"] as! Workout
-        exerciseNameLabel.setText(workout.workoutObject.name)
+        // let workout = message["workout"] as! Workout
+//        let data = try? JSONDecoder().decode(workout.workoutObject, from: <#T##Data#>)
+        //exerciseNameLabel.setText(data.workoutObject.name)
         
     }
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         
     }
+    
     
     @IBAction func playPauseButtonTapped() {
         

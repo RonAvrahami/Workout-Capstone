@@ -21,7 +21,10 @@ class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegat
     @IBOutlet weak var titleTextField: UITextField!
     
     let systemSoundID: SystemSoundID = 1005
-    
+    // MARK: Varibles
+    var seconds = 0
+    var timer = Timer()
+    var timeStarted = Bool()
     var workout: Workout!
     lazy var exercises = self.workout.workoutObject.exercises?.compactMap { Exercise(exerciseData: $0, id: UUID())} ?? []
     var dataSource: ExerciseDataSource!
@@ -61,6 +64,11 @@ class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegat
     @IBAction func startButtonTapped(_ sender: Any) {
         performSegue(withIdentifier: "displaySegue", sender: nil)
         //AudioServicesPlaySystemSound(systemSoundID)
+        if timeStarted == false {
+            createWorkoutTimer()
+            
+        }
+        
     }
     
     func configureDataSource() {
@@ -84,6 +92,9 @@ class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegat
             ]
             self.dataSource.reorderingHandlers.canReorderItem = { indexPath in
                 return true
+            }
+            self.dataSource.reorderingHandlers.didReorder = { transaction in
+                self.workout.workoutObject.exercises = transaction.finalSnapshot.itemIdentifiers.map({ $0.exerciseData })
             }
             return cell
         })
@@ -123,6 +134,7 @@ class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegat
         startButtonState()
     }
     
+    
     func deleteExercise(exercise: Exercise) {
         exercises.removeAll(where: { (deleteExercise) -> Bool in
             
@@ -146,7 +158,7 @@ class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegat
             return
         }
         startButton.isEnabled = true
-        startButton.backgroundColor = .systemBlue
+        startButton.backgroundColor = UIColor(named: "customOragne")
     }
     
     @objc func addButtonAction(_ sender: Any) {
@@ -160,7 +172,7 @@ class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegat
     func collectionView(_ collectionView: UICollectionView, canEditItemAt indexPath: IndexPath) -> Bool {
         return true
     }
-
+    
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         self.collectionView.isEditing = editing
@@ -170,11 +182,11 @@ class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegat
             titleTextField.becomeFirstResponder()
             startButton.isHighlighted = true
             startButton.backgroundColor = .red        } else {
-            titleTextField.isEnabled = false
-            titleTextField.resignFirstResponder()
-            startButton.isHighlighted = false
-            startButton.backgroundColor = .systemBlue
-        }
+                titleTextField.isEnabled = false
+                titleTextField.resignFirstResponder()
+                startButton.isHighlighted = false
+                startButton.backgroundColor = .systemBlue
+            }
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? ExerciseListTableViewController  {
@@ -182,14 +194,14 @@ class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegat
             ExerciseListTableViewController.isNotModal = false
             destination.workoutCollectionViewController = self
         } else if let destination = segue.destination as? WorkoutsDisplayViewController {
-
+            
             destination.workout = workout
         }
     }
     @objc func textFieldDidChange(_ textField: UITextField) {
         updateDataSource()
     }
-
+    
     @objc func handleLongPress(gestureRecognizer: UIGestureRecognizer) {
         switch (gestureRecognizer.state) {
         case .began:
@@ -206,6 +218,22 @@ class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegat
             collectionView.cancelInteractiveMovement()
         }
     }
+   
+    func createWorkoutTimer() {
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(WorkoutCollectionViewController.updateTimer), userInfo: nil, repeats: true)
+        timeStarted = true
+        
+    }
+    @objc func updateTimer() {
+        seconds += 1
+    }
+    func timeString(time:TimeInterval) -> String {
+        let hours = Int(time) / 3600
+        let minutes = Int(time) / 60 % 60
+        let seconds = Int(time) % 60
+        return String(format:"%02i:%02i:%02i", hours, minutes, seconds)
+    }
+    
     
     @IBAction func titleChanged(_ sender: Any) {
         if titleTextField.text == "" {
@@ -218,7 +246,7 @@ class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegat
 }
 
 class ExerciseDataSource: UICollectionViewDiffableDataSource<CollectionViewSection, Exercise> {
-    
+
 }
 
 

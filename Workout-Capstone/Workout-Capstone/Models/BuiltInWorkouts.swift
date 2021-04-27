@@ -52,9 +52,9 @@ var chestWorkout2 = Workout(workoutObject: WorkoutObject(name: "Chest shred", im
    
 var chestWorkout3 = Workout(workoutObject: WorkoutObject(name: "Best Chest", imageData: UIImage(named: "23")?.pngData() ?? Data(), time: nil, exercises: [inclineDumbbellPress, skullCrushers, barbellBenchPress, singleArmDumbbellTricepsExtension, cableTricepPushDown, pushUps, jumpRope], requiresEquipment: nil, id: UUID()))
     
-var coreWorkout1 = Workout(workoutObject: WorkoutObject(name: "abStract", imageData: UIImage(named: "30")?.pngData() ?? Data(), time: nil, exercises: [shoulderTapPlanks], requiresEquipment: nil, id: UUID()))
+var coreWorkout1 = Workout(workoutObject: WorkoutObject(name: "abStract", imageData: UIImage(named: "30")?.pngData() ?? Data(), time: nil, exercises: [shoulderTapPlanks, situp, shoulderTapPlanks, situp, russianTwist, plank, russianTwist, plank, jumpRope, dips, jumpRope, dips], requiresEquipment: nil, id: UUID()))
     
-var shoulderWorkout1 = Workout(workoutObject: WorkoutObject(name: "Boulders day", imageData: UIImage(named: "24")?.pngData() ?? Data(), time: nil, exercises: [], requiresEquipment: nil, id: UUID()))
+var shoulderWorkout1 = Workout(workoutObject: WorkoutObject(name: "Boulders day", imageData: UIImage(named: "24")?.pngData() ?? Data(), time: nil, exercises: [shoulderPress, frontRaise, seatedDumbbellShouldersPress], requiresEquipment: nil, id: UUID()))
     
 var shoulderWorkout2 = Workout(workoutObject: WorkoutObject(name: "Cold Shoulder", imageData: UIImage(named: "6")?.pngData() ?? Data(), time: nil, exercises: [seatedDumbbellShouldersPress, shoulderTapPlanks, frontRaise, jumpRope], requiresEquipment: nil, id: UUID()))
     
