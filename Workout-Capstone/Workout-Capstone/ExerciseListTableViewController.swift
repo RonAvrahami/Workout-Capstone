@@ -28,9 +28,8 @@ class ExerciseListTableViewController: UITableViewController, AddExerciseProtoca
         super.viewDidLoad()
         
         ExerciseListTableViewController.isNotModal = !isModal
-       // tableView.backgroundColor = UIColor(named: "customLightCream")
         searchBar.delegate = self
-        navigationItem.leftBarButtonItem = editButtonItem
+        navigationItem.rightBarButtonItems!.append(editButtonItem)
         tableView.delegate = self
         
         dataSource = DataSource(tableView: tableView, cellProvider: { (tableView, indexPath, exercise) -> UITableViewCell? in
@@ -45,7 +44,7 @@ class ExerciseListTableViewController: UITableViewController, AddExerciseProtoca
         })
         setExercises()
         allExercises = exercises
-        
+        updateDataSource()
     }
     func addExercise(exercise: Exercise) {
         exercises.append(exercise)
@@ -80,20 +79,11 @@ class ExerciseListTableViewController: UITableViewController, AddExerciseProtoca
         for exercise in builtInExercises {
             exercises.append(Exercise(exerciseData: exercise, id: UUID()))
         }
-        DispatchQueue.main.async {
-            self.updateDataSource()
-        }
     }
     
     func addToTableview(exercise: Exercise) {
         
-        workoutCollectionViewController?.exercises.append(exercise)
-        
-        workoutCollectionViewController?.workout.workoutObject.exercises?.append(exercise.exerciseData)
-        
-        workoutCollectionViewController?.updateDataSource()
-        
-        setExercises()
+        workoutCollectionViewController?.updateDataSource(newExercise: exercise.exerciseData)
     }
     
     func dismissModal() {

@@ -12,31 +12,43 @@ enum CollectionViewSection {
     case main
 }
 
+protocol saveExerciseDelegate {
+    func setWorkout(workout: Workout)
+}
+
 class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegate, UIGestureRecognizerDelegate {
-    
-    
-    
+
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var titleTextField: UITextField!
     
+
     let systemSoundID: SystemSoundID = 1005
     // MARK: Varibles
     var seconds = 0
     var timer = Timer()
     var timeStarted = Bool()
+    static var delegate: saveExerciseDelegate!
+
     var workout: Workout!
+    var exerciseDatas = [ExerciseData]()
+    
     lazy var exercises = self.workout.workoutObject.exercises?.compactMap { Exercise(exerciseData: $0, id: UUID())} ?? []
     var dataSource: ExerciseDataSource!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+              
+        exercises = []
+        exerciseDatas = workout.workoutObject.exercises ?? []
+        
         startButton.layer.cornerRadius = 10
         startButtonState()
-        startButton.setTitle("DELETE EXERCISE", for: .highlighted)
+        
         // MARK: Long press
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(gestureRecognizer:)))
-        longPressGesture.minimumPressDuration = 0.5
+        longPressGesture.minimumPressDuration = 0.3
         longPressGesture.delegate = self
         longPressGesture.delaysTouchesBegan = true
         collectionView.addGestureRecognizer(longPressGesture)
@@ -60,15 +72,26 @@ class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegat
         titleTextField.resignFirstResponder()
         titleTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         titleTextField.isEnabled = true
+        
+        updateDataSource(newExercise: nil)
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        guard var passableWorkout = workout else {
+            return
+        }
+        
+        passableWorkout.workoutObject.exercises = exerciseDatas
+        
+        WorkoutCollectionViewController.delegate.setWorkout(workout: passableWorkout)
+    }
+    
     @IBAction func startButtonTapped(_ sender: Any) {
         performSegue(withIdentifier: "displaySegue", sender: nil)
         //AudioServicesPlaySystemSound(systemSoundID)
         if timeStarted == false {
             createWorkoutTimer()
-            
         }
-        
     }
     
     func configureDataSource() {
@@ -81,7 +104,6 @@ class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegat
             if indexPath.row == self.exercises.count {
                 
             } else {
-                
                 cell.exerciseNameLabel.text = exerciseData.name
                 cell.exerciseTimeLabel.text = "Timer: \(exerciseData.timeGoal) seconds"
                 cell.repCountLabel.text = "Reps: \(exerciseData.reps)"
@@ -93,12 +115,12 @@ class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegat
             self.dataSource.reorderingHandlers.canReorderItem = { indexPath in
                 return true
             }
-            self.dataSource.reorderingHandlers.didReorder = { transaction in
-                self.workout.workoutObject.exercises = transaction.finalSnapshot.itemIdentifiers.map({ $0.exerciseData })
+            self.dataSource.reorderingHandlers.didReorder = { [self] transaction in
+                workout.workoutObject.exercises = transaction.finalSnapshot.itemIdentifiers.map({ $0.exerciseData })
+                exerciseDatas = workout.workoutObject.exercises ?? []
             }
             return cell
         })
-        updateDataSource()
     }
     
     func configureCollectionViewLayout() -> UICollectionViewLayout {
@@ -113,20 +135,28 @@ class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegat
                     deleteExercise(exercise: exercise)
                     completion(true)
                 }
-                
             }
             deleteAction.backgroundColor = .systemRed
             
             return UISwipeActionsConfiguration(actions: [deleteAction])
         }
         
-        
         let layout = UICollectionViewCompositionalLayout.list(using: configuration)
         return layout
     }
     
-    func updateDataSource() {
+    func updateDataSource(newExercise: ExerciseData?) {
+                
+        if let addedExercise = newExercise {
+            exerciseDatas.append(addedExercise)
+        }
+        exercises.removeAll()
+        for exerciseData in exerciseDatas {
+            exercises.append(Exercise(exerciseData: exerciseData, id: UUID()))
+        }
+        
         var snapshot = NSDiffableDataSourceSnapshot<CollectionViewSection, Exercise>()
+        
         snapshot.appendSections([.main])
         snapshot.appendItems(exercises)
         
@@ -136,12 +166,7 @@ class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegat
     
     
     func deleteExercise(exercise: Exercise) {
-        exercises.removeAll(where: { (deleteExercise) -> Bool in
-            
-            exercise == deleteExercise
-            
-        })
-        workout.workoutObject.exercises?.removeAll(where: { (removeExercise) -> Bool in
+        exerciseDatas.removeAll(where: { (removeExercise) -> Bool in
             removeExercise == exercise.exerciseData
         })
         
@@ -199,11 +224,12 @@ class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegat
         }
     }
     @objc func textFieldDidChange(_ textField: UITextField) {
-        updateDataSource()
+        updateDataSource(newExercise: nil)
     }
     
     @objc func handleLongPress(gestureRecognizer: UIGestureRecognizer) {
         switch (gestureRecognizer.state) {
+        
         case .began:
             guard let selectedIndexPath = collectionView.indexPathForItem(at: gestureRecognizer.location(in: collectionView)) else {
                 return
@@ -213,7 +239,6 @@ class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegat
             collectionView.updateInteractiveMovementTargetPosition(gestureRecognizer.location(in: gestureRecognizer.view!))
         case .ended:
             collectionView.endInteractiveMovement()
-            
         default:
             collectionView.cancelInteractiveMovement()
         }
