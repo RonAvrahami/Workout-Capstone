@@ -55,6 +55,7 @@ class WorkoutsDisplayViewController: UIViewController {
     
     @objc func myLeftBarButtonTapped() {
         startStop.isSelected = false
+        timerCounting = false
         timer.invalidate()
         let returnAlert = UIAlertController(title: "Leaving Workout!", message: "Are you sure you want to leave the workout?", preferredStyle: .alert)
         returnAlert.addAction(UIAlertAction(title: "YES", style: .destructive, handler: { (UIAlertAction) in
@@ -65,11 +66,11 @@ class WorkoutsDisplayViewController: UIViewController {
         )
         
         let closeAlert = UIAlertAction(title: "Cancel", style: .cancel, handler: { [self] (_) in
-            startStop.isSelected = true
             timer.fire()
         })
         returnAlert.addAction(closeAlert)
         present(returnAlert, animated: true, completion: nil)
+        
     }
 
     @objc func timerSet() -> Void {
@@ -171,8 +172,9 @@ class WorkoutsDisplayViewController: UIViewController {
     
     @IBAction func previousWorkout(_ sender: Any) {
         index -= 1
-        timer.invalidate()
         updateExercise()
+        timer.invalidate()
+        count = 0
         timerCounting = false
         startStop.isSelected = false
         indexCheck()
@@ -185,6 +187,7 @@ class WorkoutsDisplayViewController: UIViewController {
         index += 1
         updateExercise()
         timer.invalidate()
+        count = 0
         timerCounting = false
         startStop.isSelected = false
         indexCheck()
