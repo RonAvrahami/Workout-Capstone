@@ -24,8 +24,8 @@ enum SupplementaryViewKind {
     static let buttomLine = "buttomLine"
 }
 
-class WorkoutsCollectionViewController: UICollectionViewController {
-    
+class WorkoutsCollectionViewController: UICollectionViewController, saveExerciseDelegate {
+
     var dataSource: UICollectionViewDiffableDataSource<Section,Workout>!
     var builtInWorkouts = BuiltInWorkouts()
     var jsonManager = JSONManager()
@@ -54,11 +54,16 @@ class WorkoutsCollectionViewController: UICollectionViewController {
     var workoutObjectsArray = [[WorkoutObject]]()
     var customPlaceHolder = Workout(workoutObject: WorkoutObject(name: "New Workout", imageData: Data(), time: nil, exercises: nil, requiresEquipment: nil, id: UUID()))
     
+    static var workoutPlaceholderSection: Int?
+    static var workoutPlaceholderRow: Int?
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        WorkoutCollectionViewController.delegate = self
+        
         DispatchQueue.main.async { [self] in
-            loadBuiltInWorkouts()
+
             guard let workoutObjects = jsonManager.readWorkoutsFromDisk()?.workouts else {
                 loadBuiltInWorkouts()
                 return
@@ -79,6 +84,23 @@ class WorkoutsCollectionViewController: UICollectionViewController {
         configureDataSource()
     }
     
+    func setWorkout(workout: Workout) {
+        guard let row = WorkoutsCollectionViewController.workoutPlaceholderRow, let section = WorkoutsCollectionViewController.workoutPlaceholderSection else {
+            return
+        }
+        
+        if workoutsArray[section].count == 0 {
+            workoutsArray[section].append(workout)
+        } else {
+            workoutsArray[section][row] = workout
+        }
+            
+        updateDataSource()
+        writeToDisk()
+        
+        WorkoutsCollectionViewController.workoutPlaceholderRow = nil
+        WorkoutsCollectionViewController.workoutPlaceholderSection = nil
+    }
     
     func updateDataSource() {
         
@@ -110,9 +132,7 @@ class WorkoutsCollectionViewController: UICollectionViewController {
         snapshot.appendItems(coreWorkouts)
         
         sections = snapshot.sectionIdentifiers
-        
         dataSource.apply(snapshot, animatingDifferences: true, completion: nil)
-        
     }
     
     func configureCollectionViewLayout() -> UICollectionViewLayout {
@@ -196,10 +216,8 @@ class WorkoutsCollectionViewController: UICollectionViewController {
     }
     
     func writeToDisk() {
-                
-        workoutsArray = [armWorkouts, backWorkouts, legWorkouts, chestWorkouts, coreWorkouts, shoulderWorkouts, customWorkouts]
         workoutObjectsArray.removeAll()
-        
+    
         for workouts in workoutsArray {
             
             var workoutObjects = [WorkoutObject]()
@@ -211,12 +229,11 @@ class WorkoutsCollectionViewController: UICollectionViewController {
             workoutObjectsArray.append(workoutObjects)
         }
         
-        let writtenWorkouts = JSONWorkouts(armArray: workoutObjectsArray[0], backArray: workoutObjectsArray[1], legArray: workoutObjectsArray[2], chestArray: workoutObjectsArray[3], coreArray: workoutObjectsArray[4], shoulderArray: workoutObjectsArray[5], customWorkout: workoutObjectsArray[6])
+        let writtenWorkouts = JSONWorkouts(customWorkout: workoutObjectsArray[0],  armArray: workoutObjectsArray[1], backArray: workoutObjectsArray[2], legArray: workoutObjectsArray[3], chestArray: workoutObjectsArray[4], coreArray: workoutObjectsArray[5], shoulderArray: workoutObjectsArray[6])
         
         jsonManager.writeWorkoutsToDisk(workout: writtenWorkouts)
         
         parseFromDisk(workoutObjects: workoutObjectsArray)
-        
     }
     
     func parseFromDisk(workoutObjects: [[WorkoutObject]]) {
@@ -235,13 +252,13 @@ class WorkoutsCollectionViewController: UICollectionViewController {
             return
         }
         
-        armWorkouts = (workoutsArray[0])
-        backWorkouts = (workoutsArray[1])
-        legWorkouts = (workoutsArray[2])
-        chestWorkouts = (workoutsArray[3])
-        coreWorkouts = (workoutsArray[4])
-        shoulderWorkouts = (workoutsArray[5])
-        customWorkouts = (workoutsArray[6])
+        customWorkouts = (workoutsArray[0])
+        armWorkouts = (workoutsArray[1])
+        backWorkouts = (workoutsArray[2])
+        legWorkouts = (workoutsArray[3])
+        chestWorkouts = (workoutsArray[4])
+        coreWorkouts = (workoutsArray[5])
+        shoulderWorkouts = (workoutsArray[6])
         
         updateDataSource()
     }
@@ -249,7 +266,7 @@ class WorkoutsCollectionViewController: UICollectionViewController {
     func loadBuiltInWorkouts() {
         
         workoutsArray.removeAll()
-        
+        customWorkouts.removeAll()
         armWorkouts.append(contentsOf: builtInWorkouts.armArray)
         backWorkouts.append(contentsOf: builtInWorkouts.backArray)
         legWorkouts.append(contentsOf: builtInWorkouts.legArray)
@@ -326,6 +343,23 @@ class WorkoutsCollectionViewController: UICollectionViewController {
         
     }
     
+    func switchOnSections(section: Section) -> [Workout] {
+ 
+        switch section {
+        case .custom: return customWorkouts
+        case .arms: return armWorkouts
+        case .back: return backWorkouts
+        case .chest: return chestWorkouts
+        case .core: return coreWorkouts
+        case .legs: return legWorkouts
+        case .shoulders: return shoulderWorkouts
+        }
+    }
+    
+    @IBAction func exerciseListButtonTapped(_ sender: Any) {
+        performSegue(withIdentifier: "exerciseListSegue", sender: nil)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         guard let destination = segue.destination as? WorkoutCollectionViewController else {
@@ -335,8 +369,7 @@ class WorkoutsCollectionViewController: UICollectionViewController {
         if segue.identifier == "newWorkoutSegue" {
             let newWorkout = Workout(workoutObject: WorkoutObject(name: newWorkoutName ?? "Error", imageData: UIImage(named: "customWorkoutImage")?.pngData() ?? Data(), time: nil, exercises: nil, requiresEquipment: nil, id: UUID()))
             
-            destination.workout = newWorkout
-            
+            destination.workout = newWorkout            
             customWorkouts.append(newWorkout)
             
             writeToDisk()
@@ -345,6 +378,19 @@ class WorkoutsCollectionViewController: UICollectionViewController {
         } else {
             destination.workout = dataSource.itemIdentifier(for: sender as! IndexPath)
         }
+        let indexPath = sender as! IndexPath
+        
+        WorkoutsCollectionViewController.workoutPlaceholderSection = indexPath.section
+
+        if indexPath.section == 0 && indexPath.row != 0 {
+            WorkoutsCollectionViewController.workoutPlaceholderRow = indexPath.row - 1
+            
+        } else {
+            WorkoutsCollectionViewController.workoutPlaceholderRow = indexPath.row
+            
+        }
+        //destination.workoutsArray = switchOnSections(section: sections[indexPath.section])
+        //destination.workoutsCollectionViewController = self
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
