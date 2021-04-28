@@ -14,5 +14,6 @@ config/*.env
 *.bak
 *.gpx
 *.xcuserstate
+*.xcuserdatad
 
 upload_dsym_results
