@@ -219,8 +219,12 @@ class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegat
             ExerciseListTableViewController.isNotModal = false
             destination.workoutCollectionViewController = self
         } else if let destination = segue.destination as? WorkoutsDisplayViewController {
-            
-            destination.workout = workout
+            guard var passableWorkout = workout else {
+                return
+            }
+            passableWorkout.workoutObject.exercises = exerciseDatas
+
+            destination.workout = passableWorkout
         }
     }
     @objc func textFieldDidChange(_ textField: UITextField) {

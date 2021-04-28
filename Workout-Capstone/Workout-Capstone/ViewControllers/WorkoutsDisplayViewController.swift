@@ -105,9 +105,13 @@ class WorkoutsDisplayViewController: UIViewController {
     
     
     func updateTextColor() {
-        if timerCount > Double(exercise.timeGoal) {
+        if timerCount >= Double(exercise.timeGoal) {
             timerLabel.textColor = UIColor.red
-            //AudioServicesPlayAlertSound(systemSoundID)
+            AudioServicesPlayAlertSound(systemSoundID)
+            Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { (timer) in
+                AudioServicesDisposeSystemSoundID(self.systemSoundID)
+                timer.invalidate()
+            }
         }
         else {
             timerLabel.textColor = UIColor.green
@@ -177,6 +181,7 @@ class WorkoutsDisplayViewController: UIViewController {
         count = 0
         timerCounting = false
         startStop.isSelected = false
+        timerLabel.textColor = UIColor.green
         indexCheck()
     }
     
@@ -190,6 +195,7 @@ class WorkoutsDisplayViewController: UIViewController {
         count = 0
         timerCounting = false
         startStop.isSelected = false
+        timerLabel.textColor = UIColor.green
         indexCheck()
         }
     }
