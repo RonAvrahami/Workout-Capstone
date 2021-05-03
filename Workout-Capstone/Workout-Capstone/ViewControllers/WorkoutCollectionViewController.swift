@@ -57,7 +57,8 @@ class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegat
         collectionView.collectionViewLayout = configureCollectionViewLayout()
         collectionView.allowsSelection = false
         collectionView.allowsSelectionDuringEditing = false
-        
+        navigationController?.navigationBar.tintColor = UIColor(named: "customOragne")
+
         configureDataSource()
         collectionView.dataSource = dataSource
         

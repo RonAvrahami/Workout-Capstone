@@ -48,7 +48,7 @@ class AddExerciseViewController: UIViewController, UITextViewDelegate, UIPickerV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         if isEdit == true {
             submitButton.setTitle("Save", for: .normal)
         }
@@ -121,9 +121,21 @@ class AddExerciseViewController: UIViewController, UITextViewDelegate, UIPickerV
         enableSubmitCheck()
         view.endEditing(true)
     }
+//    func uiLabelLength( uiLabel: UILabel, shouldChangeCharaters range: NSRange, replacementString string: String) -> Bool {
+//        let currentText = uiLabel.text ?? ""
+//
+//        guard let stringRange = Range(range, in: currentText) else { return false}
+//
+//        let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
+//
+//        return updatedText.count <= 16
+//
+//    }
     
     @IBAction func exerciseTextFieldEdited(_ sender: Any) {
-        titleLabel.text = exerciseNameTextField.text
+        titleLabel.text = exerciseNameTextField.text?.maxLength(length: 16)
+        exerciseNameTextField.text = exerciseNameTextField.text?.maxLength(length: 16)
+        
         if exerciseNameTextField.text == "" {
             titleLabel.text = "New Exercise"
         }
@@ -250,7 +262,7 @@ class AddExerciseViewController: UIViewController, UITextViewDelegate, UIPickerV
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
         enableSubmitCheck()
-        
+        pickerView.tintColor = UIColor(named: "customOragne")
         guard pickerView.tag == 1 else {
         
             switch component {
