@@ -11,6 +11,9 @@ import AVFoundation
 class WorkoutsDisplayViewController: UIViewController {
     
     
+    @IBOutlet weak var repsView: UIView!
+    @IBOutlet weak var bottomView: UIView!
+    @IBOutlet weak var topView: UIView!
     @IBOutlet weak var timeGoalLabel: UILabel!
     @IBOutlet weak var exerciseName: UILabel!
     @IBOutlet weak var exerciseLabel: UILabel!
@@ -39,6 +42,20 @@ class WorkoutsDisplayViewController: UIViewController {
     let largeConfig = UIImage.SymbolConfiguration(pointSize: 90)
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        repsView.layer.cornerRadius = 13
+        repsView.layer.shadowRadius = 5
+        repsView.layer.shadowOffset = .zero
+        repsView.layer.shadowOpacity = 1
+        topView.layer.cornerRadius = 13
+        bottomView.layer.cornerRadius = 13
+        topView.layer.shadowRadius = 5
+        bottomView.layer.shadowRadius = 5
+        topView.layer.shadowOpacity = 1
+        topView.layer.shadowOffset = .zero
+        bottomView.layer.shadowOpacity = 1
+        bottomView.layer.shadowOffset = .zero
+        navigationController?.navigationBar.tintColor = UIColor(named: "customOragne")
         
         self.navigationItem.hidesBackButton = true
         let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItem.Style.done, target: self, action: #selector(myLeftBarButtonTapped))
@@ -70,7 +87,7 @@ class WorkoutsDisplayViewController: UIViewController {
         })
         returnAlert.addAction(closeAlert)
         present(returnAlert, animated: true, completion: nil)
-        
+        returnAlert.view.tintColor = UIColor(named: "customOragne")
     }
 
     @objc func timerSet() -> Void {
@@ -106,7 +123,7 @@ class WorkoutsDisplayViewController: UIViewController {
     
     func updateTextColor() {
         if timerCount >= Double(exercise.timeGoal) {
-            timerLabel.textColor = UIColor.red
+            timerLabel.textColor = UIColor(named: "customRed")
             AudioServicesPlayAlertSound(systemSoundID)
             Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { (timer) in
                 AudioServicesDisposeSystemSoundID(self.systemSoundID)
@@ -114,7 +131,7 @@ class WorkoutsDisplayViewController: UIViewController {
             }
         }
         else {
-            timerLabel.textColor = UIColor.green
+            timerLabel.textColor = UIColor(named: "darkGreen")
         }
     }
     
@@ -181,7 +198,7 @@ class WorkoutsDisplayViewController: UIViewController {
         count = 0
         timerCounting = false
         startStop.isSelected = false
-        timerLabel.textColor = UIColor.green
+        timerLabel.textColor = UIColor(named: "darkGreen")
         indexCheck()
     }
     
@@ -195,7 +212,7 @@ class WorkoutsDisplayViewController: UIViewController {
         count = 0
         timerCounting = false
         startStop.isSelected = false
-        timerLabel.textColor = UIColor.green
+        timerLabel.textColor = UIColor(named: "darkGreen")
         indexCheck()
         }
     }

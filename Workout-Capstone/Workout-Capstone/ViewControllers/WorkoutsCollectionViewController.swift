@@ -63,6 +63,7 @@ class WorkoutsCollectionViewController: UICollectionViewController, saveExercise
         WorkoutCollectionViewController.delegate = self
         
         DispatchQueue.main.async { [self] in
+            loadBuiltInWorkouts()
 
             guard let workoutObjects = jsonManager.readWorkoutsFromDisk()?.workouts else {
                 loadBuiltInWorkouts()
@@ -71,11 +72,12 @@ class WorkoutsCollectionViewController: UICollectionViewController, saveExercise
             
             parseFromDisk(workoutObjects: workoutObjects)
         }
-        
-        collectionView.backgroundColor = UIColor(named: "customLightCream")
-        navigationController?.navigationBar.barTintColor = UIColor(named: "customLightGray")
-        tabBarController?.tabBar.barTintColor = UIColor(named: "customLightGray")
-        
+        navigationController?.navigationBar.tintColor = UIColor(named: "customOragne")
+
+//        collectionView.backgroundColor = UIColor(named: "customLightCream")
+//        navigationController?.navigationBar.barTintColor = UIColor(named: "customLightGray")
+//        tabBarController?.tabBar.barTintColor = UIColor(named: "customLightGray")
+//        
         collectionView.collectionViewLayout = configureCollectionViewLayout()
         collectionView.register(SectionHeaderView.self, forSupplementaryViewOfKind: SupplementaryViewKind.header, withReuseIdentifier: SectionHeaderView.reuseIdentifier)
         collectionView.register(LineView.self, forSupplementaryViewOfKind: SupplementaryViewKind.topLine, withReuseIdentifier: LineView.reuseIdentifier)
@@ -103,7 +105,7 @@ class WorkoutsCollectionViewController: UICollectionViewController, saveExercise
     }
     
     func updateDataSource() {
-        
+        // workoutsArray = [customWorkouts, armWorkouts, backWorkouts, legWorkouts, shoulderWorkouts, chestWorkouts, coreWorkouts]
         customArray.removeAll()
         customArray = [customPlaceHolder]
         customArray.append(contentsOf: customWorkouts)
@@ -227,13 +229,14 @@ class WorkoutsCollectionViewController: UICollectionViewController, saveExercise
                 workoutObjects.append(WorkoutObject(name: workoutObject.name, imageData: workoutObject.imageData, time: workoutObject.time, exercises: workoutObject.exercises, requiresEquipment: workoutObject.requiresEquipment, id: workoutObject.id))
             }
             workoutObjectsArray.append(workoutObjects)
+            if workoutsArray.last == workouts {
+                let writtenWorkouts = JSONWorkouts(customWorkout: workoutObjectsArray[0],  armArray: workoutObjectsArray[1], backArray: workoutObjectsArray[2], legArray: workoutObjectsArray[3], chestArray: workoutObjectsArray[4], coreArray: workoutObjectsArray[5], shoulderArray: workoutObjectsArray[6])
+                
+                jsonManager.writeWorkoutsToDisk(workout: writtenWorkouts)
+                
+                parseFromDisk(workoutObjects: workoutObjectsArray)
+            }
         }
-        
-        let writtenWorkouts = JSONWorkouts(customWorkout: workoutObjectsArray[0],  armArray: workoutObjectsArray[1], backArray: workoutObjectsArray[2], legArray: workoutObjectsArray[3], chestArray: workoutObjectsArray[4], coreArray: workoutObjectsArray[5], shoulderArray: workoutObjectsArray[6])
-        
-        jsonManager.writeWorkoutsToDisk(workout: writtenWorkouts)
-        
-        parseFromDisk(workoutObjects: workoutObjectsArray)
     }
     
     func parseFromDisk(workoutObjects: [[WorkoutObject]]) {
