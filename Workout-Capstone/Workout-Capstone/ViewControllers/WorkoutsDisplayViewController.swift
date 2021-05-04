@@ -98,7 +98,7 @@ class WorkoutsDisplayViewController: UIViewController {
     }
     
     func updateExercise() {
-        exercise = workout.workoutObject.exercises![index]
+         exercise = workout.workoutObject.exercises![index]
         
         DispatchQueue.main.async { [self] in
             timerText = "00:00"
