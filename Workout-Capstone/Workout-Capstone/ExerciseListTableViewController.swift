@@ -14,6 +14,8 @@ class ExerciseListTableViewController: UITableViewController, AddExerciseProtoca
     
     @IBOutlet weak var searchBar: UISearchBar!
     
+    var jsonManager = JSONManager()
+
     var exercises = [Exercise]()
     var dataSource: DataSource!
     var editingExercise: Exercise?
@@ -42,18 +44,31 @@ class ExerciseListTableViewController: UITableViewController, AddExerciseProtoca
             }
             return cell
         })
-        setExercises()
+        readFromDisk()
+    }
+    
+    func writeToDisk() {
+        jsonManager.writeExercisesToDisk(exercises: exercises)
+        readFromDisk()
+    }
+    func readFromDisk() {
+        exercises = jsonManager.readExercisesFromDisk() ?? setExercises()
         allExercises = exercises
         updateDataSource()
     }
+    
+    
+    
     func addExercise(exercise: Exercise) {
         exercises.append(exercise)
+        writeToDisk()
         updateDataSource()
     }
     
     func updateExercise(exercise: Exercise) {
         
-        exercises[senderIndexPath!.row] = exercise        
+        exercises[senderIndexPath!.row] = exercise
+        writeToDisk()
         updateDataSource()
         
     }
@@ -67,18 +82,23 @@ class ExerciseListTableViewController: UITableViewController, AddExerciseProtoca
     }
     
     func deleteExercise(exercise: Exercise) {
+        
         var snapshot = dataSource.snapshot()
         snapshot.deleteItems([exercise])
         exercises.removeAll { (exerciseIndex) -> Bool in
             exerciseIndex == exercise
         }
         dataSource.apply(snapshot, animatingDifferences: true, completion: nil)
+        
+        writeToDisk()
     }
     
-    func setExercises() {
+    func setExercises() -> [Exercise] {
+        var exercisesArray = [Exercise]()
         for exercise in builtInExercises {
-            exercises.append(Exercise(exerciseData: exercise, id: UUID()))
+            exercisesArray.append(Exercise(exerciseData: exercise, id: UUID()))
         }
+        return exercisesArray
     }
     
     func addToTableview(exercise: Exercise) {

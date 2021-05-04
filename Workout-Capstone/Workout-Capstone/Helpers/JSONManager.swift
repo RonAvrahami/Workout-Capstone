@@ -36,4 +36,32 @@ class JSONManager {
         }
         return nil
     }
+    
+    func writeExercisesToDisk(exercises: [Exercise]) {
+        
+        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        
+        let archiveURL = documentsDirectory.appendingPathComponent("exercises").appendingPathExtension("plist")
+        
+        let propertyListEncoder = PropertyListEncoder()
+        
+        let encodedExercises = try? propertyListEncoder.encode(exercises)
+        
+        try? encodedExercises?.write(to: archiveURL, options: .noFileProtection)
+        
+    }
+    
+    func readExercisesFromDisk() -> [Exercise]? {
+        
+        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        
+        let archiveURL = documentsDirectory.appendingPathComponent("exercises").appendingPathExtension("plist")
+        
+        let propertyListDecoder = PropertyListDecoder()
+        
+        if let retrievedExerciseDatas = try? Data(contentsOf: archiveURL), let decodedExercises = try? propertyListDecoder.decode([Exercise].self, from: retrievedExerciseDatas) {
+            return decodedExercises
+        }
+        return nil
+    }
 }
