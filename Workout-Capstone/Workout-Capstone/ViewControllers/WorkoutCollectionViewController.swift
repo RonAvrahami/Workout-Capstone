@@ -224,7 +224,7 @@ class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegat
                 return
             }
             passableWorkout.workoutObject.exercises = exerciseDatas
-
+ 
             destination.workout = passableWorkout
         }
     }

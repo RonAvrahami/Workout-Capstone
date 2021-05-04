@@ -40,7 +40,7 @@ struct JSONWorkouts: Hashable, Codable {
     var coreArray: [WorkoutObject]
     var shoulderArray: [WorkoutObject]
     
-    var workouts: [[WorkoutObject]] {
-        return [customWorkout, armArray, backArray, legArray, chestArray, coreArray, shoulderArray]
+    var workouts: [Int: [WorkoutObject]] {
+        return [0: customWorkout, 1: armArray, 2: backArray, 3: legArray, 4: chestArray, 5: coreArray, 6: shoulderArray]
     }
 }
