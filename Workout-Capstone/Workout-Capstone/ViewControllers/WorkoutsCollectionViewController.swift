@@ -62,7 +62,7 @@ class WorkoutsCollectionViewController: UICollectionViewController, saveExercise
         WorkoutCollectionViewController.delegate = self
         
         DispatchQueue.main.async { [self] in
-            
+        
             guard let workoutObjects = jsonManager.readWorkoutsFromDisk()?.workouts else {
                 loadBuiltInWorkouts()
                 
@@ -77,7 +77,7 @@ class WorkoutsCollectionViewController: UICollectionViewController, saveExercise
         }
         navigationController?.navigationBar.tintColor = UIColor(named: "customOragne")
         
-        collectionView.backgroundColor = UIColor(named: "customLightCream")
+//        collectionView.backgroundColor = UIColor(named: "")
         navigationController?.navigationBar.barTintColor = UIColor(named: "customLightGray")
         tabBarController?.tabBar.barTintColor = UIColor(named: "customLightGray")
         
