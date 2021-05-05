@@ -34,7 +34,7 @@ var legWorkout2 = Workout(workoutObject: WorkoutObject(name: "Anti chicken leg",
     
 var legWorkout3 = Workout(workoutObject: WorkoutObject(name: "Break a leg", imageData: UIImage(named: "11")?.pngData() ?? Data(), time: nil, exercises:  [boxJump, jumpRope, dumbbellJumpSquat, legPress, seatedCalfRaise, stepUps, jumpingJack, lungeTwist, gobletSquat, squats], requiresEquipment: nil, id: UUID()))
     
-var legWorkout4 = Workout(workoutObject: WorkoutObject(name: "Third Leg", imageData: UIImage(named: "10")?.pngData() ?? Data(), time: nil, exercises: [boxJump, plank, deadlift, legPress, gobletSquat, barbellDeadLift, seatedCalfRaise, superMan, jumpingJack, dumbbellSquatWalk, dumbbellJumpSquat, mountainClimbers, dips], requiresEquipment: nil, id: UUID()))
+var legWorkout4 = Workout(workoutObject: WorkoutObject(name: "ilLEGal", imageData: UIImage(named: "10")?.pngData() ?? Data(), time: nil, exercises: [boxJump, plank, deadlift, legPress, gobletSquat, barbellDeadLift, seatedCalfRaise, superMan, jumpingJack, dumbbellSquatWalk, dumbbellJumpSquat, mountainClimbers, dips], requiresEquipment: nil, id: UUID()))
     
 var armWorkout1 = Workout(workoutObject: WorkoutObject(name: "Arm Destroyer", imageData: UIImage(named: "1")?.pngData() ?? Data(), time: nil, exercises: [inclineBenchPress, singleArmDumbbellRow, cableTricepPushDown, bentOverDumbbellLatRaise, deadlift], requiresEquipment: nil, id: UUID()))
 
