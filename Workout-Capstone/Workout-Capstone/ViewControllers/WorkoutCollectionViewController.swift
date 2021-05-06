@@ -89,7 +89,6 @@ class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegat
     
     @IBAction func startButtonTapped(_ sender: Any) {
         performSegue(withIdentifier: "displaySegue", sender: nil)
-        //AudioServicesPlaySystemSound(systemSoundID)
         if timeStarted == false {
             createWorkoutTimer()
         }
@@ -174,7 +173,7 @@ class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegat
         var snapshot = dataSource.snapshot()
         snapshot.deleteItems([exercise])
         dataSource.apply(snapshot, animatingDifferences: true)
-        startButtonState()
+        updateDataSource(newExercise: nil)
     }
     
     func startButtonState() {
@@ -192,7 +191,6 @@ class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegat
     }
     
     @IBAction func unwindToWorkout(segue: UIStoryboardSegue) {
-        
     }
     // MARK: collectionView Funcs
     func collectionView(_ collectionView: UICollectionView, canEditItemAt indexPath: IndexPath) -> Bool {
@@ -263,8 +261,7 @@ class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegat
         let seconds = Int(time) % 60
         return String(format:"%02i:%02i:%02i", hours, minutes, seconds)
     }
-    
-    
+
     @IBAction func titleChanged(_ sender: Any) {
         if titleTextField.text == "" {
             editButtonItem.isEnabled = false
@@ -276,7 +273,6 @@ class WorkoutCollectionViewController: UIViewController, UICollectionViewDelegat
 }
 
 class ExerciseDataSource: UICollectionViewDiffableDataSource<CollectionViewSection, Exercise> {
-
 }
 
 

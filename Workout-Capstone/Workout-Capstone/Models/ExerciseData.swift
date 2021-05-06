@@ -12,7 +12,7 @@ enum MuscleGroup: String, CaseIterable, Hashable, Codable {
     case defualt
     case arms = "Arms"
     case legs = "Legs"
-    case shoulders = "Shoulder"
+    case shoulders = "Shoulders"
     case core = "Core"
     case back = "Back"
     case chest = "Chest"

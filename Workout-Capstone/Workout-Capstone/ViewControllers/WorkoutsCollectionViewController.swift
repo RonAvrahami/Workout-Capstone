@@ -319,10 +319,12 @@ class WorkoutsCollectionViewController: UICollectionViewController, saveExercise
         NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification, object: alert.textFields?[0], queue: OperationQueue.main) { (notification) in
             
             let textFieldName = alert.textFields![0]
-            let text = textFieldName.text?.replacingOccurrences(of: " ", with: "")
-            if (text == "") {
-                addAction.isEnabled = false
-            } else {
+            if let text = textFieldName.text?.replacingOccurrences(of: " ", with: "") {
+                
+                guard text.count < 17 && text != "" else {
+                    addAction.isEnabled = false
+                    return
+                }
                 addAction.isEnabled = true
             }
         }
