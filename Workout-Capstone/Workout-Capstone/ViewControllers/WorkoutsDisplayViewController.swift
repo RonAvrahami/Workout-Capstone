@@ -37,11 +37,15 @@ class WorkoutsDisplayViewController: UIViewController {
     var repsText: String?
     var isPaused: Bool = true
     let systemSoundID: SystemSoundID = 1005
+    var seconds = 0
+    var workoutTimer = Timer()
+    var timeStarted = Bool()
     
     
     let largeConfig = UIImage.SymbolConfiguration(pointSize: 90)
     override func viewDidLoad() {
         super.viewDidLoad()
+        createWorkoutTimer()
         
         repsView.layer.cornerRadius = 13
         repsView.layer.shadowRadius = 5
@@ -143,7 +147,7 @@ class WorkoutsDisplayViewController: UIViewController {
     }
     
     func endWorkoutAlert() {
-        let actionsheet = UIAlertController(title: "Workout finished", message: "Workout length", preferredStyle: .actionSheet)
+        let actionsheet = UIAlertController(title: "Workout finished", message: "Workout length \(timeString(time: TimeInterval(seconds)))", preferredStyle: .actionSheet)
         actionsheet.addAction(UIAlertAction(title: "End", style: .destructive, handler: { (action) in
             self.performSegue(withIdentifier: "unwindToHome", sender: self)
             print("Tapped end workout")
@@ -202,6 +206,14 @@ class WorkoutsDisplayViewController: UIViewController {
         indexCheck()
     }
     
+    func createWorkoutTimer() {
+        workoutTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(WorkoutCollectionViewController.updateTimer), userInfo: nil, repeats: true)
+        timeStarted = true
+        
+    }
+    @objc func updateTimer() {
+        seconds += 1
+    }
     @IBAction func nextWorkout(_ sender: Any) {
         if index == workout.workoutObject.exercises!.count - 1 {
             endWorkoutAlert()
@@ -215,6 +227,7 @@ class WorkoutsDisplayViewController: UIViewController {
         timerLabel.textColor = UIColor(named: "darkGreen")
         indexCheck()
         }
+        
     }
 }
 
