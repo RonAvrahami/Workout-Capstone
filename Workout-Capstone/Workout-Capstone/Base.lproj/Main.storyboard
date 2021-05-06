@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CE5-cP-5Ub">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CE5-cP-5Ub">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -111,13 +111,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Exercise" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eqf-fU-Ool">
-                                <rect key="frame" x="20" y="19.999999999999996" width="350" height="40.666666666666657"/>
+                                <rect key="frame" x="20" y="20" width="350" height="37"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="dHw-aa-zjz">
-                                <rect key="frame" x="40" y="100.66666666666669" width="310" height="804.33333333333326"/>
+                                <rect key="frame" x="40" y="97" width="310" height="804.33333333333337"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Exercise Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="unX-Rg-JWW">
                                         <rect key="frame" x="0.0" y="0.0" width="310" height="34"/>
@@ -128,7 +128,7 @@
                                         </connections>
                                     </textField>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="gDG-UW-xzr">
-                                        <rect key="frame" x="0.0" y="47.999999999999986" width="185.33333333333334" height="34"/>
+                                        <rect key="frame" x="0.0" y="48" width="185.33333333333334" height="34"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of Reps:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ipM-L9-lJe">
                                                 <rect key="frame" x="0.0" y="0.0" width="128.33333333333334" height="34"/>
@@ -147,7 +147,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="TT3-4z-zCF">
-                                        <rect key="frame" x="0.0" y="95.999999999999986" width="310" height="31"/>
+                                        <rect key="frame" x="0.0" y="96" width="310" height="31"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Requires Equiptment:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QGM-BL-azd">
                                                 <rect key="frame" x="0.0" y="0.0" width="163" height="31"/>
@@ -175,6 +175,7 @@
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ipj-QU-Q8n">
                                                 <rect key="frame" x="285.66666666666669" y="0.0" width="24.333333333333314" height="23.666666666666668"/>
+                                                <color key="tintColor" name="customOragne"/>
                                                 <state key="normal">
                                                     <imageReference key="image" image="arrow.forward.circle" catalog="system" symbolScale="large"/>
                                                 </state>
@@ -185,10 +186,10 @@
                                         </subviews>
                                     </stackView>
                                     <pickerView tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ifE-kh-FZq">
-                                        <rect key="frame" x="0.0" y="178.66666666666663" width="310" height="216"/>
+                                        <rect key="frame" x="0.0" y="178.66666666666669" width="310" height="216"/>
                                     </pickerView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ah8-ej-xhT">
-                                        <rect key="frame" x="0.0" y="408.66666666666663" width="310" height="128"/>
+                                        <rect key="frame" x="0.0" y="408.66666666666669" width="310" height="128.00000000000006"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="128" id="BCU-IR-ey2"/>
@@ -199,7 +200,7 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="PKf-tP-7SF">
-                                        <rect key="frame" x="0.0" y="550.66666666666674" width="310" height="23.666666666666629"/>
+                                        <rect key="frame" x="0.0" y="550.66666666666663" width="310" height="23.666666666666629"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Muscle Group" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZtY-YX-x0O">
                                                 <rect key="frame" x="0.0" y="0.0" width="106.33333333333333" height="23.666666666666668"/>
@@ -209,6 +210,7 @@
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ptq-4d-ty9">
                                                 <rect key="frame" x="285.66666666666669" y="0.0" width="24.333333333333314" height="23.666666666666668"/>
+                                                <color key="tintColor" name="customOragne"/>
                                                 <state key="normal">
                                                     <imageReference key="image" image="arrow.forward.circle" catalog="system" symbolScale="large"/>
                                                 </state>
@@ -238,6 +240,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6va-yv-Uhv">
                                 <rect key="frame" x="40" y="700" width="310" height="36"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                <color key="tintColor" name="customOragne"/>
                                 <state key="normal" title="Submit"/>
                                 <connections>
                                     <action selector="submitButtonTapped:" destination="Jrh-2p-5Ou" eventType="touchUpInside" id="2A6-tK-UGY"/>
@@ -293,20 +296,20 @@
                         </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="exerciseCell" id="QUX-oh-yKv" customClass="ExerciseListTableViewCell" customModule="Workout_Capstone" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="72" width="390" height="43"/>
+                                <rect key="frame" x="0.0" y="68.333333969116211" width="390" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QUX-oh-yKv" id="FA9-lJ-YAx">
-                                    <rect key="frame" x="0.0" y="0.0" width="346" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="349.33333333333331" height="43.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exercise" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ye6-At-XH9">
-                                            <rect key="frame" x="58" y="11" width="268" height="21"/>
+                                            <rect key="frame" x="58" y="11.000000000000002" width="271.33333333333331" height="21.666666666666671"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ljX-ii-vbv">
-                                            <rect key="frame" x="20" y="0.0" width="18" height="43"/>
+                                            <rect key="frame" x="20" y="0.0" width="18" height="43.666666666666664"/>
                                             <state key="normal" image="plus" catalog="system"/>
                                             <connections>
                                                 <action selector="addToWorkoutButtonTapped:" destination="QUX-oh-yKv" eventType="touchUpInside" id="vqk-Vr-uOS"/>
@@ -574,18 +577,18 @@
                                                     <rect key="frame" x="8" y="8" width="285" height="82"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LLQ-YL-spg">
-                                                            <rect key="frame" x="0.0" y="0.0" width="285" height="36"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="285" height="43.333333333333336"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                             <color key="highlightedColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RrB-1R-olI">
-                                                            <rect key="frame" x="0.0" y="41" width="285" height="18"/>
+                                                            <rect key="frame" x="0.0" y="48.333333333333336" width="285" height="14.333333333333336"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                             <color key="textColor" name="customDarkGray"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qhj-du-8M2">
-                                                            <rect key="frame" x="0.0" y="64" width="285" height="18"/>
+                                                            <rect key="frame" x="0.0" y="67.666666666666671" width="285" height="14.333333333333329"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                             <color key="textColor" name="customDarkGray"/>
                                                             <nil key="highlightedColor"/>

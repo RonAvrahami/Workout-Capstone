@@ -441,7 +441,7 @@ class WorkoutsCollectionViewController: UICollectionViewController, saveExercise
                 }
                 
                 if indexPath.section == 0 {
-                    return UIMenu(title: "", image: nil, identifier: nil, options: [], children: [startOnWatch, startOnIphone, deleteAction])
+                    return UIMenu(title: "", image: nil, identifier: nil, options: [], children: [deleteAction])
                 } else {
                     return UIMenu(title: "", image: nil, identifier: nil, options: [], children: [startOnWatch, startOnIphone])
                 }
